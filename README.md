@@ -20,3 +20,5 @@ The current stable version of uvm_testbench_gen requires:
    Note: The tool will dump out all the debug information in the following dbg_uvm_testbench_gen.log file
 
 # Documentation, papers, links and other required details
+1. Short video about this tool can be found on the below youtube link
+> [UVM Template Generator Tool Demo](https://www.youtube.com/watch?v=DNopc-QDq0o)
