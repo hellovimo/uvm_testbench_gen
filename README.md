@@ -24,4 +24,4 @@ The current stable version of uvm_testbench_gen requires:
 - [UVM Template Generator Tool Demo](https://www.youtube.com/watch?v=DNopc-QDq0o)
 
 2. Poster/Paper submitted for DAC2020 (Design Automation Conference) Conference in the link below.
-- [UVM Template Generator Tool DAC Poster/Paper](https://github.com/hellovimo/uvm_testbench_gen/blob/main/Documents/DAC2020_Novel_GUI_Based_UVM_Template_Builder_Vignesh_Manoharan.pdf)
+- [UVM Template Generator Tool DAC2020 Poster/Paper](https://github.com/hellovimo/uvm_testbench_gen/blob/main/Documents/DAC2020_Novel_GUI_Based_UVM_Template_Builder_Vignesh_Manoharan.pdf)
