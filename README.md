@@ -21,4 +21,4 @@ The current stable version of uvm_testbench_gen requires:
 
 # Documentation, papers, links and other required details
 1. Short video about this tool can be found on the below youtube link
-> [UVM Template Generator Tool Demo](https://www.youtube.com/watch?v=DNopc-QDq0o)
+- [UVM Template Generator Tool Demo](https://www.youtube.com/watch?v=DNopc-QDq0o)
