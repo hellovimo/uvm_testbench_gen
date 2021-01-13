@@ -16,7 +16,7 @@ The current stable version of uvm_testbench_gen requires:
 
 # Documentation, papers, links and other required details
 
-1. Complete documentation about the tool operation.<br/>[UVM Testbench Generator Docs](https://github.com/hellovimo/uvm_testbench_gen/wiki/The-Novel-GUI-Based-UVM-Template-Generator)
+1. Complete documentation about the tool operation.<br/>- [UVM Testbench Generator Docs](https://github.com/hellovimo/uvm_testbench_gen/wiki/The-Novel-GUI-Based-UVM-Template-Generator)
 
 2. Steps To install Python locally to work with the tool without root permission.<br/>- [Local Python Installation](https://hellovimo.github.io/uvm_testbench_gen/localpythoninstall.html)
 
