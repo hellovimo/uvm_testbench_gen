@@ -12,9 +12,7 @@ The current stable version of uvm_testbench_gen requires:
 # Usage / Commands To Run The Tool
 1. The command to launch the tool in normal mode.<br/>`python uvm_testbench_gen.py`
 
-2. The command to launch the tool in debug mode for dumping the debug information.<br/>`python uvm_testbench_gen.py debug`
-
-   Note: The tool will dump out all the debug information in the following dbg_uvm_testbench_gen.log file
+2. The command to launch the tool in debug mode for dumping the debug information.<br/>`python uvm_testbench_gen.py debug`<br/>Note: The tool will dump out all the debug information in the following dbg_uvm_testbench_gen.log file
 
 # Documentation, papers, links and other required details
 
