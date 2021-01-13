@@ -54,6 +54,4 @@
 
 Hope the above steps would have been helpful for you to locally install Python and required packages without root permission so that you execute and experience the [UVM Testbench Generator tool](https://github.com/hellovimo/uvm_testbench_gen) !!
 
-<p align="center">
 [Back To The Home Page](./)
-</p>
