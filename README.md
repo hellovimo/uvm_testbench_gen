@@ -9,13 +9,9 @@ The current stable version of uvm_testbench_gen requires:
 2. openpyxl-2.5.4 or higher version. For further details refer the following https://pypi.org/project/openpyxl/ 
 
 # Usage / Commands To Run The Tool
-1. The command to launch the tool in normal mode.
+1. The command to launch the tool in normal mode.<br/>python uvm_testbench_gen.py
 
-   python uvm_testbench_gen.py
-
-2. The command to launch the tool in debug mode for dumping the debug information.
-
-   python uvm_testbench_gen.py debug
+2. The command to launch the tool in debug mode for dumping the debug information.<br/>python uvm_testbench_gen.py debug
 
    Note: The tool will dump out all the debug information in the following dbg_uvm_testbench_gen.log file
 
