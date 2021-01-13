@@ -20,8 +20,8 @@ The current stable version of uvm_testbench_gen requires:
    Note: The tool will dump out all the debug information in the following dbg_uvm_testbench_gen.log file
 
 # Documentation, papers, links and other required details
-1. Short video about this tool can be found on the below youtube link
-- [UVM Template Generator Tool Demo](https://www.youtube.com/watch?v=DNopc-QDq0o)
+1. Short video about this tool can be found on the below youtube link<br/>- [UVM Template Generator Tool Demo](https://www.youtube.com/watch?v=DNopc-QDq0o)
 
-2. Poster/Paper submitted for DAC2020 (Design Automation Conference) Conference in the link below.
-- [UVM Template Generator Tool DAC2020 Poster/Paper](https://github.com/hellovimo/uvm_testbench_gen/blob/main/Documents/DAC2020_Novel_GUI_Based_UVM_Template_Builder_Vignesh_Manoharan.pdf)
+2. Poster/Paper submitted for DAC2020 (Design Automation Conference) Conference in the link below.<br/>- [UVM Template Generator Tool DAC2020 Poster/Paper](https://github.com/hellovimo/uvm_testbench_gen/blob/main/Documents/DAC2020_Novel_GUI_Based_UVM_Template_Builder_Vignesh_Manoharan.pdf)
+
+3. Steps To install Python locally to work with the tool without root permission.<br/>- [Local Python Installation](https://hellovimo.github.io/uvm_testbench_gen/localpythoninstall.html)
