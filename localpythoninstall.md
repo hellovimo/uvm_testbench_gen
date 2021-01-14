@@ -55,7 +55,7 @@
         export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/installed/lib:~/installed/lib64
         
         Aliases:
-        alias python3="~/installed/bin/python3.9"
+        alias python3="~/installed/bin/python3.*"
         ```
 
 Hope the above steps would have been helpful for you to locally install Python and required packages without root permission so that you execute and experience the [UVM Testbench Generator tool](https://github.com/hellovimo/uvm_testbench_gen) !!
