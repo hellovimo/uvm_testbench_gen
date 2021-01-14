@@ -12,14 +12,13 @@ The current stable version of uvm_testbench_gen requires:
 
 # Usage / Commands To Run The Tool
 1. The command to launch the tool in normal mode.<br/>`python uvm_testbench_gen.py`
-
 2. The command to launch the tool in debug mode for dumping the debug information.<br/>`python uvm_testbench_gen.py debug`
 
    Note: The tool will dump out all the debug information in the following dbg_uvm_testbench_gen.log file
   
-  Note: 
-   - Tool GUI works well in Linux environment and its been tested in Windows as well.
-   - It doesn't work well in MAC (Catalina OS) since there is some issue with respect to Tkinter libs.
+# Facts 
+1. Tool GUI works well in Linux environment and its been tested in Windows as well.
+2. It doesn't work well in MAC (Catalina OS) since there is some issue with respect to Tkinter libs.
 
 # Documentation, papers, links and other required details
 
