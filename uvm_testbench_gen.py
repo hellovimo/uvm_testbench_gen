@@ -1,5 +1,3 @@
-#!/usr/bin/python2.7
-
 #==================================================================================
 # File Name        : uvm_testbench_gen.py  
 # Desctiption      :
@@ -20,9 +18,9 @@
 #==================================================================================
 
 # Global Import Variables
-import Tkinter
-from Tkinter import *
-import Tkinter as tk
+import tkinter
+from tkinter import *
+import tkinter as tk
 import subprocess
 import shlex
 import os 
@@ -30,9 +28,17 @@ import os
 #import Image, ImageTk
 import time
 import string
-import tkFont
-import ttk
-import Tkconstants, tkFileDialog
+
+# Python2 -> 3 : 01032021SUN 
+# import tkinter.constants, tkFileDialog
+# import ttk
+# import tkFont
+from tkinter import constants
+from tkinter import filedialog
+from tkinter import ttk
+from tkinter import font
+import sys
+
 import re
 import datetime
 import ast
@@ -42,10 +48,10 @@ import shutil
 
 # Imports Related to Workbook
 from openpyxl import Workbook, load_workbook
-from openpyxl.compat import range
+# from openpyxl.compat import range
 from openpyxl.utils import get_column_letter
 from openpyxl.styles import Alignment, PatternFill, Border, Color
-from openpyxl.styles.colors import YELLOW 
+# from openpyxl.styles.colors import YELLOW 
 from openpyxl.styles.borders import Border, Side
 
 # Logging : 082518|SAT
@@ -3603,7 +3609,8 @@ class uvm_testbench_gen:
 
     def cv_load_interface_file_dialog(self, *args):
         self.cve2.delete(0, END)
-        self.cve2.insert(0, tkFileDialog.askopenfilename(initialdir = ".",title = "Select file",filetypes = (("xlsx files","*.xlsx"),("all files","*.*"))))
+        #self.cve2.insert(0, tkFileDialog.askopenfilename(initialdir = ".",title = "Select file",filetypes = (("xlsx files","*.xlsx"),("all files","*.*"))))
+        self.cve2.insert(0, filedialog.askopenfilename(initialdir = ".",title = "Select file",filetypes = (("xlsx files","*.xlsx"),("all files","*.*"))))
     
     def cv_load_interface_file_path(self, *args):
         if self.cve2.get() == 'Right Click To Load-Left Click To Enter':
@@ -3749,8 +3756,10 @@ class uvm_testbench_gen:
             if not os.path.isfile(load_xls_file_path):
                 log.error("Please Load a Proper Interface Spreadsheet For Generating The Output\n")
 
-            load_xls_file = open(load_xls_file_path, "r") 
-            wb = load_workbook(load_xls_file) 
+            # Not Opening and then Loading, Just Loading: 01032021SUN
+            # load_xls_file = open(load_xls_file_path, "r") 
+            # wb = load_workbook(load_xls_file) 
+            wb = load_workbook(load_xls_file_path) 
 
             #sheet = wb.get_sheet_names()
             sheet = wb.sheetnames
@@ -3771,7 +3780,8 @@ class uvm_testbench_gen:
                 else:
                     continue
 
-            if wb.active <> sheet:
+            #if wb.active <> sheet:
+            if wb.active != sheet:
                 log.info("Required Interface Definition Sheet Is Not Found In Spreadsheet. Please Re-load Proper File!\n")
 
             #sc_udie_frame_loop = sheet.max_row-1
@@ -4955,7 +4965,8 @@ class uvm_testbench_gen:
 
     def sc_load_interface_file_dialog(self, *args):
         self.sce2.delete(0, END)
-        self.sce2.insert(0, tkFileDialog.askopenfilename(initialdir = ".",title = "Select file",filetypes = (("xlsx files","*.xlsx"),("all files","*.*"))))
+        #self.sce2.insert(0, tkFileDialog.askopenfilename(initialdir = ".",title = "Select file",filetypes = (("xlsx files","*.xlsx"),("all files","*.*"))))
+        self.sce2.insert(0, filedialog.askopenfilename(initialdir = ".",title = "Select file",filetypes = (("xlsx files","*.xlsx"),("all files","*.*"))))
     
     def sc_load_interface_file_path(self, *args):
         if self.sce2.get() == 'Right Click To Load-Left Click To Enter':
@@ -5084,8 +5095,10 @@ class uvm_testbench_gen:
             if not os.path.isfile(load_xls_file_path):
                 log.warning("Please Load a Proper Interface Spreadsheet For Generating The Output\n")
 
-            load_xls_file = open(load_xls_file_path, "r") 
-            wb = load_workbook(load_xls_file) 
+            # Not Opening and then Loading, Just Loading: 01032021SUN
+            # load_xls_file = open(load_xls_file_path, "r") 
+            # wb = load_workbook(load_xls_file) 
+            wb = load_workbook(load_xls_file_path) 
 
             #sheet = wb.get_sheet_names()
             sheet = wb.sheetnames
@@ -5106,7 +5119,8 @@ class uvm_testbench_gen:
                 else:
                     continue
 
-            if wb.active <> sheet:
+            # if wb.active <> sheet:
+            if wb.active != sheet:
                 log.warning("Required Interface Definition Sheet Is Not Found In Spreadsheet. Please ree-load Proper File!\n")
 
             #sc_udie_frame_loop = sheet.max_row-1
@@ -5725,7 +5739,8 @@ class uvm_testbench_gen:
 
     def mc_envcfg_dir_dialog(self, *args):
         self.mce8.delete(0, END)
-        self.mce8.insert(0, tkFileDialog.askdirectory(initialdir = ".",title = "Select Directory"))
+        #self.mce8.insert(0, tkFileDialog.askdirectory(initialdir = ".",title = "Select Directory"))
+        self.mce8.insert(0, filedialog.askdirectory(initialdir = ".",title = "Select Directory"))
     
     def mc_envcfg_dir_path(self, *args):
         self.mce8.insert(0, '')
@@ -5783,7 +5798,8 @@ class uvm_testbench_gen:
 
     def mc_load_envcfg_ss_file_dialog(self, *args):
         self.mcsse_1.delete(0, END)
-        self.mcsse_1.insert(0, tkFileDialog.askopenfilename(initialdir = ".",title = "Select file",filetypes = (("xlsx files","*.xlsx"),("all files","*.*"))))
+        #self.mcsse_1.insert(0, tkFileDialog.askopenfilename(initialdir = ".",title = "Select file",filetypes = (("xlsx files","*.xlsx"),("all files","*.*"))))
+        self.mcsse_1.insert(0, filedialog.askopenfilename(initialdir = ".",title = "Select file",filetypes = (("xlsx files","*.xlsx"),("all files","*.*"))))
     
     def mc_load_envcfg_ss_file_path(self, *args):
         if self.mcsse_1.get() == 'Right Click To Load-Left Click To Enter':
@@ -5810,8 +5826,10 @@ class uvm_testbench_gen:
         if not os.path.isfile(load_xls_file_path):
             log.error("return_ss_link : Please Load a Proper Interface Spreadsheet For Generating The Output\n")
 
-        load_xls_file = open(load_xls_file_path, "a+") 
-        wb = load_workbook(load_xls_file) 
+        # Not Opening and then Loading, Just Loading: 01032021SUN
+        # load_xls_file = open(load_xls_file_path, "a+") 
+        # wb = load_workbook(load_xls_file) 
+        wb = load_workbook(load_xls_file_path) 
 
         #sheet = wb.get_sheet_names()
         sheet = wb.sheetnames
@@ -5832,7 +5850,8 @@ class uvm_testbench_gen:
             else:
                 continue
 
-        if wb.active <> sheet:
+        # if wb.active <> sheet:
+        if wb.active != sheet:
             log.info("return_ss_link : Required Interface Definition Sheet Is Not Found In Spreadsheet. Please Re-load Proper File!\n")
 
         return sheet
@@ -6797,7 +6816,8 @@ class uvm_testbench_gen:
 
     def mc_load_envcfg_by_parse_ss_file_dialog(self, *args):
         self.mce7.delete(0, END)
-        self.mce7.insert(0, tkFileDialog.askopenfilename(initialdir = ".",title = "Select file",filetypes = (("xlsx files","*.xlsx"),("all files","*.*"))))
+        # self.mce7.insert(0, tkFileDialog.askopenfilename(initialdir = ".",title = "Select file",filetypes = (("xlsx files","*.xlsx"),("all files","*.*"))))
+        self.mce7.insert(0, filedialog.askopenfilename(initialdir = ".",title = "Select file",filetypes = (("xlsx files","*.xlsx"),("all files","*.*"))))
 
 
     def mc_load_envcfg_by_parse_ss_file_path(self, *args):
@@ -9950,7 +9970,8 @@ class uvm_testbench_gen:
 
     def mc_load_interface_file_dialog(self, *args):
         self.mcae5.delete(0, END)
-        self.mcae5.insert(0, tkFileDialog.askopenfilename(initialdir = ".",title = "Select file",filetypes = (("xlsx files","*.xlsx"),("all files","*.*"))))
+        #self.mcae5.insert(0, tkFileDialog.askopenfilename(initialdir = ".",title = "Select file",filetypes = (("xlsx files","*.xlsx"),("all files","*.*"))))
+        self.mcae5.insert(0, filedialog.askopenfilename(initialdir = ".",title = "Select file",filetypes = (("xlsx files","*.xlsx"),("all files","*.*"))))
     
     def mc_load_interface_file_path(self, *args):
         if self.mcae5.get() == 'Right Click To Load-Left Click To Enter':
@@ -10037,8 +10058,10 @@ class uvm_testbench_gen:
             if not os.path.isfile(load_xls_file_path):
                 log.error("mc_udif_done_interface_config : Please Load a Proper Interface Spreadsheet For Generating The Output\n")
 
-            load_xls_file = open(load_xls_file_path, "r") 
-            wb = load_workbook(load_xls_file) 
+            # Not Opening and then Loading, Just Loading: 01032021SUN
+            # load_xls_file = open(load_xls_file_path, "r") 
+            # wb = load_workbook(load_xls_file) 
+            wb = load_workbook(load_xls_file_path) 
 
             #sheet = wb.get_sheet_names()
             sheet = wb.sheetnames
@@ -10059,7 +10082,8 @@ class uvm_testbench_gen:
                 else:
                     continue
 
-            if wb.active <> sheet:
+            # if wb.active <> sheet:
+            if wb.active != sheet:
                 log.info("mc_udif_done_interface_config : Required Interface Definition Sheet Is Not Found In Spreadsheet. Please Re-load Proper File!\n")
 
             #sc_udie_frame_loop = sheet.max_row-1
@@ -10629,8 +10653,10 @@ class uvm_testbench_gen:
         if not os.path.isfile(load_xls_file_path):
             log.error("parse_interface_ss : Please Load a Proper Interface Spreadsheet For Generating The Output\n")
 
-        load_xls_file = open(load_xls_file_path, "r") 
-        wb = load_workbook(load_xls_file) 
+        # Not Opening and then Loading, Just Loading: 01032021SUN
+        # load_xls_file = open(load_xls_file_path, "r") 
+        # wb = load_workbook(load_xls_file) 
+        wb = load_workbook(load_xls_file_path) 
 
         #sheet = wb.get_sheet_names()
         sheet = wb.sheetnames
@@ -10651,7 +10677,8 @@ class uvm_testbench_gen:
             else:
                 continue
 
-        if wb.active <> sheet:
+        # if wb.active <> sheet:
+        if wb.active != sheet:
             log.info("parse_interface_ss : Required Interface Definition Sheet Is Not Found In Spreadsheet. Please Re-load Proper File!\n")
 
         #sc_udie_frame_loop = sheet.max_row-1
@@ -11638,7 +11665,8 @@ class uvm_testbench_gen:
 
     def mc_env_load_interface_file_dialog(self, *args):
         self.mce10.delete(0, END)
-        self.mce10.insert(0, tkFileDialog.askopenfilename(initialdir = ".",title = "Select file",filetypes = (("xlsx files","*.xlsx"),("all files","*.*"))))
+        #self.mce10.insert(0, tkFileDialog.askopenfilename(initialdir = ".",title = "Select file",filetypes = (("xlsx files","*.xlsx"),("all files","*.*"))))
+        self.mce10.insert(0, filedialog.askopenfilename(initialdir = ".",title = "Select file",filetypes = (("xlsx files","*.xlsx"),("all files","*.*"))))
     
     def mc_env_load_interface_file_path(self, *args):
         if self.mce10.get() == 'Right Click To Load-Left Click To Enter':
@@ -11697,8 +11725,10 @@ class uvm_testbench_gen:
             if not os.path.isfile(load_xls_file_path):
                 log.error("mc_env_udif_done_interface_config : Please Load a Proper Interface Spreadsheet For Generating The Output\n")
 
-            load_xls_file = open(load_xls_file_path, "r") 
-            wb = load_workbook(load_xls_file) 
+            # Not Opening and then Loading, Just Loading: 01032021SUN
+            # load_xls_file = open(load_xls_file_path, "r") 
+            # wb = load_workbook(load_xls_file) 
+            wb = load_workbook(load_xls_file_path) 
 
             #sheet = wb.get_sheet_names()
             sheet = wb.sheetnames
@@ -11719,7 +11749,8 @@ class uvm_testbench_gen:
                 else:
                     continue
 
-            if wb.active <> sheet:
+            # if wb.active <> sheet:
+            if wb.active != sheet:
                 log.info("mc_env_udif_done_interface_config : Required Interface Definition Sheet Is Not Found In Spreadsheet. Please Re-load Proper File!\n")
 
             log.debug("Name of the sheet is %s"% sheet) 
@@ -18823,7 +18854,7 @@ class uvm_testbench_gen:
                                     scb_idx = int(scb_idx[0])
                                 log.debug("mc_create_phase : scb_idx %s!\n"%(scb_idx))
                                 
-                                if (scb_arr[scb_idx].split(":"))>1:
+                                if len(scb_arr[scb_idx].split(":"))>1:
                                     #envscbname = envname_scb+"_"+(scb_arr[scb_idx].split(":"))[0]
                                     envscbname = (scb_arr[scb_idx].split(":"))[0]
                                 else:    
@@ -19470,7 +19501,7 @@ class uvm_testbench_gen:
                                     mon_idx = int(mon_idx[0])
                                 log.debug("mc_create_phase : mon_idx %s!\n"%(mon_idx))
                                 
-                                if (mon_arr[mon_idx].split(":"))>1:
+                                if len(mon_arr[mon_idx].split(":"))>1:
                                     #envmonname = envname_mon+"_"+(mon_arr[mon_idx].split(":"))[0]
                                     envmonname = (mon_arr[mon_idx].split(":"))[0]
                                 else:    
@@ -19503,7 +19534,7 @@ class uvm_testbench_gen:
                                     scb_idx = int(scb_idx[0])
                                 log.debug("mc_create_phase : scb_idx %s!\n"%(scb_idx))
                                 
-                                if (scb_arr[scb_idx].split(":"))>1:
+                                if len(scb_arr[scb_idx].split(":"))>1:
                                     #envscbname = envname_scb+"_"+(scb_arr[scb_idx].split(":"))[0]
                                     envscbname = (scb_arr[scb_idx].split(":"))[0]
                                 else:    
@@ -24523,8 +24554,9 @@ class uvm_testbench_gen:
                                 if scb_idx:
                                     scb_idx = int(scb_idx[0])
                                 log.debug("mc_create_phase : scb_idx %s!\n"%(scb_idx))
-                                
-                                if (scb_arr[scb_idx].split(":"))>1:
+                               
+                                log.debug("mc_create_phase : scb_arr %s\n"%(scb_arr))
+                                if len(scb_arr[scb_idx].split(":"))>1:
                                     #envscbname = envname_scb+"_"+(scb_arr[scb_idx].split(":"))[0]
                                     envscbname = (scb_arr[scb_idx].split(":"))[0]
                                 else:    
@@ -25243,7 +25275,7 @@ class uvm_testbench_gen:
                                     mon_idx = int(mon_idx[0])
                                 log.debug("mc_create_phase : mon_idx %s!\n"%(mon_idx))
                                 
-                                if (mon_arr[mon_idx].split(":"))>1:
+                                if len(mon_arr[mon_idx].split(":"))>1:
                                     #envmonname = envname_mon+"_"+(mon_arr[mon_idx].split(":"))[0]
                                     envmonname = (mon_arr[mon_idx].split(":"))[0]
                                 else:    
@@ -25290,7 +25322,7 @@ class uvm_testbench_gen:
                                     scb_idx = int(scb_idx[0])
                                 log.debug("mc_create_phase : scb_idx %s!\n"%(scb_idx))
                                 
-                                if (scb_arr[scb_idx].split(":"))>1:
+                                if len(scb_arr[scb_idx].split(":"))>1:
                                     #envscbname = envname_scb+"_"+(scb_arr[scb_idx].split(":"))[0]
                                     envscbname = (scb_arr[scb_idx].split(":"))[0]
                                 else:    
@@ -29625,6 +29657,7 @@ class uvm_testbench_gen:
 
                 # Saving the EnvCfgFile After Loading All the Details
                 env_wb.save(envcfgfilepath)
+                env_wb.close()
 
         #----------------------------------------------------------------------
         # Code to dump out the List file
@@ -34154,11 +34187,11 @@ qt = IntVar()
 mcv = IntVar()
 #bnr = IntVar()
 
-MyFontH = tkFont.Font(family='courier', size=25, weight=tkFont.BOLD)
-MyFontH1 = tkFont.Font(family='courier', size=22, weight=tkFont.BOLD)
-MyFontH2 = tkFont.Font(family='courier', size=20, weight=tkFont.BOLD)
-MyFontBtn = tkFont.Font(family='courier', size=20, weight=tkFont.BOLD)
-MyFontQT = tkFont.Font(family='courier', size=20)
+MyFontH = font.Font(family='courier', size=25, weight=font.BOLD)
+MyFontH1 = font.Font(family='courier', size=22, weight=font.BOLD)
+MyFontH2 = font.Font(family='courier', size=20, weight=font.BOLD)
+MyFontBtn = font.Font(family='courier', size=20, weight=font.BOLD)
+MyFontQT = font.Font(family='courier', size=20)
 
 # Top Local Variables
 proj_root = StringVar()
