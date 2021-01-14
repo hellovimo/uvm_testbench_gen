@@ -9243,7 +9243,7 @@ class uvm_testbench_gen:
         if mcae2_arr != '':
             # if (len(mcae2_arr) == 1) and (int(mcae2_arr[0]) == 1):
             # WATCHOUT : Modifying to fix __c or __s if its 1 driver with agent name as driver name : 030820|SUN
-            if ((len(mcae2_arr) == 1) and ((mcae2_arr[0] == 1) or (mcae2_arr[0] == "1__c") or (mcae2_arr[0] == "1__s"))):
+            if ((len(mcae2_arr) == 1) and ((int(mcae2_arr[0]) == 1) or (mcae2_arr[0] == "1__c") or (mcae2_arr[0] == "1__s"))):
                 mcae2_drv_name = mc_agt_name 
                 # mcae2_drv_cnt_max = int(mcae2_arr[0]) 
                 mcae2_drv_cnt_max = 1 
@@ -9590,7 +9590,7 @@ class uvm_testbench_gen:
             # Finding the driver name 
             # if (len(mcae2_arr) == 1) and (int(mcae2_arr[0]) == 1):
             # WATCHOUT : Modifying to fix __c or __s if its 1 driver with agent name as driver name : 030820|SUN
-            if ((len(mcae2_arr) == 1) and ((mcae2_arr[0] == 1) or (mcae2_arr[0] == "1__c") or (mcae2_arr[0] == "1__s"))):
+            if ((len(mcae2_arr) == 1) and ((int(mcae2_arr[0]) == 1) or (mcae2_arr[0] == "1__c") or (mcae2_arr[0] == "1__s"))):
                 mcae2_drv_name = mc_agt_name 
 
             # Element to be searched
@@ -10550,7 +10550,7 @@ class uvm_testbench_gen:
         # Finding the driver name 
         # WATCHOUT : Modifying to fix __c or __s if its 1 driver with agent name as driver name : 030820|SUN
         # if (len(mcae2_arr) == 1) and (int(mcae2_arr[0]) == 1):
-        if ((len(mcae2_arr) == 1) and ((mcae2_arr[0] == 1) or (mcae2_arr[0] == "1__c") or (mcae2_arr[0] == "1__s"))):
+        if ((len(mcae2_arr) == 1) and ((int(mcae2_arr[0]) == 1) or (mcae2_arr[0] == "1__c") or (mcae2_arr[0] == "1__s"))):
             mcae2_drv_name = mc_agt_name 
         else:
             mcae2_drv_name = mcae2_arr[mcae2_drv_cnt+1] 
@@ -16891,6 +16891,8 @@ class uvm_testbench_gen:
                                         shutil.move('./%s_interface_wrapper.sv'%(envagtdrvname), '%s'%(envagtdirpath))
                                         shutil.move('./%s_sequence.sv'%(envagtdrvname), '%s'%(envagtseqdirpath))
                                         shutil.move('./%s_sequence_item_base.sv'%(envagtdrvname), '%s'%(envagtseqdirpath))
+                                        
+                                        log.debug("mc_create_phase : envagtdrvname_arr %s envagtdrvname %s!\n"%(envagtdrvname_arr, envagtdrvname))
                                 else:
                                     if "__c" in envagtdrvname_arr[e1+1]:
                                         envagtdrvname = envagtname+"_"+envagtdrvname_arr[e1+1].replace("__c","")
@@ -16909,6 +16911,8 @@ class uvm_testbench_gen:
                                         shutil.move('./%s_interface_wrapper.sv'%(envagtdrvname), '%s'%(envagtdirpath))
                                         shutil.move('./%s_sequence.sv'%(envagtdrvname, ), '%s'%(envagtseqdirpath))
                                         shutil.move('./%s_sequence_item_base.sv'%(envagtdrvname, ), '%s'%(envagtseqdirpath))
+                                        
+                                        log.debug("mc_create_phase : envagtdrvname_arr %s envagtdrvname %s!\n"%(envagtdrvname_arr, envagtdrvname))
                                     else:
                                         envagtdrvname = envagtname+"_"+envagtdrvname_arr[e1+1]
                                
@@ -16928,7 +16932,7 @@ class uvm_testbench_gen:
                                             shutil.move('./%s_sequence.sv'%(envagtdrvname), '%s'%(envagtseqdirpath))
                                             shutil.move('./%s_sequence_item_base.sv'%(envagtdrvname), '%s'%(envagtseqdirpath))
 
-                                log.debug("mc_create_phase : envagtdrvname_arr %s envagtdrvname %s!\n"%(envagtdrvname_arr, envagtdrvname))
+                                        log.debug("mc_create_phase : envagtdrvname_arr %s envagtdrvname %s!\n"%(envagtdrvname_arr, envagtdrvname))
                             
                         if mc_env_cfg_pool[a][2][e+1][4] != '':
                             envagtmonname_arr = str(mc_env_cfg_pool[a][2][e+1][4]).split(",")
@@ -16950,6 +16954,8 @@ class uvm_testbench_gen:
                                         # Putting a condition when to generate the sequence_item when creating agent monitor : 01032021SUN
                                         if len(envagtdrvname_arr) != 1:
                                             shutil.move('./%s_sequence_item_base.sv'%(envagtmonname), '%s'%(envagtseqdirpath))
+                                    
+                                        log.debug("mc_create_phase : envagtmonname_arr %s envagtmonname %s!\n"%(envagtmonname_arr, envagtmonname))
                                 else:
                                     if "__c" in envagtmonname_arr[e2+1]:
                                         envagtmonname = envagtname+"_"+envagtmonname_arr[e2+1].replace("__c","")
@@ -16973,7 +16979,7 @@ class uvm_testbench_gen:
                                             shutil.move('./%s_monitor.sv'%(envagtmonname), '%s'%(envagtdirpath))
                                             shutil.move('./%s_sequence_item_base.sv'%(envagtmonname), '%s'%(envagtseqdirpath))
 
-                                log.debug("mc_create_phase : envagtmonname_arr %s envagtmonname %s!\n"%(envagtmonname_arr, envagtmonname))
+                                    log.debug("mc_create_phase : envagtmonname_arr %s envagtmonname %s!\n"%(envagtmonname_arr, envagtmonname))
 
                         # Clearning the agent related variable 
                         mc_curr_env_agt_set_c = 0
