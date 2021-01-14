@@ -5,14 +5,20 @@ uvm_testbench_gen is a Novel GUI Based UVM testbench template builder used to ge
 
 # Pre-Requisits
 The current stable version of uvm_testbench_gen requires:
-1. Python 2.7
-2. openpyxl-2.5.4 or higher version.
->Note: For further details on installation process please refer Documentation section given below
+1. Python 3.*
+2. openpyxl-2.5.4 or higher version.  
+
+  Note: For further details on installation process please refer Documentation section 2 given below
 
 # Usage / Commands To Run The Tool
 1. The command to launch the tool in normal mode.<br/>`python uvm_testbench_gen.py`
+2. The command to launch the tool in debug mode for dumping the debug information.<br/>`python uvm_testbench_gen.py debug`
 
-2. The command to launch the tool in debug mode for dumping the debug information.<br/>`python uvm_testbench_gen.py debug`<br/> Note: The tool will dump out all the debug information in the following dbg_uvm_testbench_gen.log file
+   Note: The tool will dump out all the debug information in the following dbg_uvm_testbench_gen.log file
+  
+# Facts 
+1. Tool GUI works well in Linux environment and its been tested in Windows as well.
+2. It doesn't work well in MAC (Catalina OS) since there is some issue with respect to Tkinter libs.
 
 # Documentation, papers, links and other required details
 
