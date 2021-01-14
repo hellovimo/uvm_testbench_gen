@@ -8,7 +8,7 @@ The current stable version of uvm_testbench_gen requires:
 1. Python 3.*
 2. openpyxl-2.5.4 or higher version.  
 
-   Note: For further details on installation process please refer Documentation section given below
+  Note: For further details on installation process please refer Documentation section 2 given below
 
 # Usage / Commands To Run The Tool
 1. The command to launch the tool in normal mode.<br/>`python uvm_testbench_gen.py`
