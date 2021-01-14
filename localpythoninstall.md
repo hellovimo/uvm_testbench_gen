@@ -39,8 +39,14 @@
       - `wget https://bootstrap.pypa.io/get-pip.py`
     - 14.2 Next execute the below command to install pip. This will install pip to your local directory `.local/bin`.
       - `python3 get-pip.py --user`
-15. Next we will install the Openpyxl package which is used for opening/writing/reading spreadsheets inside the Python scripts. To install the package using pip, execute the below command. It will mostly install the files inside the lib directory which you used for installing the Python. For eg `~/installed/lib/python3.9/site-packages/openpyxl`.
+15. Next we will install the Openpyxl package which is used for opening/writing/reading spreadsheets inside the Python scripts. 
+    - 15.1 To install the openpyxl package using pip, execute the below command. 
       - `pip3 install openpyxl`
+    - 15.2 To install the openpyxl package locally follow the below steps.
+       - 15.2.1 Download the package from the [Openpyxl Download](https://pypi.org/project/openpyxl/) page.
+       - 15.2.2 Unpack the tar file, cd into the directory and execute the below command.<br/>`python3 setup.py install`
+       - 15.2.3 It will mostly install the files inside the lib directory which you used for installing the Python. For eg `~/installed/lib/python3.*/site-packages/openpyxl`.
+      
 16. Now you have all the required packages installed i.e. Python, Tkinter(TCL/TK), Openpyxl to run the uvm_testbench_gen tool, you need to setup following below environment variables in general to run the tool or any python scripts.
       - ```
         Environment Variables: 
