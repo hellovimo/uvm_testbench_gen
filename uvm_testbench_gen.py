@@ -259,6 +259,8 @@ global stitch_only
 global cxn_only
 global ei_only
 
+# maketrans table : 01252021MON
+global mt_rm_sym
 
 # Logging : 082518|SAT 
 LEVELS = { 'debug':logging.DEBUG,
@@ -403,6 +405,9 @@ create_stitch = 0
 stitch_only = 0
 cxn_only = 0
 ei_only = 0
+
+# maketrans table : 01252021MON
+mt_rm_sym = str.maketrans({"'":"","[":"","]":""})
 
 # Getting the PROJ_ROOT Variable to Access The Shell Scripts
 proj_root = os.environ.get("PROJ_ROOT")
@@ -3988,24 +3993,24 @@ class uvm_testbench_gen:
                 
                 # Loading The Value of Signal Name, Signal Type And Signal Size For Each Agents Interface
                 # if (cv_element_loop == 3):
-                #     cv_udie_intf_cfg_array[cvagt_val_loop_tmp-1][n+1][0] = str(cv_udie_int_cfg_array[n][0]).translate(None, "'[]")
-                #     cv_udie_intf_cfg_array[cvagt_val_loop_tmp-1][n+1][1] = str(cv_udie_int_cfg_array[n][1]).translate(None, "'[]")
-                #     cv_udie_intf_cfg_array[cvagt_val_loop_tmp-1][n+1][2] = str(cv_udie_int_cfg_array[n][2]).translate(None, "'[]")
+                #     cv_udie_intf_cfg_array[cvagt_val_loop_tmp-1][n+1][0] = str(cv_udie_int_cfg_array[n][0]).translate(mt_rm_sym)
+                #     cv_udie_intf_cfg_array[cvagt_val_loop_tmp-1][n+1][1] = str(cv_udie_int_cfg_array[n][1]).translate(mt_rm_sym)
+                #     cv_udie_intf_cfg_array[cvagt_val_loop_tmp-1][n+1][2] = str(cv_udie_int_cfg_array[n][2]).translate(mt_rm_sym)
                 # elif (cv_element_loop == 4):
-                #     cv_udie_intf_cfg_array[cvagt_val_loop_tmp-1][n+1][0] = str(cv_udie_int_cfg_array[n][0]).translate(None, "'[]")
-                #     cv_udie_intf_cfg_array[cvagt_val_loop_tmp-1][n+1][1] = str(cv_udie_int_cfg_array[n][1]).translate(None, "'[]")
-                #     cv_udie_intf_cfg_array[cvagt_val_loop_tmp-1][n+1][2] = str(cv_udie_int_cfg_array[n][2]).translate(None, "'[]")
-                #     cv_udie_intf_cfg_array[cvagt_val_loop_tmp-1][n+1][3] = str(cv_udie_int_cfg_array[n][3]).translate(None, "'[]")
+                #     cv_udie_intf_cfg_array[cvagt_val_loop_tmp-1][n+1][0] = str(cv_udie_int_cfg_array[n][0]).translate(mt_rm_sym)
+                #     cv_udie_intf_cfg_array[cvagt_val_loop_tmp-1][n+1][1] = str(cv_udie_int_cfg_array[n][1]).translate(mt_rm_sym)
+                #     cv_udie_intf_cfg_array[cvagt_val_loop_tmp-1][n+1][2] = str(cv_udie_int_cfg_array[n][2]).translate(mt_rm_sym)
+                #     cv_udie_intf_cfg_array[cvagt_val_loop_tmp-1][n+1][3] = str(cv_udie_int_cfg_array[n][3]).translate(mt_rm_sym)
                 # elif (cv_element_loop == 6):
-                #     cv_udie_intf_cfg_array[cvagt_val_loop_tmp-1][n+1][0] = str(cv_udie_int_cfg_array[n][0]).translate(None, "'[]")
-                #     cv_udie_intf_cfg_array[cvagt_val_loop_tmp-1][n+1][1] = str(cv_udie_int_cfg_array[n][1]).translate(None, "'[]")
-                #     cv_udie_intf_cfg_array[cvagt_val_loop_tmp-1][n+1][2] = str(cv_udie_int_cfg_array[n][2]).translate(None, "'[]")
-                #     cv_udie_intf_cfg_array[cvagt_val_loop_tmp-1][n+1][3] = str(cv_udie_int_cfg_array[n][3]).translate(None, "'[]")
-                #     cv_udie_intf_cfg_array[cvagt_val_loop_tmp-1][n+1][4] = str(cv_udie_int_cfg_array[n][4]).translate(None, "'[]")
-                #     cv_udie_intf_cfg_array[cvagt_val_loop_tmp-1][n+1][5] = str(cv_udie_int_cfg_array[n][5]).translate(None, "'[]")
+                #     cv_udie_intf_cfg_array[cvagt_val_loop_tmp-1][n+1][0] = str(cv_udie_int_cfg_array[n][0]).translate(mt_rm_sym)
+                #     cv_udie_intf_cfg_array[cvagt_val_loop_tmp-1][n+1][1] = str(cv_udie_int_cfg_array[n][1]).translate(mt_rm_sym)
+                #     cv_udie_intf_cfg_array[cvagt_val_loop_tmp-1][n+1][2] = str(cv_udie_int_cfg_array[n][2]).translate(mt_rm_sym)
+                #     cv_udie_intf_cfg_array[cvagt_val_loop_tmp-1][n+1][3] = str(cv_udie_int_cfg_array[n][3]).translate(mt_rm_sym)
+                #     cv_udie_intf_cfg_array[cvagt_val_loop_tmp-1][n+1][4] = str(cv_udie_int_cfg_array[n][4]).translate(mt_rm_sym)
+                #     cv_udie_intf_cfg_array[cvagt_val_loop_tmp-1][n+1][5] = str(cv_udie_int_cfg_array[n][5]).translate(mt_rm_sym)
                
                 
-                # cv_udie_intf_cfg_array[cvagt_val_loop_tmp-1][n+1] = str(cv_udie_int_cfg_array[n]).translate(None, "'[]")
+                # cv_udie_intf_cfg_array[cvagt_val_loop_tmp-1][n+1] = str(cv_udie_int_cfg_array[n]).translate(mt_rm_sym)
                 cv_udie_intf_cfg_array[cvagt_val_loop_tmp-1][n+1] = cv_udie_int_cfg_array[n]
                 # print "3 Value of cv_udie_intf_cfg_array", cv_udie_intf_cfg_array
 
@@ -12105,6 +12110,7 @@ class uvm_testbench_gen:
 
 
     def generate_button_code(self):
+        global mt_rm_sym
         global sc_agt_selected_started
         global sc_agt_intf_cnt
         global sc_agt_intf_cnt_tmp
@@ -13456,18 +13462,19 @@ class uvm_testbench_gen:
                                         cb_ele_cnt = cb_ele_cnt-1
                                         log.debug("Value of cb_ele_cnt %d"% cb_ele_cnt)
                                         log.debug("Value of sc_udie_cb_cfg_array %s"% sc_udie_cb_cfg_array[i])
-                                        log.debug("Value of sc_udie_cb_cfg_array %s"% str(sc_udie_cb_cfg_array[i][0]).translate(None, "'[]"))
-                                        elem_cb_find = str(sc_udie_cb_cfg_array[i][0]).translate(None, "'[]")
+                                        log.debug("Value of sc_udie_cb_cfg_array %s"% str(sc_udie_cb_cfg_array[i][0]))
+                                        log.debug("Value of sc_udie_cb_cfg_array %s"% str(sc_udie_cb_cfg_array[i][0]).translate(mt_rm_sym))
+                                        elem_cb_find = str(sc_udie_cb_cfg_array[i][0]).translate(mt_rm_sym)
                                         elem_cb_indx = self.find_index(elem_cb_find, sc_udie_clock_cfg_array)
                                         log.debug("Value of elem_cb_indx %s"% elem_cb_indx)
                                         if elem_cb_indx != None:
-                                            sc_udi_array.append(' clocking %s@(%s %s);\n'%(str(sc_udie_cb_cfg_array[i][0]).translate(None, "'[]"), sc_udie_clock_cfg_array[elem_cb_indx[0]][elem_cb_indx[1]+1], sc_udie_clock_cfg_array[elem_cb_indx[0]][0]))
+                                            sc_udi_array.append(' clocking %s@(%s %s);\n'%(str(sc_udie_cb_cfg_array[i][0]).translate(mt_rm_sym), sc_udie_clock_cfg_array[elem_cb_indx[0]][elem_cb_indx[1]+1], sc_udie_clock_cfg_array[elem_cb_indx[0]][0]))
                                         else:
-                                            sc_udi_array.append(' clocking %s@();\n'%(str(sc_udie_cb_cfg_array[i][0]).translate(None, "'[]"), ))
+                                            sc_udi_array.append(' clocking %s@();\n'%(str(sc_udie_cb_cfg_array[i][0]).translate(mt_rm_sym), ))
                                         for j in range (1, (cb_ele_cnt+1)):
                                             if (j%2):
-                                                sc_udi_array.append('  %s       %s;\n'%(str(sc_udie_cb_cfg_array[i][j+1]).translate(None, "'[]"), str(sc_udie_cb_cfg_array[i][j]).translate(None, "'[]"), ))
-                                        sc_udi_array.append(' endclocking: %s\n'%(str(sc_udie_cb_cfg_array[i][0]).translate(None, "'[]"), ))
+                                                sc_udi_array.append('  %s       %s;\n'%(str(sc_udie_cb_cfg_array[i][j+1]).translate(mt_rm_sym), str(sc_udie_cb_cfg_array[i][j]).translate(mt_rm_sym), ))
+                                        sc_udi_array.append(' endclocking: %s\n'%(str(sc_udie_cb_cfg_array[i][0]).translate(mt_rm_sym), ))
                                         if (i != (sc_udie_cb_element_loop-1)):
                                             sc_udi_array.append("\n")
 
@@ -13482,14 +13489,14 @@ class uvm_testbench_gen:
                                     for i in range (0,sc_udie_mp_element_loop):
                                         mp_ele_cnt = len(sc_udie_mp_cfg_array[i])
                                         mp_ele_cnt = mp_ele_cnt-1
-                                        sc_udi_array.append(' modport %s(\n'%(str(sc_udie_mp_cfg_array[i][0]).translate(None, "'[]"), ))
+                                        sc_udi_array.append(' modport %s(\n'%(str(sc_udie_mp_cfg_array[i][0]).translate(mt_rm_sym), ))
                                         
                                         elem_mpcb_indx = self.find_index('clocking', sc_udie_mp_cfg_array[i])
                                         log.debug("Value of sc_udie_mp_cfg_array[%d] %s"%(i, sc_udie_mp_cfg_array[i]))
                                         if elem_mpcb_indx != None:
                                             log.debug("Value of sc_udie_mp_element_loop is %d"% sc_udie_mp_element_loop)
-                                            log.debug("Value of mp is %s"% str(sc_udie_mp_cfg_array[i][0]).translate(None, "'[]"))
-                                            mp_ele_tmp = str(sc_udie_mp_cfg_array[i][0]).translate(None, "'[]")
+                                            log.debug("Value of mp is %s"% str(sc_udie_mp_cfg_array[i][0]).translate(mt_rm_sym))
+                                            mp_ele_tmp = str(sc_udie_mp_cfg_array[i][0]).translate(mt_rm_sym)
                                             mp_ele_tmp = mp_ele_tmp.replace('mp','cb')
                                             elem_mp_indx = self.find_index(mp_ele_tmp, sc_udie_clock_cfg_array)
                                             
@@ -13503,19 +13510,19 @@ class uvm_testbench_gen:
                                             for j in range (1, (mp_ele_cnt+1)):
                                                 if (j%2):
                                                     # if "clocking" in sc_udie_mp_cfg_array[i][j+1]:
-                                                    #     mp_ele_tmp = str(sc_udie_mp_cfg_array[i][0]).translate(None, "'[]")
+                                                    #     mp_ele_tmp = str(sc_udie_mp_cfg_array[i][0]).translate(mt_rm_sym)
                                                     #     mp_ele_tmp = mp_ele_tmp.replace('mp','cb')
                                                     #     sc_udi_array.append('  clocking %s\n'%(str(mp_ele_tmp), ))
                                                     # else:
                                                     
                                                     if (j == (mp_ele_cnt-1)):
                                                         # # print "hula j mp_ele_cnt", j, mp_ele_cnt
-                                                        if 'clocking' not in str(sc_udie_mp_cfg_array[i][j+1]).translate(None, "'[]"):
-                                                            sc_udi_array.append('  %s       %s\n'%(str(sc_udie_mp_cfg_array[i][j+1]).translate(None, "'[]"), str(sc_udie_mp_cfg_array[i][j]).translate(None, "'[]"), ))
+                                                        if 'clocking' not in str(sc_udie_mp_cfg_array[i][j+1]).translate(mt_rm_sym):
+                                                            sc_udi_array.append('  %s       %s\n'%(str(sc_udie_mp_cfg_array[i][j+1]).translate(mt_rm_sym), str(sc_udie_mp_cfg_array[i][j]).translate(mt_rm_sym), ))
                                                     else: 
                                                         # # print "sj j mp_ele_cnt", j, mp_ele_cnt
-                                                        if 'clocking' not in str(sc_udie_mp_cfg_array[i][j+1]).translate(None, "'[]"):
-                                                            sc_udi_array.append('  %s       %s,\n'%(str(sc_udie_mp_cfg_array[i][j+1]).translate(None, "'[]"), str(sc_udie_mp_cfg_array[i][j]).translate(None, "'[]"), ))
+                                                        if 'clocking' not in str(sc_udie_mp_cfg_array[i][j+1]).translate(mt_rm_sym):
+                                                            sc_udi_array.append('  %s       %s,\n'%(str(sc_udie_mp_cfg_array[i][j+1]).translate(mt_rm_sym), str(sc_udie_mp_cfg_array[i][j]).translate(mt_rm_sym), ))
 
                                         sc_udi_array.append(' );\n')
                                         sc_udi_array.append("\n")
@@ -14066,11 +14073,11 @@ class uvm_testbench_gen:
                                     # for i in range (0,cv_udie_cb_element_loop[agt_loop-1]):
                                     #     cb_ele_cnt = len(cv_udie_cb_cfg_array[agt_loop-1][i])
                                     #     cb_ele_cnt = cb_ele_cnt-1
-                                    #     cv_udi_array.append(' clocking %s@();\n'%(str(cv_udie_cb_cfg_array[agt_loop-1][i][0]).translate(None, "'[]"), ))
+                                    #     cv_udi_array.append(' clocking %s@();\n'%(str(cv_udie_cb_cfg_array[agt_loop-1][i][0]).translate(mt_rm_sym), ))
                                     #     for j in range (1, (cb_ele_cnt+1)):
                                     #         if (j%2):
-                                    #             cv_udi_array.append('  %s       %s;\n'%(str(cv_udie_cb_cfg_array[agt_loop-1][i][j+1]).translate(None, "'[]"), str(cv_udie_cb_cfg_array[agt_loop-1][i][j]).translate(None, "'[]"), ))
-                                    #     cv_udi_array.append(' endclocking: %s\n'%(str(cv_udie_cb_cfg_array[agt_loop-1][i][0]).translate(None, "'[]"), ))
+                                    #             cv_udi_array.append('  %s       %s;\n'%(str(cv_udie_cb_cfg_array[agt_loop-1][i][j+1]).translate(mt_rm_sym), str(cv_udie_cb_cfg_array[agt_loop-1][i][j]).translate(mt_rm_sym), ))
+                                    #     cv_udi_array.append(' endclocking: %s\n'%(str(cv_udie_cb_cfg_array[agt_loop-1][i][0]).translate(mt_rm_sym), ))
                                     #     if (i != (cv_udie_cb_element_loop[agt_loop-1])):
                                     #         cv_udi_array.append("\n")
 
@@ -14081,18 +14088,18 @@ class uvm_testbench_gen:
                                         cb_ele_cnt = cb_ele_cnt-1
                                         log.debug("Value of cb_ele_cnt %d"% cb_ele_cnt)
                                         log.debug("Value of cv_udie_cb_cfg_array %s"% cv_udie_cb_cfg_array[agt_loop-1][i])
-                                        log.debug("Value of cv_udie_cb_cfg_array %s"% str(cv_udie_cb_cfg_array[agt_loop-1][i][0]).translate(None, "'[]"))
-                                        elem_cb_find = str(cv_udie_cb_cfg_array[agt_loop-1][i][0]).translate(None, "'[]")
+                                        log.debug("Value of cv_udie_cb_cfg_array %s"% str(cv_udie_cb_cfg_array[agt_loop-1][i][0]).translate(mt_rm_sym))
+                                        elem_cb_find = str(cv_udie_cb_cfg_array[agt_loop-1][i][0]).translate(mt_rm_sym)
                                         elem_cb_indx = self.find_index(elem_cb_find, cv_udie_clock_cfg_array[agt_loop-1])
                                         log.debug("Value of elem_cb_indx %s"% elem_cb_indx)
                                         if elem_cb_indx != None:
-                                            cv_udi_array.append(' clocking %s@(%s %s);\n'%(str(cv_udie_cb_cfg_array[agt_loop-1][i][0]).translate(None, "'[]"), cv_udie_clock_cfg_array[agt_loop-1][elem_cb_indx[0]][elem_cb_indx[1]+1], cv_udie_clock_cfg_array[agt_loop-1][elem_cb_indx[0]][0]))
+                                            cv_udi_array.append(' clocking %s@(%s %s);\n'%(str(cv_udie_cb_cfg_array[agt_loop-1][i][0]).translate(mt_rm_sym), cv_udie_clock_cfg_array[agt_loop-1][elem_cb_indx[0]][elem_cb_indx[1]+1], cv_udie_clock_cfg_array[agt_loop-1][elem_cb_indx[0]][0]))
                                         else:
-                                            cv_udi_array.append(' clocking %s@();\n'%(str(cv_udie_cb_cfg_array[agt_loop-1][i][0]).translate(None, "'[]"), ))
+                                            cv_udi_array.append(' clocking %s@();\n'%(str(cv_udie_cb_cfg_array[agt_loop-1][i][0]).translate(mt_rm_sym), ))
                                         for j in range (1, (cb_ele_cnt+1)):
                                             if (j%2):
-                                                cv_udi_array.append('  %s       %s;\n'%(str(cv_udie_cb_cfg_array[agt_loop-1][i][j+1]).translate(None, "'[]"), str(cv_udie_cb_cfg_array[agt_loop-1][i][j]).translate(None, "'[]"), ))
-                                        cv_udi_array.append(' endclocking: %s\n'%(str(cv_udie_cb_cfg_array[agt_loop-1][i][0]).translate(None, "'[]"), ))
+                                                cv_udi_array.append('  %s       %s;\n'%(str(cv_udie_cb_cfg_array[agt_loop-1][i][j+1]).translate(mt_rm_sym), str(cv_udie_cb_cfg_array[agt_loop-1][i][j]).translate(mt_rm_sym), ))
+                                        cv_udi_array.append(' endclocking: %s\n'%(str(cv_udie_cb_cfg_array[agt_loop-1][i][0]).translate(mt_rm_sym), ))
                                         if (i != (cv_udie_cb_element_loop[agt_loop-1])):
                                             cv_udi_array.append("\n")
                                     
@@ -14113,20 +14120,20 @@ class uvm_testbench_gen:
                                     #   for i in range (0,cv_udie_mp_element_loop[agt_loop-1]):
                                     #       mp_ele_cnt = len(cv_udie_mp_cfg_array[agt_loop-1][i])
                                     #       mp_ele_cnt = mp_ele_cnt-1
-                                    #       cv_udi_array.append(' modport %s(\n'%(str(cv_udie_mp_cfg_array[agt_loop-1][i][0]).translate(None, "'[]"), ))
+                                    #       cv_udi_array.append(' modport %s(\n'%(str(cv_udie_mp_cfg_array[agt_loop-1][i][0]).translate(mt_rm_sym), ))
                                     #       for j in range (1, (mp_ele_cnt+1)):
                                     #           if (j%2):
                                     #               if "clocking" in cv_udie_mp_cfg_array[agt_loop-1][i][j+1]:
-                                    #                   mp_ele_tmp = str(cv_udie_mp_cfg_array[agt_loop-1][i][0]).translate(None, "'[]")
+                                    #                   mp_ele_tmp = str(cv_udie_mp_cfg_array[agt_loop-1][i][0]).translate(mt_rm_sym)
                                     #                   mp_ele_tmp = mp_ele_tmp.replace('mp','cb')
                                     #                   cv_udi_array.append('  clocking %s\n'%(str(mp_ele_tmp), ))
                                     #               else:
                                     #                   if (j == (mp_ele_cnt-1)):
                                     #                       # # print "hula j mp_ele_cnt", j, mp_ele_cnt
-                                    #                       cv_udi_array.append('  %s       %s\n'%(str(cv_udie_mp_cfg_array[agt_loop-1][i][j+1]).translate(None, "'[]"), str(cv_udie_mp_cfg_array[agt_loop-1][i][j]).translate(None, "'[]"), ))
+                                    #                       cv_udi_array.append('  %s       %s\n'%(str(cv_udie_mp_cfg_array[agt_loop-1][i][j+1]).translate(mt_rm_sym), str(cv_udie_mp_cfg_array[agt_loop-1][i][j]).translate(mt_rm_sym), ))
                                     #                   else: 
                                     #                       # # print "sj j mp_ele_cnt", j, mp_ele_cnt
-                                    #                       cv_udi_array.append('  %s       %s,\n'%(str(cv_udie_mp_cfg_array[agt_loop-1][i][j+1]).translate(None, "'[]"), str(cv_udie_mp_cfg_array[agt_loop-1][i][j]).translate(None, "'[]"), ))
+                                    #                       cv_udi_array.append('  %s       %s,\n'%(str(cv_udie_mp_cfg_array[agt_loop-1][i][j+1]).translate(mt_rm_sym), str(cv_udie_mp_cfg_array[agt_loop-1][i][j]).translate(mt_rm_sym), ))
 
                                     #       cv_udi_array.append(' );\n')
                                     #       cv_udi_array.append("\n")
@@ -14136,14 +14143,14 @@ class uvm_testbench_gen:
                                     for i in range (0, len(cv_udie_mp_cfg_array[agt_loop-1])):
                                         mp_ele_cnt = len(cv_udie_mp_cfg_array[agt_loop-1][i])
                                         mp_ele_cnt = mp_ele_cnt-1
-                                        cv_udi_array.append(' modport %s(\n'%(str(cv_udie_mp_cfg_array[agt_loop-1][i][0]).translate(None, "'[]"), ))
+                                        cv_udi_array.append(' modport %s(\n'%(str(cv_udie_mp_cfg_array[agt_loop-1][i][0]).translate(mt_rm_sym), ))
                                         
                                         elem_mpcb_indx = self.find_index('clocking', cv_udie_mp_cfg_array[agt_loop-1][i])
                                         log.debug("Value of cv_udie_mp_cfg_array[%d] %s"%(i, cv_udie_mp_cfg_array[agt_loop-1][i]))
                                         if elem_mpcb_indx != None:
                                             log.debug("Value of cv_udie_mp_element_loop is %s"% cv_udie_mp_element_loop[agt_loop-1])
-                                            log.debug("Value of mp is %s"% str(cv_udie_mp_cfg_array[agt_loop-1][i][0]).translate(None, "'[]"))
-                                            mp_ele_tmp = str(cv_udie_mp_cfg_array[agt_loop-1][i][0]).translate(None, "'[]")
+                                            log.debug("Value of mp is %s"% str(cv_udie_mp_cfg_array[agt_loop-1][i][0]).translate(mt_rm_sym))
+                                            mp_ele_tmp = str(cv_udie_mp_cfg_array[agt_loop-1][i][0]).translate(mt_rm_sym)
                                             mp_ele_tmp = mp_ele_tmp.replace('mp','cb')
                                             elem_mp_indx = self.find_index(mp_ele_tmp, cv_udie_clock_cfg_array[agt_loop-1])
                                             
@@ -14157,19 +14164,19 @@ class uvm_testbench_gen:
                                             for j in range (1, (mp_ele_cnt+1)):
                                                 if (j%2):
                                                     # if "clocking" in cv_udie_mp_cfg_array[agt_loop-1][i][j+1]:
-                                                    #     mp_ele_tmp = str(cv_udie_mp_cfg_array[agt_loop-1][i][0]).translate(None, "'[]")
+                                                    #     mp_ele_tmp = str(cv_udie_mp_cfg_array[agt_loop-1][i][0]).translate(mt_rm_sym)
                                                     #     mp_ele_tmp = mp_ele_tmp.replace('mp','cb')
                                                     #     cv_udi_array.append('  clocking %s\n'%(str(mp_ele_tmp), ))
                                                     # else:
                                                     
                                                     if (j == (mp_ele_cnt-1)):
                                                         # # print "hula j mp_ele_cnt", j, mp_ele_cnt
-                                                        if 'clocking' not in str(cv_udie_mp_cfg_array[agt_loop-1][i][j+1]).translate(None, "'[]"):
-                                                            cv_udi_array.append('  %s       %s\n'%(str(cv_udie_mp_cfg_array[agt_loop-1][i][j+1]).translate(None, "'[]"), str(cv_udie_mp_cfg_array[agt_loop-1][i][j]).translate(None, "'[]"), ))
+                                                        if 'clocking' not in str(cv_udie_mp_cfg_array[agt_loop-1][i][j+1]).translate(mt_rm_sym):
+                                                            cv_udi_array.append('  %s       %s\n'%(str(cv_udie_mp_cfg_array[agt_loop-1][i][j+1]).translate(mt_rm_sym), str(cv_udie_mp_cfg_array[agt_loop-1][i][j]).translate(mt_rm_sym), ))
                                                     else: 
                                                         # # print "sj j mp_ele_cnt", j, mp_ele_cnt
-                                                        if 'clocking' not in str(cv_udie_mp_cfg_array[agt_loop-1][i][j+1]).translate(None, "'[]"):
-                                                            cv_udi_array.append('  %s       %s,\n'%(str(cv_udie_mp_cfg_array[agt_loop-1][i][j+1]).translate(None, "'[]"), str(cv_udie_mp_cfg_array[agt_loop-1][i][j]).translate(None, "'[]"), ))
+                                                        if 'clocking' not in str(cv_udie_mp_cfg_array[agt_loop-1][i][j+1]).translate(mt_rm_sym):
+                                                            cv_udi_array.append('  %s       %s,\n'%(str(cv_udie_mp_cfg_array[agt_loop-1][i][j+1]).translate(mt_rm_sym), str(cv_udie_mp_cfg_array[agt_loop-1][i][j]).translate(mt_rm_sym), ))
 
                                         cv_udi_array.append(' );\n')
                                         cv_udi_array.append("\n")
@@ -19229,7 +19236,7 @@ class uvm_testbench_gen:
                                     
                                     log.debug("mc_create_phase : env_mon_scb_stg %s!\n"%env_mon_scb_stg)
                                 
-                                elif not mc_env_cfg_pool[env_idx_mon][2][agt_idx][2] and len(envscbname_arr[scb_idx].split(":"))>1:
+                                elif not mc_env_cfg_pool[env_idx_mon][2][agt_idx][2] and len(scb_arr[scb_idx].split(":"))>1:
                                     log.debug("mc_create_phase : agent monitor == 1, scoreboard > 1!\n")
                                 
                                     for x in range (len(cp_monscb_con_arr)): 
@@ -19309,7 +19316,7 @@ class uvm_testbench_gen:
 
                                     log.debug("mc_create_phase : env_mon_scb_stg %s!\n"%env_mon_scb_stg)
                                
-                                elif mc_env_cfg_pool[env_idx_mon][2][agt_idx][2] and not len(envscbname_arr[c+1].split(":"))>1:
+                                elif mc_env_cfg_pool[env_idx_mon][2][agt_idx][2] and not len(scb_arr[c+1].split(":"))>1:
                                     log.debug("mc_create_phase : agent monitor > 1, scoreboard == 1!\n")
                                 
                                     for x in range (len(cp_monscb_con_arr)): 
@@ -19389,7 +19396,7 @@ class uvm_testbench_gen:
 
                                     log.debug("mc_create_phase : env_mon_scb_stg %s!\n"%env_mon_scb_stg)
 
-                                elif mc_env_cfg_pool[env_idx_mon][2][agt_idx][2] and len(envscbname_arr[c+1].split(":"))>1:
+                                elif mc_env_cfg_pool[env_idx_mon][2][agt_idx][2] and len(scb_arr[c+1].split(":"))>1:
                                     log.debug("mc_create_phase : agent monitor > 1, scoreboard > 1!\n")
 
                                     for x in range (len(cp_monscb_con_arr)): 
@@ -24894,10 +24901,13 @@ class uvm_testbench_gen:
                                 # scb_env_hir = ('%s_%s_env'%(envname, cp_scb_arr[1]))
                                 # log.debug("mc_create_phase : scb_env_cfg_hir %s scb_env_hir %s!\n"%(scb_env_cfg_hir, scb_env_hir))
                                
+                                log.debug("mc_create_phase: envscbname_arr {}, scb_arr {}".format(envscbname_arr, scb_arr))
                                 log.debug("mc_create_phase: mon_env_cfg_hir %s mon_env_hir %s mon_env_ifdef %s mon_env_endif %s\n"%(mon_env_cfg_hir, mon_env_hir, mon_env_ifdef, mon_env_endif))
                                 log.debug("mc_create_phase: scb_env_cfg_hir %s scb_env_hir %s scb_env_ifdef %s scb_env_endif %s\n"%(scb_env_cfg_hir, scb_env_hir, scb_env_ifdef, scb_env_endif))
                                 log.debug("mc_create_phase: for_loop_begin %s for_loop_end %s\n"%(for_loop_begin, for_loop_end))
 
+                                log.debug("mc_create_phase: mc_env_cfg_pool %s, env_idx_mon %s, agt_idx %s, scb_arr %s, scb_idx %s\n"%(mc_env_cfg_pool, env_idx_mon, agt_idx, scb_arr, scb_idx))        
+                                log.debug("mc_create_phase: if condition : %s, %s\n"%(mc_env_cfg_pool[env_idx_mon][2][agt_idx][2], len(scb_arr[scb_idx].split(":"))))
                                 if not mc_env_cfg_pool[env_idx_mon][2][agt_idx][2] and not len(scb_arr[scb_idx].split(":"))>1:
                                     log.debug("mc_create_phase : agent monitor == 1, scoreboard == 1, mc_curr_env_set_c %d!\n"%(mc_curr_env_set_c))
                                    
@@ -24972,7 +24982,7 @@ class uvm_testbench_gen:
 
                                     log.debug("mc_create_phase : env_mon_scb_stg %s!\n"%env_mon_scb_stg)
                                 
-                                elif not mc_env_cfg_pool[env_idx_mon][2][agt_idx][2] and len(envscbname_arr[scb_idx].split(":"))>1:
+                                elif not mc_env_cfg_pool[env_idx_mon][2][agt_idx][2] and len(scb_arr[scb_idx].split(":"))>1:
                                     log.debug("mc_create_phase : agent monitor == 1, scoreboard > 1, mc_curr_env_set_c %d!\n"%(mc_curr_env_set_c))
                                 
                                     for x in range (len(cp_monscb_con_arr)): 
@@ -25060,7 +25070,7 @@ class uvm_testbench_gen:
 
                                     log.debug("mc_create_phase : env_mon_scb_stg %s!\n"%env_mon_scb_stg)
                                
-                                elif mc_env_cfg_pool[env_idx_mon][2][agt_idx][2] and not len(envscbname_arr[c+1].split(":"))>1:
+                                elif mc_env_cfg_pool[env_idx_mon][2][agt_idx][2] and not len(scb_arr[c+1].split(":"))>1:
                                     log.debug("mc_create_phase : agent monitor > 1, scoreboard == 1, mc_curr_env_set_c %d!\n"%(mc_curr_env_set_c))
                                 
                                     for x in range (len(cp_monscb_con_arr)): 
@@ -25147,7 +25157,7 @@ class uvm_testbench_gen:
                                                     +('|%s %s\n\n'%(mon_env_endif, scb_env_endif))
                                     log.debug("mc_create_phase : env_mon_scb_stg %s!\n"%env_mon_scb_stg)
 
-                                elif mc_env_cfg_pool[env_idx_mon][2][agt_idx][2] and len(envscbname_arr[c+1].split(":"))>1:
+                                elif mc_env_cfg_pool[env_idx_mon][2][agt_idx][2] and len(scb_arr[c+1].split(":"))>1:
                                     log.debug("mc_create_phase : agent monitor > 1, scoreboard > 1, mc_curr_env_set_c %d!\n"%(mc_curr_env_set_c))
 
                                     for x in range (len(cp_monscb_con_arr)): 
@@ -25247,6 +25257,7 @@ class uvm_testbench_gen:
                                                     +('|%s\n'%(for_loop_end))\
                                                     +('|%s %s\n\n'%(mon_env_endif, scb_env_endif))
                                     log.debug("mc_create_phase : env_mon_scb_stg %s!\n"%env_mon_scb_stg)
+                                log.debug("mc_create_phase : if len(cp_mon_arr) == 4: For mon-scb connectivity loop is done!\n")
                             
                             elif len(cp_mon_arr) == 3:
                                 # Monitor related variables/arrays 
@@ -25655,7 +25666,9 @@ class uvm_testbench_gen:
                                 log.debug("mc_create_phase: mon_env_cfg_hir %s mon_env_hir %s mon_env_ifdef %s mon_env_endif %s\n"%(mon_env_cfg_hir, mon_env_hir, mon_env_ifdef, mon_env_endif))
                                 log.debug("mc_create_phase: scb_env_cfg_hir %s scb_env_hir %s scb_env_ifdef %s scb_env_endif %s\n"%(scb_env_cfg_hir, scb_env_hir, scb_env_ifdef, scb_env_endif))
                                 log.debug("mc_create_phase: for_loop_begin %s for_loop_end %s\n"%(for_loop_begin, for_loop_end))
-                                
+                               
+                                log.debug("mc_create_phase: mon_arr %s, scb_arr %s, scb_idx %s\n"%(mon_arr, scb_arr, scb_idx))
+                                log.debug("mc_create_phase: if condition : %s, %s\n"%(len(mon_arr[mon_idx].split(":")), len(scb_arr[scb_idx].split(":"))))
                                 if not len(mon_arr[mon_idx].split(":"))>1 and not len(scb_arr[scb_idx].split(":"))>1:
                                     log.debug("mc_create_phase : agent monitor == 1, scoreboard == 1!\n")
                                    
@@ -26006,6 +26019,8 @@ class uvm_testbench_gen:
                                                     +('|%s %s\n\n'%(mon_env_endif, scb_env_endif))
 
                                     log.debug("mc_create_phase : env_mon_scb_stg %s!\n"%env_mon_scb_stg)
+                                log.debug("mc_create_phase : if len(cp_mon_arr) == 3: For mon-scb connectivity loop is done!\n")
+                                log.debug("mc_create_phase: if condition : %s, %s\n"%(len(mon_arr[mon_idx].split(":")), len(scb_arr[scb_idx].split(":"))))
 
                         pos = env_stg.find(' // Connect Analysis Port\n')
                         apos = pos + len(' // Connect Analysis Port\n') + len("| // -------------\n")
@@ -29097,18 +29112,18 @@ class uvm_testbench_gen:
                         cb_ele_cnt = cb_ele_cnt-1
                         log.debug("Value of cb_ele_cnt %d"% cb_ele_cnt)
                         log.debug("Value of udie_cb_cfg_array %s"% udie_cb_cfg_array[i])
-                        log.debug("Value of udie_cb_cfg_array %s"% str(udie_cb_cfg_array[i][0]).translate(None, "'[]"))
-                        elem_cb_find = str(udie_cb_cfg_array[i][0]).translate(None, "'[]")
+                        log.debug("Value of udie_cb_cfg_array %s"% str(udie_cb_cfg_array[i][0]).translate(mt_rm_sym))
+                        elem_cb_find = str(udie_cb_cfg_array[i][0]).translate(mt_rm_sym)
                         elem_cb_indx = self.find_index(elem_cb_find, udie_clock_cfg_array)
                         log.debug("Value of elem_cb_indx %s"% elem_cb_indx)
                         if elem_cb_indx != None:
-                            udi_array.append(' clocking %s@(%s %s);\n'%(str(udie_cb_cfg_array[i][0]).translate(None, "'[]"), udie_clock_cfg_array[elem_cb_indx[0]][elem_cb_indx[1]+1], udie_clock_cfg_array[elem_cb_indx[0]][0]))
+                            udi_array.append(' clocking %s@(%s %s);\n'%(str(udie_cb_cfg_array[i][0]).translate(mt_rm_sym), udie_clock_cfg_array[elem_cb_indx[0]][elem_cb_indx[1]+1], udie_clock_cfg_array[elem_cb_indx[0]][0]))
                         else:
-                            udi_array.append(' clocking %s@();\n'%(str(udie_cb_cfg_array[i][0]).translate(None, "'[]"), ))
+                            udi_array.append(' clocking %s@();\n'%(str(udie_cb_cfg_array[i][0]).translate(mt_rm_sym), ))
                         for j in range (1, (cb_ele_cnt+1)):
                             if (j%2):
-                                udi_array.append('  %s       %s;\n'%(str(udie_cb_cfg_array[i][j+1]).translate(None, "'[]"), str(udie_cb_cfg_array[i][j]).translate(None, "'[]"), ))
-                        udi_array.append(' endclocking: %s\n'%(str(udie_cb_cfg_array[i][0]).translate(None, "'[]"), ))
+                                udi_array.append('  %s       %s;\n'%(str(udie_cb_cfg_array[i][j+1]).translate(None, "'[]"), str(udie_cb_cfg_array[i][j]).translate(mt_rm_sym), ))
+                        udi_array.append(' endclocking: %s\n'%(str(udie_cb_cfg_array[i][0]).translate(mt_rm_sym), ))
                         if (i != len(udie_cb_cfg_array)):
                             udi_array.append("\n")
                     
@@ -29129,14 +29144,14 @@ class uvm_testbench_gen:
                     for i in range (0, len(udie_mp_cfg_array)):
                         mp_ele_cnt = len(udie_mp_cfg_array[i])
                         mp_ele_cnt = mp_ele_cnt-1
-                        udi_array.append(' modport %s(\n'%(str(udie_mp_cfg_array[i][0]).translate(None, "'[]"), ))
+                        udi_array.append(' modport %s(\n'%(str(udie_mp_cfg_array[i][0]).translate(mt_rm_sym), ))
                         
                         elem_mpcb_indx = self.find_index('clocking', udie_mp_cfg_array[i])
                         log.debug("Value of udie_mp_cfg_array[%d] %s"%(i, udie_mp_cfg_array[i]))
                         if elem_mpcb_indx != None:
                             #log.debug("Value of udie_mp_element_loop is %s"% udie_mp_element_loop)
-                            log.debug("Value of mp is %s"% str(udie_mp_cfg_array[i][0]).translate(None, "'[]"))
-                            mp_ele_tmp = str(udie_mp_cfg_array[i][0]).translate(None, "'[]")
+                            log.debug("Value of mp is %s"% str(udie_mp_cfg_array[i][0]).translate(mt_rm_sym))
+                            mp_ele_tmp = str(udie_mp_cfg_array[i][0]).translate(mt_rm_sym)
                             mp_ele_tmp = mp_ele_tmp.replace('mp','cb')
                             elem_mp_indx = self.find_index(mp_ele_tmp, udie_clock_cfg_array)
                             
@@ -29149,11 +29164,11 @@ class uvm_testbench_gen:
                             for j in range (1, (mp_ele_cnt+1)):
                                 if (j%2):
                                     if (j == (mp_ele_cnt-1)):
-                                        if 'clocking' not in str(udie_mp_cfg_array[i][j+1]).translate(None, "'[]"):
-                                            udi_array.append('  %s       %s\n'%(str(udie_mp_cfg_array[i][j+1]).translate(None, "'[]"), str(udie_mp_cfg_array[i][j]).translate(None, "'[]"), ))
+                                        if 'clocking' not in str(udie_mp_cfg_array[i][j+1]).translate(mt_rm_sym):
+                                            udi_array.append('  %s       %s\n'%(str(udie_mp_cfg_array[i][j+1]).translate(mt_rm_sym), str(udie_mp_cfg_array[i][j]).translate(mt_rm_sym), ))
                                     else: 
-                                        if 'clocking' not in str(udie_mp_cfg_array[i][j+1]).translate(None, "'[]"):
-                                            udi_array.append('  %s       %s,\n'%(str(udie_mp_cfg_array[i][j+1]).translate(None, "'[]"), str(udie_mp_cfg_array[i][j]).translate(None, "'[]"), ))
+                                        if 'clocking' not in str(udie_mp_cfg_array[i][j+1]).translate(mt_rm_sym):
+                                            udi_array.append('  %s       %s,\n'%(str(udie_mp_cfg_array[i][j+1]).translate(mt_rm_sym), str(udie_mp_cfg_array[i][j]).translate(mt_rm_sym), ))
 
                         udi_array.append(' );\n')
                         udi_array.append("\n")
