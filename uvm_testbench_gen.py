@@ -7470,7 +7470,8 @@ class uvm_testbench_gen:
                     # self.mc_mon_scb_con_list[j] = {}
 
                     # self.mc_mon_scb_con_list[row,column].clear()
-                    self.mc_mon_scb_con_list[row,column] = {"Analysis Port-Export FIFO Based":1, "Analysis Port Write Function":2, "Click Drop-Down For Options":0}
+                    #self.mc_mon_scb_con_list[row,column] = {"Analysis Port-Export FIFO Based":1, "Analysis Port Write Function":2, "Click Drop-Down For Options":0}
+                    self.mc_mon_scb_con_list[row,column] = {"Analysis Port-Export FIFO Based":1, "Analysis Port Write Function":2}
                     
                     # Search for existing connectivity details from mc_global_env_mon_scb_con_arr
                     mon_scb_to_be_searched = mon_list[row-1]+'-'+scb_list[column-1]+'-'
@@ -7643,6 +7644,7 @@ class uvm_testbench_gen:
         global mc_mon_scb_port_loop
         global mc_mon_scb_port_loop_arr
         log.debug("mc_mon_scb_port_button_frame_code_cb: Going to create the button frame for mon scb port capture!!\n")
+        log.debug("mc_mon_scb_port_button_frame_code_cb: row {}, column {}, mon_list {}, scb_list {}!!\n".format(row, column, mon_list, scb_list))
         
         # Incrementing by 1 to add a nwe entry
         mc_mon_scb_port_loop += 1
@@ -7789,14 +7791,15 @@ class uvm_testbench_gen:
         global mc_mon_scb_port_loop
         global mc_global_env_mon_scb_con_arr
         log.debug("mc_mon_scb_port_store_button_cb: Going to launch the function to store and capture the mon-scb connectivity!\n")
+        log.debug("mc_mon_scb_port_store_button_cb: row {}, column {}!\n".format(row, column))
     
         # Create the list of mon-scb connectivity
         mon_scb_con_list = StringVar ()
 
         log.debug("mc_mon_scb_port_store_button_cb: len(self.mc_mon_scb_port_entry) %d, self.mc_mon_scb_port_entry %s, self.mc_mon_scb_port_dd_val %s, self.mc_mon_scb_port_dd_list %s!\n"%(len(self.mc_mon_scb_port_entry), self.mc_mon_scb_port_entry, self.mc_mon_scb_port_dd_val, self.mc_mon_scb_port_dd_list))
         for i in range (len(self.mc_mon_scb_port_entry)): 
-            log.debug("mc_mon_scb_port_store_button_cb: self.mc_mon_scb_port_entry[%d] %s self.mc_mon_scb_port_dd_val[%d] %s self.mc_mon_scb_port_dd_list[%d] %s!\n"%(i, self.mc_mon_scb_port_entry[i].get(), i,  self.mc_mon_scb_port_dd_val[i], i,  self.mc_mon_scb_port_dd_list[i]))
             mon_scb_con_ele = self.mc_mon_scb_port_entry[i].get()+","+str(self.mc_mon_scb_port_dd_list[i].get(self.mc_mon_scb_port_dd_val[i].get()))
+            log.debug("mc_mon_scb_port_store_button_cb: self.mc_mon_scb_port_entry[%d] %s self.mc_mon_scb_port_dd_val[%d] %s self.mc_mon_scb_port_dd_list[%d] %s!\n"%(i, self.mc_mon_scb_port_entry[i].get(), i,  self.mc_mon_scb_port_dd_val[i].get(), i,  self.mc_mon_scb_port_dd_list[i]))
             
             if i == 0 and len(self.mc_mon_scb_port_entry) == 1:
                 mon_scb_con_list = mon_scb_con_ele 
@@ -7835,6 +7838,7 @@ class uvm_testbench_gen:
         global mc_mon_scb_port_loop
         global mc_global_env_mon_scb_con_arr
         log.debug("mc_mon_scb_port_capture_cb: Going to launch the function to build and capture the mon-scb connectivity!\n")
+        log.debug("mc_mon_scb_port_capture_cb: row {}, column {}, mon_list {}, scb_list{}!\n".format(row, column, mon_list, scb_list))
         
         # Incrementing by 1 to add a nwe entry
         mc_mon_scb_port_loop += 1
@@ -7846,7 +7850,8 @@ class uvm_testbench_gen:
         self.mc_mon_scb_port_dd.append([])
         log.debug("mc_mon_scb_port_capture_cb: self.mc_mon_scb_port_entry %s  self.mc_mon_scb_port_dd %s!\n"%(self.mc_mon_scb_port_entry, self.mc_mon_scb_port_dd))
 
-        self.mc_mon_scb_port_dd_list[mc_mon_scb_port_loop_arr] = {"Analysis Port-Export FIFO Based":1, "Analysis Port Write Function":2, "Click Drop-Down For Options":0}
+        #self.mc_mon_scb_port_dd_list[mc_mon_scb_port_loop_arr] = {"Analysis Port-Export FIFO Based":1, "Analysis Port Write Function":2, "Click Drop-Down For Options":0}
+        self.mc_mon_scb_port_dd_list[mc_mon_scb_port_loop_arr] = {"Analysis Port-Export FIFO Based":1, "Analysis Port Write Function":2}
         
         # Search for existing connectivity details from mc_global_env_mon_scb_con_arr
         mon_scb_to_be_searched = mon_list[row-1]+'-'+scb_list[column-1]+'-'
@@ -8926,7 +8931,8 @@ class uvm_testbench_gen:
         
         self.mc_choose_int_list.clear()
         self.mc_choose_int_val.set("Click Drop-Down For Options")
-        self.mc_choose_int_list = {"Default Interface":1, "User Defined Interface":2, "Load Interface":3}
+        #self.mc_choose_int_list = {"Default Interface":1, "User Defined Interface":2, "Load Interface":3}
+        self.mc_choose_int_list = {"Default Interface":1, "Load Interface":3}
 
         if not (self.mcao1):
             self.mcao1 = OptionMenu(self.mc_agt_nl, self.mc_choose_int_val, *self.mc_choose_int_list, command=self.mc_choose_int_cmd_code)
@@ -9331,12 +9337,13 @@ class uvm_testbench_gen:
             self.mc_choose_int_val.set("Click Drop-Down For Options")
         elif int(which_value) == 1:
             self.mc_choose_int_val.set("Default Interface")
-        elif int(which_value) == 2:
-            self.mc_choose_int_val.set("User Defined Interface")
+        #elif int(which_value) == 2:
+        #    self.mc_choose_int_val.set("User Defined Interface")
         elif int(which_value) == 3:
             self.mc_choose_int_val.set("Load Interface")
         
-        self.mc_choose_int_list = {"Default Interface":1, "User Defined Interface":2, "Load Interface":3}
+        # self.mc_choose_int_list = {"Default Interface":1, "User Defined Interface":2, "Load Interface":3}
+        self.mc_choose_int_list = {"Default Interface":1, "Load Interface":3}
         
         if (self.mcao1):
             self.mcao1.grid_forget(); self.mcao1 = None
@@ -10955,7 +10962,8 @@ class uvm_testbench_gen:
         
         self.mc_env_choose_int_list.clear()
         self.mc_env_choose_int_val.set("Click Drop-Down For Options")
-        self.mc_env_choose_int_list = {"Default Interface":1, "User Defined Interface":2, "Load Interface":3}
+        #self.mc_env_choose_int_list = {"Default Interface":1, "User Defined Interface":2, "Load Interface":3}
+        self.mc_env_choose_int_list = {"Default Interface":1, "Load Interface":3}
 
         if not (self.mco1):
             self.mco1 = OptionMenu(self.mc_env_intf_nl, self.mc_env_choose_int_val, *self.mc_env_choose_int_list, command=self.mc_env_choose_int_cmd_code)
@@ -10993,12 +11001,13 @@ class uvm_testbench_gen:
             self.mc_env_choose_int_val.set("Click Drop-Down For Options")
         elif int(which_value) == 1:
             self.mc_env_choose_int_val.set("Default Interface")
-        elif int(which_value) == 2:
-            self.mc_env_choose_int_val.set("User Defined Interface")
+        #elif int(which_value) == 2:
+        #    self.mc_env_choose_int_val.set("User Defined Interface")
         elif int(which_value) == 3:
             self.mc_env_choose_int_val.set("Load Interface")
         
-        self.mc_env_choose_int_list = {"Default Interface":1, "User Defined Interface":2, "Load Interface":3}
+        #self.mc_env_choose_int_list = {"Default Interface":1, "User Defined Interface":2, "Load Interface":3}
+        self.mc_env_choose_int_list = {"Default Interface":1, "Load Interface":3}
         
         if (self.mco1):
             self.mco1.grid_forget(); self.mco1 = None
@@ -24901,7 +24910,7 @@ class uvm_testbench_gen:
                                 # scb_env_hir = ('%s_%s_env'%(envname, cp_scb_arr[1]))
                                 # log.debug("mc_create_phase : scb_env_cfg_hir %s scb_env_hir %s!\n"%(scb_env_cfg_hir, scb_env_hir))
                                
-                                log.debug("mc_create_phase: envscbname_arr {}, scb_arr {}".format(envscbname_arr, scb_arr))
+                                log.debug("mc_create_phase: scb_arr {}".format(scb_arr))
                                 log.debug("mc_create_phase: mon_env_cfg_hir %s mon_env_hir %s mon_env_ifdef %s mon_env_endif %s\n"%(mon_env_cfg_hir, mon_env_hir, mon_env_ifdef, mon_env_endif))
                                 log.debug("mc_create_phase: scb_env_cfg_hir %s scb_env_hir %s scb_env_ifdef %s scb_env_endif %s\n"%(scb_env_cfg_hir, scb_env_hir, scb_env_ifdef, scb_env_endif))
                                 log.debug("mc_create_phase: for_loop_begin %s for_loop_end %s\n"%(for_loop_begin, for_loop_end))
