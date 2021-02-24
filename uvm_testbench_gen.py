@@ -7,10 +7,14 @@
 # Copyright        : Copyright (c) 2016-2021 Vignesh Manoharan. All Rights Reserved.
 #                    <vignesh.verify@gmail.com>
 #                    
+#                  * This is an opensource tool and its not associated
+#                    with any other individual, group, organizaion or company.
+#                    Its solely owned/developed by the Author mentioned 
+#                    above.
 #                  * Main purpose of this tool for user is to generate uvm  
 #                    testbench and template codes for personal, educational
 #                    and professional use.
-#                  * User can download run or edit the code locally for 
+#                  * User can download, run or edit the source code locally for 
 #                    experimental use. If user wanted to contribute or provide 
 #                    suggestions for improvement please contact the author.
 #                  * Redistribution/Copying of the source code in any text,
@@ -754,7 +758,7 @@ class uvm_testbench_gen:
         self.qtips_chkbtn.rowconfigure(0,weight=1)
         self.qtips_chkbtn.columnconfigure(0,weight=1)
         
-        self.bnr_chkbtn = Checkbutton(self.top_frame, bg='gray50', activebackground="gray90", highlightbackground='gray50', font=MyFontH2, anchor="center", text = "Build & Run", variable = self.bnr, onvalue = 1, offvalue = 0) 
+        self.bnr_chkbtn = Checkbutton(self.top_frame, bg='gray50', activebackground="gray90", highlightbackground='gray50', font=MyFontH2, anchor="center", text = "Build & Run", variable = self.bnr, onvalue = 0, offvalue = 0) 
         self.bnr_chkbtn.grid(row=0, column=2, sticky='NE')
         self.bnr_chkbtn.rowconfigure(0,weight=1)
         self.bnr_chkbtn.columnconfigure(2,weight=1)
@@ -16305,7 +16309,7 @@ class uvm_testbench_gen:
                 log.debug("mc_create_phase : Build all the files needed for the environment!\n")
               
                 #------------------------------------------------------------------------------
-                # Creating Directory Structure For Environment, Trackers, Checkers, conn_file
+                # Creating Directory Structure For Environment, Checkers, 
                 #------------------------------------------------------------------------------
                 if (mc_env_cfg_pool[a][0]):
                     if mc_env_cfg_pool[a][6] != []:
@@ -16324,22 +16328,26 @@ class uvm_testbench_gen:
                         os.makedirs(envdirpath)
                         
                         # Directory Path For Other Env Directory 
-                        envtrkpath = envdirpath+'/'+'trackers'
-                        os.makedirs(envtrkpath)
+                        # envtrkpath = envdirpath+'/'+'trackers'
+                        # os.makedirs(envtrkpath)
                         
                         envchkrpath = envdirpath+'/'+'checkers'
                         os.makedirs(envchkrpath)
                         
-                        envconfilepath = envdirpath+'/'+'conn_file'
-                        os.makedirs(envconfilepath)
+                        # envconfilepath = envdirpath+'/'+'conn_file'
+                        # os.makedirs(envconfilepath)
                         
                         envdocspath = envdirpath+'/'+'guidocs'
                         os.makedirs(envdocspath)
                         
-                        #envsimspath = envdirpath+'/'+'sims'
-                        #os.makedirs(envsimspath)
+                        envrunpath = envdirpath+'/'+'run'
+                        os.makedirs(envrunpath)
                         
-                        log.debug("mc_create_phase : envtrkpath %s, envchkrpath %s, envconfilepath %s!\n"%(envtrkpath, envchkrpath, envconfilepath))
+                        envscriptspath = envdirpath+'/'+'scripts'
+                        os.makedirs(envscriptspath)
+                        
+                        #log.debug("mc_create_phase : envtrkpath %s, envchkrpath %s, envconfilepath %s!\n"%(envtrkpath, envchkrpath, envconfilepath))
+                        log.debug("mc_create_phase : envchkrpath %s, envdocspath %s, envrunpath %s, envscriptspath %s!\n"%(envchkrpath, envdocspath, envrunpath, envscriptspath))
 
                 # Calling the env file create API
                 if (mc_env_cfg_pool[a][0]):
@@ -16621,9 +16629,17 @@ class uvm_testbench_gen:
                     log.debug("mc_create_phase : envname %s !\n"%(envname))
                    
                     self.mc_fl_list(envname)
-                    shutil.move('./%s_environment.fl'%(envname), '%s'%(envdocspath))
-                    shutil.move('./%s_tbtop.fl'%(envname), '%s'%(envdocspath))
-                    shutil.move('./%s_common.fl'%(envname), '%s'%(envdocspath))
+                    shutil.move('./%s_environment.fl'%(envname), '%s'%(envrunpath))
+                    shutil.move('./%s_tbtop.fl'%(envname), '%s'%(envrunpath))
+                    shutil.move('./%s_common.fl'%(envname), '%s'%(envrunpath))
+
+                # Calling the API to create env_setup
+                if (mc_env_cfg_pool[a][0]):
+                    envname = ((mc_env_cfg_pool[a][0].split(","))[1]).split(":")[0]
+                    log.debug("mc_create_phase : envname %s !\n"%(envname))
+
+                    self.mc_create_tb_setup(envname)
+                    shutil.move('./%s_tb_setup.sh'%(envname), '%s'%(envscriptspath))
             else:
                 log.debug("mc_create_phase : Build Only the Necessary files needed for the environment!\n")
                 
@@ -16659,22 +16675,26 @@ class uvm_testbench_gen:
                             os.makedirs(envdirpath)
                             
                             # Directory Path For Other Env Directory 
-                            envtrkpath = envdirpath+'/'+'trackers'
-                            os.makedirs(envtrkpath)
+                            # envtrkpath = envdirpath+'/'+'trackers'
+                            # os.makedirs(envtrkpath)
                             
                             envchkrpath = envdirpath+'/'+'checkers'
                             os.makedirs(envchkrpath)
                             
-                            envconfilepath = envdirpath+'/'+'conn_file'
-                            os.makedirs(envconfilepath)
+                            # envconfilepath = envdirpath+'/'+'conn_file'
+                            # os.makedirs(envconfilepath)
                         
                             envdocspath = envdirpath+'/'+'guidocs'
                             os.makedirs(envdocspath)
                         
-                            #envsimspath = envdirpath+'/'+'sims'
-                            #os.makedirs(envsimspath)
+                            envrunpath = envdirpath+'/'+'run'
+                            os.makedirs(envrunpath)
+                        
+                            envscriptspath = envdirpath+'/'+'scripts'
+                            os.makedirs(envscriptspath)
                             
-                            log.debug("mc_create_phase : envtrkpath %s, envchkrpath %s, envconfilepath %s!\n"%(envtrkpath, envchkrpath, envconfilepath))
+                            #log.debug("mc_create_phase : envtrkpath %s, envchkrpath %s, envconfilepath %s!\n"%(envtrkpath, envchkrpath, envconfilepath))
+                            log.debug("mc_create_phase : envchkrpath %s, envdocspath %s, envrunpath %s, envscriptspath %s!\n"%(envchkrpath, envdocspath, envrunpath, envscriptspath))
                         #-----------------------------------------------------------------------------------------
                         
                         # Moving the env specific files
@@ -17060,18 +17080,29 @@ class uvm_testbench_gen:
                     
                     # Calling the env list
                     if (mc_env_cfg_pool[a][0]):
-                        envdocspath = envdirpath+'/'+'guidocs'
+                        #envdocspath = envdirpath+'/'+'guidocs'
+                        envrunpath = envdirpath+'/'+'run'
                        
-                        if os.path.exists(envdocspath):
-                            log.debug("mc_create_phase : Env GUI Docs Dir Path %s Already Exists!\n"%(envdocspath))
+                        #if os.path.exists(envdocspath):
+                        if os.path.exists(envrunpath):
+                            log.debug("mc_create_phase : Env Run Dir Path %s Already Exists!\n"%(envrunpath))
                         else:
-                            log.debug("mc_create_phase : Env GUI Docs Dir Path %s Doesn't Exists. Creating a new One!!\n"%(envdocspath))
-                            os.makedirs(envdocspath)
+                            log.debug("mc_create_phase : Env Run Dir Path %s Doesn't Exists. Creating a new One!!\n"%(envrunpath))
+                            #os.makedirs(envdocspath)
+                            os.makedirs(envrunpath)
 
                         self.mc_fl_list(envname)
-                        shutil.move('./%s_environment.fl'%(envname), '%s'%(envdocspath))
-                        shutil.move('./%s_tbtop.fl'%(envname), '%s'%(envdocspath))
-                        shutil.move('./%s_common.fl'%(envname), '%s'%(envdocspath))
+                        shutil.move('./%s_environment.fl'%(envname), '%s'%(envrunpath))
+                        shutil.move('./%s_tbtop.fl'%(envname), '%s'%(envrunpath))
+                        shutil.move('./%s_common.fl'%(envname), '%s'%(envrunpath))
+                
+                    # Calling the API to create env_setup
+                    if (mc_env_cfg_pool[a][0]):
+                        # envname = ((mc_env_cfg_pool[a][0].split(","))[1]).split(":")[0]
+                        log.debug("mc_create_phase : envname %s !\n"%(envname))
+
+                        self.mc_create_tb_setup(envname)
+                        shutil.move('./%s_tb_setup.sh'%(envname), '%s'%(envscriptspath))
 
                     # Clearning the variable 
                     mc_curr_env_set_c = 0
@@ -17169,6 +17200,11 @@ class uvm_testbench_gen:
         log.debug("mc_fl_list : Calling the API to create the env listfile. envname %s!\n"%(envname))
         #os.system('$PROJ_ROOT/.bin_v3/generate_fl.csh  %s' % (str(envname),))
         self.generate_fl(str(envname))
+   
+
+    def mc_create_tb_setup(self, envname):
+        log.debug("mc_create_tb_setup : Calling the API to create the env setup. envname %s!\n"%(envname))
+        self.generate_tb_setup(str(envname))
 
 
     def mc_edit_phase(self):
@@ -17224,11 +17260,12 @@ class uvm_testbench_gen:
                         log.debug("mc_create_phase : envdirpath %s!\n"%envdirpath)
                         
                         # Directory Path For Other Env Directory 
-                        envtrkpath = envdirpath+'/'+'trackers'
+                        # envtrkpath = envdirpath+'/'+'trackers'
                         envchkrpath = envdirpath+'/'+'checkers'
-                        envconfilepath = envdirpath+'/'+'conn_file'
+                        # envconfilepath = envdirpath+'/'+'conn_file'
                         envdocspath = envdirpath+'/'+'guidocs'
-                        #envsimspath = envdirpath+'/'+'sims'
+                        envrunpath = envdirpath+'/'+'run'
+                        envscriptspath = envdirpath+'/'+'scripts'
                         
                         # Directory Path For Others 
                         envmondirpath = envdirpath+'/'+'env_monitors'
@@ -17238,7 +17275,8 @@ class uvm_testbench_gen:
                         # Directory Path For Env tests 
                         envtestdirpath = envdirpath+'/'+'tests'
 
-                        log.debug("mc_create_phase : envtrkpath %s, envchkrpath %s, envconfilepath %s!\n"%(envtrkpath, envchkrpath, envconfilepath))
+                        #log.debug("mc_create_phase : envtrkpath %s, envchkrpath %s, envconfilepath %s!\n"%(envtrkpath, envchkrpath, envconfilepath))
+                        log.debug("mc_create_phase : envchkrpath %s, envdocspath %s, envrunpath %s, envscriptspath %s!\n"%(envchkrpath, envdocspath, envrunpath, envscriptspath))
                
                 #----------------------------------------------------------------------
                 # Edit the Environment Config File  
@@ -22373,11 +22411,12 @@ class uvm_testbench_gen:
                         log.debug("mc_create_phase : envdirpath %s!\n"%envdirpath)
                         
                         # Directory Path For Other Env Directory 
-                        envtrkpath = envdirpath+'/'+'trackers'
+                        # envtrkpath = envdirpath+'/'+'trackers'
                         envchkrpath = envdirpath+'/'+'checkers'
-                        envconfilepath = envdirpath+'/'+'conn_file'
+                        # envconfilepath = envdirpath+'/'+'conn_file'
                         envdocspath = envdirpath+'/'+'guidocs'
-                        #envsimspath = envdirpath+'/'+'sims'
+                        envrunpath = envdirpath+'/'+'run'
+                        envscriptspath = envdirpath+'/'+'scripts'
                         
                         # Directory Path For Others 
                         envmondirpath = envdirpath+'/'+'env_monitors'
@@ -22387,7 +22426,8 @@ class uvm_testbench_gen:
                         # Directory Path For Env tests 
                         envtestdirpath = envdirpath+'/'+'tests'
                         
-                        log.debug("mc_create_phase : envtrkpath %s, envchkrpath %s, envconfilepath %s!\n"%(envtrkpath, envchkrpath, envconfilepath))
+                        #log.debug("mc_create_phase : envtrkpath %s, envchkrpath %s, envconfilepath %s!\n"%(envtrkpath, envchkrpath, envconfilepath))
+                        log.debug("mc_create_phase : envchkrpath %s, envdocspath %s, envrunpath %s, envscriptspath %s!\n"%(envchkrpath, envdocspath, envrunpath, envscriptspath))
                
                 #----------------------------------------------------------------------
                 # Edit the Environment Config File  
@@ -29693,6 +29733,11 @@ class uvm_testbench_gen:
         # Code to dump out the List file
         #----------------------------------------------------------------------
         self.mc_list_file()
+        
+        #----------------------------------------------------------------------
+        # Code to dump out the Environment TB Setup Script 
+        #----------------------------------------------------------------------
+        self.mc_tb_setup()
 
 
     def mc_list_file(self):
@@ -29719,25 +29764,29 @@ class uvm_testbench_gen:
                 log.debug("mc_list_file : envname %s !\n"%(envname))
 
                 #------------------------------------------------------------------------------
-                # Creating Directory Structure For Environment, Trackers, Checkers, conn_file
+                # Creating Directory Structure For Environment, Checkers
+                #------------------------------------------------------------------------------
+                # Note: Instead of full directory, keeping it as $TB_DIR : 02212021SUN 
                 #------------------------------------------------------------------------------
                 if (mc_env_cfg_pool[a][0]):
                     if mc_env_cfg_pool[a][6] != []:
                         if mc_env_cfg_pool[a][6] == 'pwd':
-                            envdirpath = str(os.popen('pwd').read()).strip()
+                            envdirpath_full = str(os.popen('pwd').read()).strip()
                         else:
-                            envdirpath = str(mc_env_cfg_pool[a][6]).strip('[,],\'')
+                            envdirpath_full = str(mc_env_cfg_pool[a][6]).strip('[,],\'')
                     
                 if (mc_env_cfg_pool[a][0]):
                     # Environment Directory Path
-                    envdirpath = envdirpath+'/'+((mc_env_cfg_pool[a][0].split(","))[1]).split(":")[0]+'_env'   
-                    log.debug("mc_list_file : envdirpath %s!\n"%envdirpath)
+                    
+                    envdirpath_full = envdirpath_full+'/'+((mc_env_cfg_pool[a][0].split(","))[1]).split(":")[0]+'_env'   
+                    envdirpath = "$%s_TB_DIR"%(envname.upper())
+                    
+                    log.debug("mc_list_file : envdirpath %s, envdirpath_full %s!\n"%(envdirpath, envdirpath_full))
                     
                     envdocspath = envdirpath+'/'+'guidocs'
-                    #envsimspath = envdirpath+'/'+'sims'
+                    envrunpath = envdirpath_full+'/'+'run'
                     
-                    #log.debug("mc_list_file : envdocspath %s, envsimspath %s!\n"%(envdocspath, envsimspath))
-                    log.debug("mc_list_file : envdocspath %s!\n"%(envdocspath))
+                    log.debug("mc_list_file : envdocspath %s, envrunpath %s!\n"%(envdocspath, envrunpath))
                 
                 
                 #------------------------------------------------------------------------------
@@ -29745,12 +29794,12 @@ class uvm_testbench_gen:
                 #------------------------------------------------------------------------------
                 if (mc_env_cfg_pool[a][0]):
                     mc_env_fl_arr = []
-                    #mc_env_fl_input_file = open("%s/%s_env.fl"%(envsimspath, envname),"r+")
-                    mc_env_fl_input_file = open("%s/%s_environment.fl"%(envdocspath, envname),"r+")
+                    mc_env_fl_input_file = open("%s/%s_environment.fl"%(envrunpath, envname),"r+")
+                    #mc_env_fl_input_file = open("%s/%s_environment.fl"%(envdocspath, envname),"r+")
                    
                     mc_tbtop_fl_arr = []
-                    #mc_tbtop_fl_input_file = open("%s/%s_env.fl"%(envsimspath, envname),"r+")
-                    mc_tbtop_fl_input_file = open("%s/%s_tbtop.fl"%(envdocspath, envname),"r+")
+                    mc_tbtop_fl_input_file = open("%s/%s_tbtop.fl"%(envrunpath, envname),"r+")
+                    #mc_tbtop_fl_input_file = open("%s/%s_tbtop.fl"%(envdocspath, envname),"r+")
 
                     fl_stg = ''
                     tbtop_fl_stg = ''
@@ -29794,7 +29843,9 @@ class uvm_testbench_gen:
                         log.debug("mc_list_file: whattosearch %s, whattosearch_idx %s\n"%(whattosearch, whattosearch_idx))
 
                         # Loading the links to the subenvs
-                        subenvflpath = "-f " + mc_env_cfg_pool[whattosearch_idx[0]][6]+"/"+"%s_env"%(subenv_arr[m+1].split(":")[0])+"/guidocs"+"/%s_environment.fl\n"%(subenv_arr[m+1].split(":")[0])
+                        #subenvflpath = "-f " + mc_env_cfg_pool[whattosearch_idx[0]][6]+"/"+"%s_env"%(subenv_arr[m+1].split(":")[0])+"/guidocs"+"/%s_environment.fl\n"%(subenv_arr[m+1].split(":")[0])
+                        # ORG: subenvflpath = "-f " + mc_env_cfg_pool[whattosearch_idx[0]][6]+"/"+"%s_env"%(subenv_arr[m+1].split(":")[0])+"/run"+"/%s_environment.fl\n"%(subenv_arr[m+1].split(":")[0])
+                        subenvflpath = "-f " + "$%s_TB_DIR"%(subenv_arr[m+1].split(":")[0].upper())+"/run"+"/%s_environment.fl\n"%(subenv_arr[m+1].split(":")[0])
                         log.debug("mc_list_file: subenvflpath %s\n"%(subenvflpath))
 
                         pos = fl_stg.find('# Sub-Environment List Files\n')
@@ -29825,13 +29876,14 @@ class uvm_testbench_gen:
                     # log.debug("mc_list_file : envdirpath %s!\n"%envdirpath)
                     
                     # Directory Path For Other Env Directory 
-                    envtrkpath = envdirpath+'/'+'trackers'
+                    # envtrkpath = envdirpath+'/'+'trackers'
                     
                     envchkrpath = envdirpath+'/'+'checkers'
                     
-                    envconfilepath = envdirpath+'/'+'conn_file'
+                    # envconfilepath = envdirpath+'/'+'conn_file'
                     
-                    log.debug("mc_list_file : envtrkpath %s, envchkrpath %s, envconfilepath %s!\n"%(envtrkpath, envchkrpath, envconfilepath))
+                    #log.debug("mc_list_file : envtrkpath %s, envchkrpath %s, envconfilepath %s!\n"%(envtrkpath, envchkrpath, envconfilepath))
+                    log.debug("mc_list_file : envchkrpath %s!\n"%(envchkrpath))
                 
 
                 #------------------------------------------------------------------------------
@@ -30149,14 +30201,15 @@ class uvm_testbench_gen:
                     log.debug("mc_create_phase: Value of fl_stg %s"%(fl_stg))
                     
                     
-                    #mc_env_fl_input_file = open("%s/%s_env.fl"%(envsimspath, envname), "w")
-                    mc_env_fl_input_file = open("%s/%s_environment.fl"%(envdocspath, envname), "w")
+                    mc_env_fl_input_file = open("%s/%s_environment.fl"%(envrunpath, envname), "w")
+                    #mc_env_fl_input_file = open("%s/%s_environment.fl"%(envdocspath, envname), "w")
                     mc_env_fl_arr = fl_stg.split('|')
                     for lines in mc_env_fl_arr:
                         mc_env_fl_input_file.write(lines)
                     mc_env_fl_input_file.close()
                     
-                    mc_tbtop_fl_input_file = open("%s/%s_tbtop.fl"%(envdocspath, envname), "w")
+                    mc_tbtop_fl_input_file = open("%s/%s_tbtop.fl"%(envrunpath, envname), "w")
+                    #mc_tbtop_fl_input_file = open("%s/%s_tbtop.fl"%(envdocspath, envname), "w")
                     mc_tbtop_fl_arr = tbtop_fl_stg.split('|')
                     for lines in mc_tbtop_fl_arr:
                         mc_tbtop_fl_input_file.write(lines)
@@ -30187,14 +30240,15 @@ class uvm_testbench_gen:
                         #-----------------------------------------------------------------------------------------
                         if mc_env_cfg_pool[a][6] != []:
                             if mc_env_cfg_pool[a][6] == 'pwd':
-                                envdirpath = str(os.popen('pwd').read()).strip()
+                                envdirpath_full = str(os.popen('pwd').read()).strip()
                             else:
-                                envdirpath = str(mc_env_cfg_pool[a][6]).strip('[,],\'')
+                                envdirpath_full = str(mc_env_cfg_pool[a][6]).strip('[,],\'')
                         
                             # Director Path For Env 
-                            envdirpath = envdirpath+'/'+envname+'_env'   
-                            log.debug("mc_list_file : envdirpath %s!\n"%envdirpath)
+                            envdirpath_full = envdirpath_full+'/'+envname+'_env'   
+                            envdirpath = "$%s_TB_DIR"%(envname.upper())
                             
+                            log.debug("mc_list_file : envdirpath %s, envdirpath_full %s!\n"%(envdirpath, envdirpath_full))
                         #-----------------------------------------------------------------------------------------
                     else:
                         envname = ((mc_env_cfg_pool[a][0].split(","))[1]).split(":")[0]
@@ -30208,13 +30262,15 @@ class uvm_testbench_gen:
                         # Just creating the envdirpath for other components
                         if mc_env_cfg_pool[a][6] != []:
                             if mc_env_cfg_pool[a][6] == 'pwd':
-                                envdirpath = str(os.popen('pwd').read()).strip()
+                                envdirpath_full = str(os.popen('pwd').read()).strip()
                             else:
-                                envdirpath = str(mc_env_cfg_pool[a][6]).strip('[,],\'')
+                                envdirpath_full = str(mc_env_cfg_pool[a][6]).strip('[,],\'')
                         
                             # Director Path For Env 
-                            envdirpath = envdirpath+'/'+envname+'_env'   
-                            log.debug("mc_list_file : envdirpath %s!\n"%envdirpath)
+                            envdirpath_full = envdirpath_full+'/'+envname+'_env'   
+                            envdirpath = "$%s_TB_DIR"%(envname.upper())
+                            
+                            log.debug("mc_list_file : envdirpath %s, envdirpath_full %s!\n"%(envdirpath, envdirpath_full))
                     
                     envnamefull = envname+"_env"
                     log.debug("mc_list_file : envname %s envnamefull %s!\n"%(envname, envnamefull))
@@ -30225,7 +30281,8 @@ class uvm_testbench_gen:
                 #-----------------------------------------------------------------------------------------
                 if (mc_env_cfg_pool[a][0]):
                     envdocspath = envdirpath+'/'+'guidocs'
-                    #envsimspath = envdirpath+'/'+'sims'
+                    envrunpath = envdirpath_full+'/'+'run'
+                    envscriptspath = envdirpath+'/'+'scripts'
 
                 
                 #------------------------------------------------------------------------------
@@ -30233,12 +30290,12 @@ class uvm_testbench_gen:
                 #------------------------------------------------------------------------------
                 if (mc_env_cfg_pool[a][0]):
                     mc_env_fl_arr = []
-                    #mc_env_fl_input_file = open("%s/%s_env.fl"%(envsimspath, envname),"r+")
-                    mc_env_fl_input_file = open("%s/%s_environment.fl"%(envdocspath, envname),"r+")
+                    mc_env_fl_input_file = open("%s/%s_environment.fl"%(envrunpath, envname),"r+")
+                    #mc_env_fl_input_file = open("%s/%s_environment.fl"%(envdocspath, envname),"r+")
                    
                     mc_tbtop_fl_arr = []
-                    #mc_tbtop_fl_input_file = open("%s/%s_env.fl"%(envsimspath, envname),"r+")
-                    mc_tbtop_fl_input_file = open("%s/%s_tbtop.fl"%(envdocspath, envname),"r+")
+                    mc_tbtop_fl_input_file = open("%s/%s_tbtop.fl"%(envrunpath, envname),"r+")
+                    #mc_tbtop_fl_input_file = open("%s/%s_tbtop.fl"%(envdocspath, envname),"r+")
 
                     fl_stg = ''
                     tbtop_fl_stg = ''
@@ -30302,7 +30359,9 @@ class uvm_testbench_gen:
 
                         if "__c" in subenvname_arr[m+1] or mc_curr_env_set_c == 1 or ("__s" in subenvname_arr[m+1] and mc_curr_env_set_s == 0):
                             # subenvflpath = "-f " + mc_env_cfg_pool[whattosearch_idx[0]][6]+"/"+"%s_env"%(subenvname_arr[m+1].split(":")[0])+"/guidocs"+"/%s_environment.fl\n"%(subenvname_arr[m+1].split(":")[0])
-                            subenvflpath = "-f " + mc_env_cfg_pool[whattosearch_idx[0]][6]+"/"+"%s_env"%(subenvname)+"/guidocs"+"/%s_environment.fl\n"%(subenvname)
+                            #subenvflpath = "-f " + mc_env_cfg_pool[whattosearch_idx[0]][6]+"/"+"%s_env"%(subenvname)+"/guidocs"+"/%s_environment.fl\n"%(subenvname)
+                            #ORG subenvflpath = "-f " + mc_env_cfg_pool[whattosearch_idx[0]][6]+"/"+"%s_env"%(subenvname)+"/run"+"/%s_environment.fl\n"%(subenvname)
+                            subenvflpath = "-f " + "$%s_TB_DIR"%(subenvname.upper())+"/run"+"/%s_environment.fl\n"%(subenvname)
                             log.debug("mc_list_file: subenvflpath %s\n"%(subenvflpath))
 
                             pos = fl_stg.find('# Sub-Environment List Files\n')
@@ -30328,13 +30387,14 @@ class uvm_testbench_gen:
                 #------------------------------------------------------------------------------
                 if (mc_env_cfg_pool[a][0]) and mc_curr_env_set_c == 1:
                     # Directory Path For Other Env Directory 
-                    envtrkpath = envdirpath+'/'+'trackers'
+                    # envtrkpath = envdirpath+'/'+'trackers'
                     
                     envchkrpath = envdirpath+'/'+'checkers'
                     
-                    envconfilepath = envdirpath+'/'+'conn_file'
+                    # envconfilepath = envdirpath+'/'+'conn_file'
                     
-                    log.debug("mc_list_file : envtrkpath %s, envchkrpath %s, envconfilepath %s!\n"%(envtrkpath, envchkrpath, envconfilepath))
+                    #log.debug("mc_list_file : envtrkpath %s, envchkrpath %s, envconfilepath %s!\n"%(envtrkpath, envchkrpath, envconfilepath))
+                    log.debug("mc_list_file : envchkrpath %s!\n"%(envchkrpath))
 
 
                 #------------------------------------------------------------------------------
@@ -30724,14 +30784,15 @@ class uvm_testbench_gen:
                     log.debug("mc_create_phase: Value of fl_stg %s, tbtop_fl_stg %s"%(fl_stg, tbtop_fl_stg))
                     
                     
-                    #mc_env_fl_input_file = open("%s/%s_env.fl"%(envsimspath, envname), "w")
-                    mc_env_fl_input_file = open("%s/%s_environment.fl"%(envdocspath, envname), "w")
+                    mc_env_fl_input_file = open("%s/%s_environment.fl"%(envrunpath, envname), "w")
+                    #mc_env_fl_input_file = open("%s/%s_environment.fl"%(envdocspath, envname), "w")
                     mc_env_fl_arr = fl_stg.split('|')
                     for lines in mc_env_fl_arr:
                         mc_env_fl_input_file.write(lines)
                     mc_env_fl_input_file.close()
                    
-                    mc_tbtop_fl_input_file = open("%s/%s_tbtop.fl"%(envdocspath, envname), "w")
+                    mc_tbtop_fl_input_file = open("%s/%s_tbtop.fl"%(envrunpath, envname), "w")
+                    #mc_tbtop_fl_input_file = open("%s/%s_tbtop.fl"%(envdocspath, envname), "w")
                     mc_tbtop_fl_arr = tbtop_fl_stg.split('|')
                     for lines in mc_tbtop_fl_arr:
                         mc_tbtop_fl_input_file.write(lines)
@@ -30744,6 +30805,277 @@ class uvm_testbench_gen:
                 does_agt_has_seq = 0
                 fl_stg = ''
                 fl_loc_stg = ''
+            
+            #----------------------------------------------------------------------
+            # Cleaning the const variables 
+            #----------------------------------------------------------------------
+            if mc_curr_env_set_c:
+                mc_curr_env_set_c = 0
+            if mc_curr_env_set_s:
+                mc_curr_env_set_s = 0
+            #----------------------------------------------------------------------
+
+
+    def mc_tb_setup(self):
+        global mc_env_cfg_pool
+        global create_stitch
+        global stitch_only
+        global cxn_only
+        global ei_only
+        global mc_curr_env_set_c 
+        global mc_curr_env_set_s 
+
+        log.debug("mc_tb_setup : Calling the mc_tb_setup! mc_env_cfg_pool %s, size of mc_env_cfg_pool %d\n"%(mc_env_cfg_pool, len(mc_env_cfg_pool)))
+        
+        # Cycle through all the environment and create all the files
+        for a in range (len(mc_env_cfg_pool)):
+            if not create_stitch and not stitch_only and not cxn_only and not ei_only:
+                log.debug("mc_tb_setup : List all the directory !\n")
+            
+                envname = ((mc_env_cfg_pool[a][0].split(","))[1]).split(":")[0]
+                log.debug("mc_tb_setup : envname %s !\n"%(envname))
+
+                #------------------------------------------------------------------------------
+                # Creating Directory Structure For Environment, Scripts 
+                #------------------------------------------------------------------------------
+                if (mc_env_cfg_pool[a][0]):
+                    if mc_env_cfg_pool[a][6] != []:
+                        if mc_env_cfg_pool[a][6] == 'pwd':
+                            envdirpath = str(os.popen('pwd').read()).strip()
+                        else:
+                            envdirpath = str(mc_env_cfg_pool[a][6]).strip('[,],\'')
+                    
+                if (mc_env_cfg_pool[a][0]):
+                    # Environment Directory Path
+                    envdirpath = envdirpath+'/'+envname+'_env'   
+                    log.debug("mc_tb_setup : envdirpath %s!\n"%(envdirpath))
+                    
+                    envscriptspath = envdirpath+'/'+'scripts'
+                    log.debug("mc_tb_setup : envscriptspath %s!\n"%(envscriptspath))
+                
+                #------------------------------------------------------------------------------
+                # Code for creating the necessary environment setup variables 
+                #------------------------------------------------------------------------------
+                if (mc_env_cfg_pool[a][0]):
+                    mc_env_tb_setup_arr = []
+                    mc_env_tb_setup_input_file = open("%s/%s_tb_setup.sh"%(envscriptspath, envname),"r+")
+                   
+                    tb_setup_stg = ''
+                    tb_setup_loc_stg = ''
+
+                    for lines in mc_env_tb_setup_input_file:
+                        tb_setup_stg = tb_setup_stg+lines+'|' 
+                    log.debug("mc_tb_setup: Value of tb_setup_stg %s"%(tb_setup_stg))
+                
+                #------------------------------------------------------------------------------
+                # Adding Environment Sourcing Simulation Environment Variables 
+                #------------------------------------------------------------------------------
+                if (mc_env_cfg_pool[a][0]):
+                    # Source sub env variable path 
+                    tbsource = "setenv %s_TB_DIR %s\n"%(envname.upper(), envdirpath)
+                    log.debug("mc_tb_setup: tbsource %s\n"%(tbsource))
+
+                    pos = tb_setup_stg.find('# Source Simulation Environment Variables\n')
+                    apos = pos + len('# Source Simulation Environment Variables\n')
+                    tb_setup_stg = tb_setup_stg[:apos]+tbsource+tb_setup_stg[apos:]
+
+
+                #------------------------------------------------------------------------------
+                # Adding Sub-Environment Sourcing Simulation Environment Variables 
+                #------------------------------------------------------------------------------
+                if mc_env_cfg_pool[a][1] != '':
+                    subenv_arr = str(mc_env_cfg_pool[a][1]).split(",")
+                    for m in range (int(subenv_arr[0])):
+                        whattosearch = envname+","+(subenv_arr[m+1]).split(":")[0]
+                        whattosearch_idx = self.find_index(whattosearch, mc_env_cfg_pool)
+                        log.debug("mc_tb_setup: whattosearch %s, whattosearch_idx %s\n"%(whattosearch, whattosearch_idx))
+           
+                        subenvname = (subenv_arr[m+1]).split(":")[0]
+                        subenvdirpath = str(mc_env_cfg_pool[whattosearch_idx[0]][6])+"/"+subenvname+"_env"
+                        log.debug("mc_tb_setup: subenvname %s, subenvdirpath %s\n"%(subenvname, subenvdirpath))
+
+                        # Source sub env variable path 
+                        subtbsource = "setenv %s_TB_DIR %s\n"%(subenvname.upper(), subenvdirpath)
+                        log.debug("mc_tb_setup: subtbsource %s\n"%(subtbsource))
+
+                        pos = tb_setup_stg.find('# Source Simulation Environment Variables\n')
+                        apos = pos + len('# Source Simulation Environment Variables\n')
+                        tb_setup_stg = tb_setup_stg[:apos]+subtbsource+tb_setup_stg[apos:]
+
+
+                #----------------------------------------------------------------------
+                # Loading up the tb setup source onto file 
+                #----------------------------------------------------------------------
+                if (mc_env_cfg_pool[a][0]):
+                    log.debug("mc_tb_setup: Value of tb_setup_stg %s"%(tb_setup_stg))
+                    
+                    mc_env_tb_setup_input_file = open("%s/%s_tb_setup.sh"%(envscriptspath, envname), "w")
+                    mc_env_tb_setup_arr = tb_setup_stg.split('|')
+                    for lines in mc_env_tb_setup_arr:
+                        mc_env_tb_setup_input_file.write(lines)
+                    mc_env_tb_setup_input_file.close()
+                    #----------------------------------------------------------------------
+            
+                #----------------------------------------------------------------------
+                # Cleaning the local Variable 
+                #----------------------------------------------------------------------
+                tb_setup_stg = ''
+                tb_setup_loc_stg = ''
+            else:
+                log.debug("mc_tb_setup : Update the tb source file with Only New Environment is created / stitched!\n")
+                if (mc_env_cfg_pool[a][0]):
+                    envname = ((mc_env_cfg_pool[a][0].split(","))[1]).split(":")[0]
+                    envname_org = ((mc_env_cfg_pool[a][0].split(","))[1]).split(":")[0]
+                    if "__c" in envname:
+                        mc_curr_env_set_c = 1
+                        envname = envname.replace("__c","")
+                        
+                        log.debug("mc_tb_setup : envname %s mc_curr_env_set_c %d!\n"%(envname, mc_curr_env_set_c))
+                        
+                        #-----------------------------------------------------------------------------------------
+                        # Creating the env directory structure only if its like __c for the environment as a whole!
+                        #-----------------------------------------------------------------------------------------
+                        if mc_env_cfg_pool[a][6] != []:
+                            if mc_env_cfg_pool[a][6] == 'pwd':
+                                envdirpath = str(os.popen('pwd').read()).strip()
+                            else:
+                                envdirpath = str(mc_env_cfg_pool[a][6]).strip('[,],\'')
+                        
+                            # Director Path For Env 
+                            envdirpath = envdirpath+'/'+envname+'_env'   
+                            log.debug("mc_tb_setup : envdirpath %s!\n"%envdirpath)
+                            
+                        #-----------------------------------------------------------------------------------------
+                    else:
+                        envname = ((mc_env_cfg_pool[a][0].split(","))[1]).split(":")[0]
+                        
+                        if "__s" in envname:
+                            mc_curr_env_set_s = 1
+                            envname = envname.replace("__s","")
+
+                        log.debug("mc_tb_setup : envname %s!\n"%(envname))
+
+                        # Just creating the envdirpath for other components
+                        if mc_env_cfg_pool[a][6] != []:
+                            if mc_env_cfg_pool[a][6] == 'pwd':
+                                envdirpath = str(os.popen('pwd').read()).strip()
+                            else:
+                                envdirpath = str(mc_env_cfg_pool[a][6]).strip('[,],\'')
+                        
+                            # Director Path For Env 
+                            envdirpath = envdirpath+'/'+envname+'_env'   
+                            log.debug("mc_list_file : envdirpath %s!\n"%envdirpath)
+                    
+                    envnamefull = envname+"_env"
+                    log.debug("mc_list_file : envname %s envnamefull %s!\n"%(envname, envnamefull))
+                
+                
+                #-----------------------------------------------------------------------------------------
+                # Directory Path For Scripts
+                #-----------------------------------------------------------------------------------------
+                if (mc_env_cfg_pool[a][0]):
+                    envscriptspath = envdirpath+'/'+'scripts'
+
+                
+                #------------------------------------------------------------------------------
+                # Code for creating the necessary environment source file 
+                #------------------------------------------------------------------------------
+                if (mc_env_cfg_pool[a][0]):
+                    mc_env_tb_setup_arr = []
+                    mc_env_tb_setup_input_file = open("%s/%s_tb_setup.sh"%(envscriptspath, envname),"r+")
+                   
+                    tb_setup_stg = ''
+                    tb_setup_loc_stg = ''
+
+                    for lines in mc_env_tb_setup_input_file:
+                        tb_setup_stg = tb_setup_stg+lines+'|' 
+                    log.debug("mc_tb_setup: Value of tb_setup_stg %s"%(tb_setup_stg))
+               
+
+                #------------------------------------------------------------------------------
+                # Adding Environment Sourcing Simulation Environment Variables 
+                #------------------------------------------------------------------------------
+                if (mc_env_cfg_pool[a][0]) and mc_curr_env_set_c == 1:
+                    # Source sub env variable path 
+                    tbsource = "setenv %s_TB_DIR %s\n"%(envname.upper(), envdirpath)
+                    log.debug("mc_tb_setup: tbsource %s\n"%(tbsource))
+
+                    pos = tb_setup_stg.find('# Source Simulation Environment Variables\n')
+                    apos = pos + len('# Source Simulation Environment Variables\n')
+                    tb_setup_stg = tb_setup_stg[:apos]+tbsource+tb_setup_stg[apos:]
+
+                
+                #------------------------------------------------------------------------------
+                # Adding Sub-Environment List Files In the Parent Environment 
+                #------------------------------------------------------------------------------
+                if mc_env_cfg_pool[a][1] != '':
+                    subenv_arr = str(mc_env_cfg_pool[a][1]).split(",")
+                    for m in range (int(subenv_arr[0])):
+                        subenv_tmp = subenv_arr[m+1]
+                           
+                        if len(subenv_tmp.split(":"))>1:
+                            if "__c" in subenv_tmp.split(":")[0]:
+                                subenvname = (subenv_tmp.split(":")[0]).replace("__c","")
+                            elif "__s" in subenv_tmp.split(":")[0]:
+                                subenvname = (subenv_tmp.split(":")[0]).replace("__s","")
+                            else:
+                                subenvname = subenv_tmp.split(":")[0]
+                        else:
+                            if "__c" in subenv_tmp:
+                                subenvname = subenv_tmp.replace("__c","")
+                            elif "__s" in subenv_tmp:
+                                subenvname = subenv_tmp.replace("__s","")
+                            else:
+                                subenvname = subenv_tmp
+
+                        whattosearch = envname_org+","+(subenv_arr[m+1]).split(":")[0]   
+                        whattosearch_idx = self.find_index(whattosearch, mc_env_cfg_pool)
+                        log.debug("mc_tb_setup: whattosearch %s, whattosearch_idx %s\n"%(whattosearch, whattosearch_idx))
+                        
+                        subenvdirpath = str(mc_env_cfg_pool[whattosearch_idx[0]][6])+"/"+subenvname+"_env"
+                        log.debug("mc_tb_setup: subenvname %s, subenvdirpath %s\n"%(subenvname, subenvdirpath))
+
+                        log.debug("mc_tb_setup: subenv_arr[%0d] %s, mc_curr_env_set_c %s, mc_curr_env_set_s %s\n"%(m+1, subenv_arr[m+1], mc_curr_env_set_c, mc_curr_env_set_s))
+                        
+                        if "__c" in subenv_arr[m+1] or mc_curr_env_set_c == 1 or ("__s" in subenv_arr[m+1] and mc_curr_env_set_s == 0):
+                            # Source sub env variable path 
+                            subtbsource = "setenv %s_TB_DIR %s\n"%(subenvname.upper(), subenvdirpath)
+                            log.debug("mc_tb_setup: subtbsource %s\n"%(subtbsource))
+
+                            pos = tb_setup_stg.find('# Source Simulation Environment Variables\n')
+                            apos = pos + len('# Source Simulation Environment Variables\n')
+                            tb_setup_stg = tb_setup_stg[:apos]+subtbsource+tb_setup_stg[apos:]
+
+
+                #----------------------------------------------------------------------
+                # Loading up the tb setup content into file 
+                #----------------------------------------------------------------------
+                if (mc_env_cfg_pool[a][0]):
+                    log.debug("mc_tb_setup: Value of tb_setup_stg %s"%(tb_setup_stg))
+                    
+                    mc_env_tb_setup_input_file = open("%s/%s_tb_setup.sh"%(envscriptspath, envname), "w")
+                    mc_env_tb_setup_arr = tb_setup_stg.split('|')
+                    for lines in mc_env_tb_setup_arr:
+                        mc_env_tb_setup_input_file.write(lines)
+                    mc_env_tb_setup_input_file.close()
+                #----------------------------------------------------------------------
+
+                
+                #----------------------------------------------------------------------
+                # Clearning the variable 
+                #----------------------------------------------------------------------
+                tb_setup_stg = ''
+                tb_setup_loc_stg = ''
+            
+            #----------------------------------------------------------------------
+            # Cleaning the const variables 
+            #----------------------------------------------------------------------
+            if mc_curr_env_set_c:
+                mc_curr_env_set_c = 0
+            if mc_curr_env_set_s:
+                mc_curr_env_set_s = 0
+            #----------------------------------------------------------------------
+
 
     def mc_run_phase(self):
         log.debug("mc_run_phase : Calling the mc_run_phase!\n")
@@ -33714,8 +34046,6 @@ class uvm_testbench_gen:
         +('\n')\
         +('# Environment Checkers Directory\n')\
         +('\n')\
-        +('# Environment Trackers Directory\n')\
-        +('\n')\
         +('# Test Directory\n')\
         +('\n')\
         +('# Interface, Interface Wrapper Files\n')\
@@ -34198,6 +34528,52 @@ class uvm_testbench_gen:
         # Cleaning Local Variables
         agt_cfg_stg = ''
         agt_cfg_stg_arr = ''
+    #------------------------------------------------------------------------------
+
+
+    #------------------------------------------------------------------------------
+    # generate_tb_setup
+    #------------------------------------------------------------------------------
+    def generate_tb_setup(self, env_setup_name):
+        env_setup_stg = ''
+
+        if env_setup_name == "":
+            print("ERROR: Please Specify File List. Exiting The Tool!\n")
+            return None
+        
+        env_setup_name = env_setup_name + "_tb_setup"
+        print("INFO: Generating Environment Setup File %s"%(env_setup_name))
+
+        if (os.path.isfile('%s.sh'%env_setup_name)):
+            print("WARNING: %s.sh does exist, backing it up to %s.bak"%(env_setup_name, env_setup_name))
+            os.rename('%s.sh %s.bak'%(env_setup_name, env_setup_name))
+
+        env_setup_stg = env_setup_stg\
+        +('#===============================================================\n')\
+        +('# File Name        : <ENV_SETUP_NAME>.sh\n')\
+        +('# Desctiption      :\n')\
+        +('# Name             : <CREATE_NAME>\n')\
+        +('# File Created     : <CREATE_DATE>\n')\
+        +('# Copyright        :\n')\
+        +('#===============================================================\n')\
+        +('# NOTE: Please Don\'t Remove Any Comments Given Below\n')\
+        +('#===============================================================\n')\
+        +('\n')\
+        +('# Source Simulation Environment Variables\n')
+
+        env_setup_stg = env_setup_stg.replace("<ENV_SETUP_NAME>", env_setup_name)
+        env_setup_stg = env_setup_stg.replace("<CREATE_NAME>", self.rtn_usr_name())
+        env_setup_stg = env_setup_stg.replace("<CREATE_DATE>", self.rtn_date_time_for_files())
+
+        env_setup_stg_file = open("%s.sh"%(env_setup_name), "w")
+        env_setup_stg_arr = env_setup_stg.split('|')
+        for lines in env_setup_stg_arr:
+            env_setup_stg_file.write(lines)
+        env_setup_stg_file.close()
+        
+        # Cleaning Local Variables
+        env_setup_stg = ''
+        env_setup_stg_arr = ''
     #------------------------------------------------------------------------------
 
 
