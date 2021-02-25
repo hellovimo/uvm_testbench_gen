@@ -29878,7 +29878,10 @@ class uvm_testbench_gen:
                 #------------------------------------------------------------------------------
                 if (mc_env_cfg_pool[a][0]):
                     fl_loc_stg = fl_loc_stg+("|+incdir+%s\n"%(envdirpath))
-                    
+                   
+                    envpath = envdirpath+"/"+"env"
+                    fl_loc_stg = fl_loc_stg+("|+incdir+%s\n"%(envpath))
+
                     pos = fl_stg.find('# Environment Directory\n')
                     apos = pos + len('# Environment Directory\n')
                     fl_stg = fl_stg[:apos]+fl_loc_stg+fl_stg[apos:]
@@ -30203,10 +30206,27 @@ class uvm_testbench_gen:
                 # Adding the tbtop in the respective tbtop.fl 
                 #------------------------------------------------------------------------------
                 if (mc_env_cfg_pool[a][0]):
+                    #------------------------------------------------------------------------------
+                    # TB Top Directory 
+                    #------------------------------------------------------------------------------
+                    tbtop_fl_loc_stg = tbtop_fl_loc_stg+("|+incdir+%s\n"%(tbpath))
+                    
+                    pos = tbtop_fl_stg.find('# TB Top Directory\n')
+                    apos = pos + len('# TB Top Directory\n')
+                    tbtop_fl_stg = tbtop_fl_stg[:apos]+tbtop_fl_loc_stg+tbtop_fl_stg[apos:]
+                    
+                    # Clearning Local Variables
+                    tbtop_fl_loc_stg = '' 
+                    #------------------------------------------------------------------------------
+                    
+                    
+                    #------------------------------------------------------------------------------
+                    # TB Top Files 
+                    #------------------------------------------------------------------------------
                     tbtop_fl_loc_stg = tbtop_fl_loc_stg+("|%s/%s_tb_top.sv\n"%(tbpath, envname))
                     
-                    pos = tbtop_fl_stg.find('# TB Top\n')
-                    apos = pos + len('# TB Top\n')
+                    pos = tbtop_fl_stg.find('# TB Top Files\n')
+                    apos = pos + len('# TB Top Files\n')
                     tbtop_fl_stg = tbtop_fl_stg[:apos]+tbtop_fl_loc_stg+tbtop_fl_stg[apos:]
                     
                     # Clearning Local Variables
@@ -30396,6 +30416,9 @@ class uvm_testbench_gen:
                 #------------------------------------------------------------------------------
                 if (mc_env_cfg_pool[a][0]) and mc_curr_env_set_c == 1:
                     fl_loc_stg = fl_loc_stg+("|+incdir+%s\n"%(envdirpath))
+                    
+                    envpath = envdirpath+"/"+"env"
+                    fl_loc_stg = fl_loc_stg+("|+incdir+%s\n"%(envpath))
                     
                     pos = fl_stg.find('# Environment Directory\n')
                     apos = pos + len('# Environment Directory\n')
@@ -30787,10 +30810,26 @@ class uvm_testbench_gen:
                 # Adding the tbtop in the respective tbtop.fl 
                 #------------------------------------------------------------------------------
                 if (mc_env_cfg_pool[a][0]) and mc_curr_env_set_c == 1:
+                    #------------------------------------------------------------------------------
+                    # TB Top Directory 
+                    #------------------------------------------------------------------------------
+                    tbtop_fl_loc_stg = tbtop_fl_loc_stg+("|+incdir+%s\n"%(tbpath))
+                    
+                    pos = tbtop_fl_stg.find('# TB Top Directory\n')
+                    apos = pos + len('# TB Top Directory\n')
+                    tbtop_fl_stg = tbtop_fl_stg[:apos]+tbtop_fl_loc_stg+tbtop_fl_stg[apos:]
+                    
+                    # Clearning Local Variables
+                    tbtop_fl_loc_stg = '' 
+                    
+                    
+                    #------------------------------------------------------------------------------
+                    # TB Top Files 
+                    #------------------------------------------------------------------------------
                     tbtop_fl_loc_stg = tbtop_fl_loc_stg+("|%s/%s_tb_top.sv\n"%(tbpath, envname))
                     
-                    pos = tbtop_fl_stg.find('# TB Top\n')
-                    apos = pos + len('# TB Top\n')
+                    pos = tbtop_fl_stg.find('# TB Top Files\n')
+                    apos = pos + len('# TB Top Files\n')
                     tbtop_fl_stg = tbtop_fl_stg[:apos]+tbtop_fl_loc_stg+tbtop_fl_stg[apos:]
                     
                     # Clearning Local Variables
@@ -34126,7 +34165,9 @@ class uvm_testbench_gen:
         +('# NOTE: Please Don\'t Remove Any Comments Given Below\n')\
         +('#===============================================================\n')\
         +('\n')\
-        +('# TB Top\n')
+        +('# TB Top Directory\n')\
+        +('\n')\
+        +('# TB Top Files\n')
 
         tbt_fl_stg = tbt_fl_stg.replace("<TBTOP_FILELIST_NAME>", fl_name)
         tbt_fl_stg = tbt_fl_stg.replace("<CREATE_NAME>", self.rtn_usr_name())
