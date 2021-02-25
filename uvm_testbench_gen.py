@@ -16328,6 +16328,9 @@ class uvm_testbench_gen:
                         os.makedirs(envdirpath)
                         
                         # Directory Path For Other Env Directory 
+                        envpath = envdirpath+'/'+'env'
+                        os.makedirs(envpath)
+                        
                         # envtrkpath = envdirpath+'/'+'trackers'
                         # os.makedirs(envtrkpath)
                         
@@ -16336,6 +16339,9 @@ class uvm_testbench_gen:
                         
                         # envconfilepath = envdirpath+'/'+'conn_file'
                         # os.makedirs(envconfilepath)
+                        
+                        tbpath = envdirpath+'/'+'tb'
+                        os.makedirs(tbpath)
                         
                         envdocspath = envdirpath+'/'+'guidocs'
                         os.makedirs(envdocspath)
@@ -16358,9 +16364,9 @@ class uvm_testbench_gen:
                     log.debug("mc_create_phase : envname %s envname_pkg %s!\n"%(envname, envname_pkg))
                     
                     self.mc_create_env(envname, envname_pkg)
-                    shutil.move('./%s_environment.sv'%(envname), '%s'%(envdirpath))
-                    shutil.move('./%s_environment_config.sv'%(envname), '%s'%(envdirpath))
-                    shutil.move('./%s_environment_macros.sv'%(envname), '%s'%(envdirpath))
+                    shutil.move('./%s_environment.sv'%(envname), '%s'%(envpath))
+                    shutil.move('./%s_environment_config.sv'%(envname), '%s'%(envpath))
+                    shutil.move('./%s_environment_macros.sv'%(envname), '%s'%(envpath))
 
                 
                 # Calling the env interface file create API
@@ -16567,7 +16573,7 @@ class uvm_testbench_gen:
                     envname = ((mc_env_cfg_pool[a][0].split(","))[1]).split(":")[0]
                     envname_pkg = envname+"_env" 
                     self.mc_create_package(envname_pkg) 
-                    shutil.move('./%s_env_package.sv'%(envname), '%s'%(envdirpath))
+                    shutil.move('./%s_env_package.sv'%(envname), '%s'%(envpath))
 
                 # Calling the seq item pkg file create API
                 if (mc_env_cfg_pool[a][0]):
@@ -16575,7 +16581,7 @@ class uvm_testbench_gen:
                     envname = ((mc_env_cfg_pool[a][0].split(","))[1]).split(":")[0]
                     envname_pkg = envname+"_seq_item" 
                     self.mc_create_package(envname_pkg) 
-                    shutil.move('./%s_seq_item_package.sv'%(envname), '%s'%(envdirpath))
+                    shutil.move('./%s_seq_item_package.sv'%(envname), '%s'%(envpath))
 
                 # Calling the seq pkg file create API
                 if (mc_env_cfg_pool[a][0]):
@@ -16583,7 +16589,7 @@ class uvm_testbench_gen:
                     envname = ((mc_env_cfg_pool[a][0].split(","))[1]).split(":")[0]
                     envname_pkg = envname+"_seq" 
                     self.mc_create_package(envname_pkg) 
-                    shutil.move('./%s_seq_package.sv'%(envname), '%s'%(envdirpath))
+                    shutil.move('./%s_seq_package.sv'%(envname), '%s'%(envpath))
 
                 # Calling the test pkg file create API
                 if (mc_env_cfg_pool[a][0]):
@@ -16591,7 +16597,7 @@ class uvm_testbench_gen:
                     envname = ((mc_env_cfg_pool[a][0].split(","))[1]).split(":")[0]
                     envname_pkg = envname+"_test" 
                     self.mc_create_package(envname_pkg) 
-                    shutil.move('./%s_test_package.sv'%(envname), '%s'%(envdirpath))
+                    shutil.move('./%s_test_package.sv'%(envname), '%s'%(envpath))
 
                 # Calling the tb top pkg file create API
                 # Disabling the tb_top_package as its not requried : 011720
@@ -16600,7 +16606,7 @@ class uvm_testbench_gen:
                 #     envname = ((mc_env_cfg_pool[a][0].split(","))[1]).split(":")[0]
                 #     envname_pkg = envname+"_tb_top" 
                 #     self.mc_create_package(envname_pkg) 
-                #     shutil.move('./%s_tb_top_package.sv'%(envname), '%s'%(envdirpath))
+                #     shutil.move('./%s_tb_top_package.sv'%(envname), '%s'%(envpath))
 
                 # Calling the test file create API
                 if (mc_env_cfg_pool[a][0]):
@@ -16621,7 +16627,7 @@ class uvm_testbench_gen:
                     #envname = (mc_env_cfg_pool[a][0].split(","))[1]
                     envname = ((mc_env_cfg_pool[a][0].split(","))[1]).split(":")[0]
                     self.mc_create_tb_top(envname) 
-                    shutil.move('./%s_tb_top.sv'%(envname), '%s'%(envdirpath))
+                    shutil.move('./%s_tb_top.sv'%(envname), '%s'%(tbpath))
             
                 # Calling the env list
                 if (mc_env_cfg_pool[a][0]):
@@ -16675,6 +16681,9 @@ class uvm_testbench_gen:
                             os.makedirs(envdirpath)
                             
                             # Directory Path For Other Env Directory 
+                            envpath = envdirpath+'/'+'env'
+                            os.makedirs(envpath)
+                            
                             # envtrkpath = envdirpath+'/'+'trackers'
                             # os.makedirs(envtrkpath)
                             
@@ -16683,6 +16692,9 @@ class uvm_testbench_gen:
                             
                             # envconfilepath = envdirpath+'/'+'conn_file'
                             # os.makedirs(envconfilepath)
+                            
+                            tbpath = envdirpath+'/'+'tb'
+                            os.makedirs(tbpath)
                         
                             envdocspath = envdirpath+'/'+'guidocs'
                             os.makedirs(envdocspath)
@@ -16698,9 +16710,9 @@ class uvm_testbench_gen:
                         #-----------------------------------------------------------------------------------------
                         
                         # Moving the env specific files
-                        shutil.move('./%s_environment.sv'%(envname), '%s'%(envdirpath))
-                        shutil.move('./%s_environment_config.sv'%(envname), '%s'%(envdirpath))
-                        shutil.move('./%s_environment_macros.sv'%(envname), '%s'%(envdirpath))
+                        shutil.move('./%s_environment.sv'%(envname), '%s'%(envpath))
+                        shutil.move('./%s_environment_config.sv'%(envname), '%s'%(envpath))
+                        shutil.move('./%s_environment_macros.sv'%(envname), '%s'%(envpath))
                     else:
                         #envname = (mc_env_cfg_pool[a][0].split(","))[1]
                         envname = ((mc_env_cfg_pool[a][0].split(","))[1]).split(":")[0]
@@ -17026,26 +17038,26 @@ class uvm_testbench_gen:
                     if (mc_env_cfg_pool[a][0]):
                         envname_pkg = envname+"_env" 
                         self.mc_create_package(envname_pkg) 
-                        shutil.move('./%s_env_package.sv'%(envname), '%s'%(envdirpath))
+                        shutil.move('./%s_env_package.sv'%(envname), '%s'%(envpath))
 
                     # Calling the seq item pkg file create API
                     if (mc_env_cfg_pool[a][0]):
                         #envname = (mc_env_cfg_pool[a][0].split(","))[1]
                         envname_pkg = envname+"_seq_item" 
                         self.mc_create_package(envname_pkg) 
-                        shutil.move('./%s_seq_item_package.sv'%(envname), '%s'%(envdirpath))
+                        shutil.move('./%s_seq_item_package.sv'%(envname), '%s'%(envpath))
     
                     # Calling the seq pkg file create API
                     if (mc_env_cfg_pool[a][0]):
                         envname_pkg = envname+"_seq" 
                         self.mc_create_package(envname_pkg) 
-                        shutil.move('./%s_seq_package.sv'%(envname), '%s'%(envdirpath))
+                        shutil.move('./%s_seq_package.sv'%(envname), '%s'%(envpath))
 
                     # Calling the test pkg file create API
                     if (mc_env_cfg_pool[a][0]):
                         envname_pkg = envname+"_test" 
                         self.mc_create_package(envname_pkg) 
-                        shutil.move('./%s_test_package.sv'%(envname), '%s'%(envdirpath))
+                        shutil.move('./%s_test_package.sv'%(envname), '%s'%(envpath))
 
                     # Calling the tb top pkg file create API
                     # Disabling the tb_top_package as its not requried : 011720
@@ -17053,7 +17065,7 @@ class uvm_testbench_gen:
                     #     #envname = (mc_env_cfg_pool[a][0].split(","))[1]
                     #     envname_pkg = envname+"_tb_top" 
                     #     self.mc_create_package(envname_pkg) 
-                    #     shutil.move('./%s_tb_top_package.sv'%(envname), '%s'%(envdirpath))
+                    #     shutil.move('./%s_tb_top_package.sv'%(envname), '%s'%(envpath))
 
                     # Calling the test file create API
                     if (mc_env_cfg_pool[a][0]):
@@ -17076,7 +17088,7 @@ class uvm_testbench_gen:
                     # Calling the tb top create API
                     if (mc_env_cfg_pool[a][0]):
                         self.mc_create_tb_top(envname) 
-                        shutil.move('./%s_tb_top.sv'%(envname), '%s'%(envdirpath))
+                        shutil.move('./%s_tb_top.sv'%(envname), '%s'%(tbpath))
                     
                     # Calling the env list
                     if (mc_env_cfg_pool[a][0]):
@@ -17260,6 +17272,7 @@ class uvm_testbench_gen:
                         log.debug("mc_create_phase : envdirpath %s!\n"%envdirpath)
                         
                         # Directory Path For Other Env Directory 
+                        envpath = envdirpath+'/'+'env'
                         # envtrkpath = envdirpath+'/'+'trackers'
                         envchkrpath = envdirpath+'/'+'checkers'
                         # envconfilepath = envdirpath+'/'+'conn_file'
@@ -17272,6 +17285,9 @@ class uvm_testbench_gen:
                         envintfdirpath = envdirpath+'/'+'env_interfaces'
                         envscbdirpath = envdirpath+'/'+'scoreboards'
                         
+                        # Directory Path for tb top 
+                        tbpath  = envdirpath+'/'+'tb'
+
                         # Directory Path For Env tests 
                         envtestdirpath = envdirpath+'/'+'tests'
 
@@ -17284,7 +17300,7 @@ class uvm_testbench_gen:
                 if (mc_env_cfg_pool[a][0]):
                     # Opening the environment config file and edit
                     mc_env_cfg_array = []
-                    mc_env_cfg_input_file = open("%s/%s_environment_config.sv"%(envdirpath, envname),"r+")
+                    mc_env_cfg_input_file = open("%s/%s_environment_config.sv"%(envpath, envname),"r+")
 
                     env_cfg_stg = '' 
                     env_int_stg = '' 
@@ -18207,7 +18223,7 @@ class uvm_testbench_gen:
                     # Loading up the env config array content into file 
                     #----------------------------------------------------------------------
                     log.debug("mc_create_phase: Value of env_cfg_stg %s"%(env_cfg_stg))
-                    mc_env_cfg_input_file = open("%s/%s_environment_config.sv"%(envdirpath, envname), "w")
+                    mc_env_cfg_input_file = open("%s/%s_environment_config.sv"%(envpath, envname), "w")
                     mc_env_cfg_array = env_cfg_stg.split('|')
                     for lines in mc_env_cfg_array:
                         mc_env_cfg_input_file.write(lines)
@@ -18222,7 +18238,7 @@ class uvm_testbench_gen:
                 if (mc_env_cfg_pool[a][0]):
                     # Opening the environment config file and edit
                     mc_env_array = []
-                    mc_env_input_file = open("%s/%s_environment.sv"%(envdirpath, envname),"r+")
+                    mc_env_input_file = open("%s/%s_environment.sv"%(envpath, envname),"r+")
 
                     env_stg = '' 
                     env_loc_stg = '' 
@@ -20227,7 +20243,7 @@ class uvm_testbench_gen:
                     # Loading up the Env array content into file 
                     #----------------------------------------------------------------------
                     log.debug("mc_create_phase: Value of env_stg %s"%(env_stg))
-                    mc_env_input_file = open("%s/%s_environment.sv"%(envdirpath, envname), "w")
+                    mc_env_input_file = open("%s/%s_environment.sv"%(envpath, envname), "w")
                     mc_env_array = env_stg.split('|')
                     for lines in mc_env_array:
                         mc_env_input_file.write(lines)
@@ -20750,9 +20766,9 @@ class uvm_testbench_gen:
                                 #----------------------------------------------------------------------
                                 log.debug("mc_edit_phase: env macros: envagtdrvname %s, envname %s, envdirpath %s, cfg %s"%(envagtdrvname, envname, envdirpath, mc_env_cfg_pool[a][2][e+1][5][e1]))
                                 if mc_env_cfg_pool[a][2][e+1][2] != '':
-                                    self.mc_gen_env_macros(envagtdrvname, envname, envdirpath, int(mc_env_cfg_pool[a][2][e+1][2])) 
+                                    self.mc_gen_env_macros(envagtdrvname, envname, envpath, int(mc_env_cfg_pool[a][2][e+1][2])) 
                                 else:
-                                    self.mc_gen_env_macros(envagtdrvname, envname, envdirpath, 0) 
+                                    self.mc_gen_env_macros(envagtdrvname, envname, envpath, 0) 
                                 #----------------------------------------------------------------------
                         
                         
@@ -21438,7 +21454,7 @@ class uvm_testbench_gen:
                                 # Environment Interface Macros Addition : 12122020SAT
                                 #----------------------------------------------------------------------
                                 log.debug("mc_edit_phase: env macros: envintfname %s, envname %s, envdirpath %s, cfg %s"%(envintfname, envname, envdirpath, 0))
-                                self.mc_gen_env_macros(envintfname, envname, envdirpath, 0) 
+                                self.mc_gen_env_macros(envintfname, envname, envpath, 0) 
                                 #----------------------------------------------------------------------
                 #----------------------------------------------------------------------
 
@@ -21693,7 +21709,7 @@ class uvm_testbench_gen:
                 if (mc_env_cfg_pool[a][0]):
                     # Opening the Test file and edit
                     mc_tb_top_array = []
-                    mc_tb_top_input_file = open("%s/%s_tb_top.sv"%(envdirpath, envname),"r+")
+                    mc_tb_top_input_file = open("%s/%s_tb_top.sv"%(tbpath, envname),"r+")
 
                     tb_top_stg = '' 
                     tb_top_loc_stg = '' 
@@ -21772,7 +21788,7 @@ class uvm_testbench_gen:
                     # Loading up the Test array content into file 
                     #----------------------------------------------------------------------
                     log.debug("mc_create_phase: Value of tb_top_stg %s"%(tb_top_stg))
-                    mc_tb_top_input_file = open("%s/%s_tb_top.sv"%(envdirpath, envname), "w")
+                    mc_tb_top_input_file = open("%s/%s_tb_top.sv"%(tbpath, envname), "w")
                     mc_tb_top_array = tb_top_stg.split('|')
                     for lines in mc_tb_top_array:
                         mc_tb_top_input_file.write(lines)
@@ -21789,7 +21805,7 @@ class uvm_testbench_gen:
                     # SEQUENCE ITEM PKG
                     #----------------------------------------------------------------------
                     mc_seq_item_array = []
-                    mc_seq_item_input_file = open("%s/%s_seq_item_package.sv"%(envdirpath, envname),"r+")
+                    mc_seq_item_input_file = open("%s/%s_seq_item_package.sv"%(envpath, envname),"r+")
 
                     seq_item_stg = '' 
                     seq_item_loc_stg = '' 
@@ -21888,7 +21904,7 @@ class uvm_testbench_gen:
                     # Loading up the Seq Item Package array content into file 
                     #----------------------------------------------------------------------
                     log.debug("mc_create_phase: Value of seq_item_stg %s"%(seq_item_stg))
-                    mc_seq_item_input_file = open("%s/%s_seq_item_package.sv"%(envdirpath, envname), "w")
+                    mc_seq_item_input_file = open("%s/%s_seq_item_package.sv"%(envpath, envname), "w")
                     mc_seq_item_array = seq_item_stg.split('|')
                     for lines in mc_seq_item_array:
                         mc_seq_item_input_file.write(lines)
@@ -21901,7 +21917,7 @@ class uvm_testbench_gen:
                     # SEQUENCE PKG
                     #----------------------------------------------------------------------
                     mc_seq_array = []
-                    mc_seq_input_file = open("%s/%s_seq_package.sv"%(envdirpath, envname),"r+")
+                    mc_seq_input_file = open("%s/%s_seq_package.sv"%(envpath, envname),"r+")
 
                     seq_stg = '' 
                     seq_loc_stg = '' 
@@ -21970,7 +21986,7 @@ class uvm_testbench_gen:
                     # Loading up the Seq Item Package array content into file 
                     #----------------------------------------------------------------------
                     log.debug("mc_create_phase: Value of seq_stg %s"%(seq_stg))
-                    mc_seq_input_file = open("%s/%s_seq_package.sv"%(envdirpath, envname), "w")
+                    mc_seq_input_file = open("%s/%s_seq_package.sv"%(envpath, envname), "w")
                     mc_seq_array = seq_stg.split('|')
                     for lines in mc_seq_array:
                         mc_seq_input_file.write(lines)
@@ -21983,7 +21999,7 @@ class uvm_testbench_gen:
                     # ENVIRONMENT PKG
                     #----------------------------------------------------------------------
                     mc_env_pkg_array = []
-                    mc_env_pkg_input_file = open("%s/%s_env_package.sv"%(envdirpath, envname),"r+")
+                    mc_env_pkg_input_file = open("%s/%s_env_package.sv"%(envpath, envname),"r+")
 
                     env_pkg_stg = '' 
                     env_pkg_loc_stg = '' 
@@ -22259,7 +22275,7 @@ class uvm_testbench_gen:
                     # Loading up the Environment Package array content into file 
                     #----------------------------------------------------------------------
                     log.debug("mc_create_phase: Value of env_pkg_stg %s"%(env_pkg_stg))
-                    mc_env_pkg_input_file = open("%s/%s_env_package.sv"%(envdirpath, envname), "w")
+                    mc_env_pkg_input_file = open("%s/%s_env_package.sv"%(envpath, envname), "w")
                     mc_env_pkg_array = env_pkg_stg.split('|')
                     for lines in mc_env_pkg_array:
                         mc_env_pkg_input_file.write(lines)
@@ -22272,7 +22288,7 @@ class uvm_testbench_gen:
                     # TEST PKG
                     #----------------------------------------------------------------------
                     mc_test_pkg_array = []
-                    mc_test_pkg_input_file = open("%s/%s_test_package.sv"%(envdirpath, envname),"r+")
+                    mc_test_pkg_input_file = open("%s/%s_test_package.sv"%(envpath, envname),"r+")
 
                     test_pkg_stg = '' 
                     test_pkg_loc_stg = '' 
@@ -22343,7 +22359,7 @@ class uvm_testbench_gen:
                     # Loading up the Test Package array content into file 
                     #----------------------------------------------------------------------
                     log.debug("mc_create_phase: Value of test_pkg_stg %s"%(test_pkg_stg))
-                    mc_test_pkg_input_file = open("%s/%s_test_package.sv"%(envdirpath, envname), "w")
+                    mc_test_pkg_input_file = open("%s/%s_test_package.sv"%(envpath, envname), "w")
                     mc_test_pkg_array = test_pkg_stg.split('|')
                     for lines in mc_test_pkg_array:
                         mc_test_pkg_input_file.write(lines)
@@ -22411,6 +22427,7 @@ class uvm_testbench_gen:
                         log.debug("mc_create_phase : envdirpath %s!\n"%envdirpath)
                         
                         # Directory Path For Other Env Directory 
+                        envpath = envdirpath+'/'+'env'
                         # envtrkpath = envdirpath+'/'+'trackers'
                         envchkrpath = envdirpath+'/'+'checkers'
                         # envconfilepath = envdirpath+'/'+'conn_file'
@@ -22422,7 +22439,8 @@ class uvm_testbench_gen:
                         envmondirpath = envdirpath+'/'+'env_monitors'
                         envintfdirpath = envdirpath+'/'+'env_interfaces'
                         envscbdirpath = envdirpath+'/'+'scoreboards'
-                        
+                        tbpath = envdirpath+'/'+'tb'
+
                         # Directory Path For Env tests 
                         envtestdirpath = envdirpath+'/'+'tests'
                         
@@ -22435,7 +22453,7 @@ class uvm_testbench_gen:
                 if (mc_env_cfg_pool[a][0]):
                     # Opening the environment config file and edit
                     mc_env_cfg_array = []
-                    mc_env_cfg_input_file = open("%s/%s_environment_config.sv"%(envdirpath, envname),"r+")
+                    mc_env_cfg_input_file = open("%s/%s_environment_config.sv"%(envpath, envname),"r+")
                     
                     env_cfg_stg = '' 
                     env_int_stg = '' 
@@ -23578,7 +23596,7 @@ class uvm_testbench_gen:
                     #----------------------------------------------------------------------
                     # Loading up the env config array content into file 
                     #----------------------------------------------------------------------
-                    mc_env_cfg_input_file = open("%s/%s_environment_config.sv"%(envdirpath, envname), "w")
+                    mc_env_cfg_input_file = open("%s/%s_environment_config.sv"%(envpath, envname), "w")
                     mc_env_cfg_array = env_cfg_stg.split('|')
                     for lines in mc_env_cfg_array:
                         mc_env_cfg_input_file.write(lines)
@@ -23593,7 +23611,7 @@ class uvm_testbench_gen:
                 if (mc_env_cfg_pool[a][0]):
                     # Opening the environment config file and edit
                     mc_env_array = []
-                    mc_env_input_file = open("%s/%s_environment.sv"%(envdirpath, envname),"r+")
+                    mc_env_input_file = open("%s/%s_environment.sv"%(envpath, envname),"r+")
 
                     env_stg = '' 
                     env_loc_stg = '' 
@@ -26084,7 +26102,7 @@ class uvm_testbench_gen:
                     # Loading up the env config array content into file 
                     #----------------------------------------------------------------------
                     log.debug("mc_create_phase: Value of env_stg %s"%(env_stg))
-                    mc_env_input_file = open("%s/%s_environment.sv"%(envdirpath, envname), "w")
+                    mc_env_input_file = open("%s/%s_environment.sv"%(envpath, envname), "w")
                     mc_env_array = env_stg.split('|')
                     for lines in mc_env_array:
                         mc_env_input_file.write(lines)
@@ -26585,9 +26603,9 @@ class uvm_testbench_gen:
                                         #----------------------------------------------------------------------
                                             log.debug("mc_edit_phase: env macros: envagtdrvname %s, envname %s, envdirpath %s, cfg %s"%(envagtdrvname, envname, envdirpath, mc_env_cfg_pool[a][2][e+1][5][e1]))
                                             if mc_env_cfg_pool[a][2][e+1][2] != '':
-                                                self.mc_gen_env_macros(envagtdrvname, envname, envdirpath, int(mc_env_cfg_pool[a][2][e+1][2])) 
+                                                self.mc_gen_env_macros(envagtdrvname, envname, envpath, int(mc_env_cfg_pool[a][2][e+1][2])) 
                                             else:
-                                                self.mc_gen_env_macros(envagtdrvname, envname, envdirpath, 0) 
+                                                self.mc_gen_env_macros(envagtdrvname, envname, envpath, 0) 
                                         #----------------------------------------------------------------------
                                     else:
                                         if "__c" in envagtdrvname_arr[e1+1]:
@@ -26622,9 +26640,9 @@ class uvm_testbench_gen:
                                         #----------------------------------------------------------------------
                                             log.debug("mc_edit_phase: env macros: envagtdrvname %s, envname %s, envdirpath %s, cfg %s"%(envagtdrvname, envname, envdirpath, mc_env_cfg_pool[a][2][e+1][5][e1]))
                                             if mc_env_cfg_pool[a][2][e+1][2] != '':
-                                                self.mc_gen_env_macros(envagtdrvname, envname, envdirpath, int(mc_env_cfg_pool[a][2][e+1][2])) 
+                                                self.mc_gen_env_macros(envagtdrvname, envname, envpath, int(mc_env_cfg_pool[a][2][e+1][2])) 
                                             else:
-                                                self.mc_gen_env_macros(envagtdrvname, envname, envdirpath, 0) 
+                                                self.mc_gen_env_macros(envagtdrvname, envname, envpath, 0) 
                                         #----------------------------------------------------------------------
 
                                     mc_drv_array = []
@@ -27621,7 +27639,7 @@ class uvm_testbench_gen:
                                         # Environment Interface Macros Addition : 12122020SAT
                                         #----------------------------------------------------------------------
                                         log.debug("mc_edit_phase: env macros: envintfname %s, envname %s, envdirpath %s, cfg %s"%(envintfname, envname, envdirpath, 0))
-                                        self.mc_gen_env_macros(envintfname, envname, envdirpath, 0) 
+                                        self.mc_gen_env_macros(envintfname, envname, envpath, 0) 
                                         #----------------------------------------------------------------------
                                 else:
                                     if "__c" in envintfname_arr[b+1]:
@@ -27655,7 +27673,7 @@ class uvm_testbench_gen:
                                         # Environment Interface Macros Addition : 12122020SAT
                                         #----------------------------------------------------------------------
                                         log.debug("mc_edit_phase: env macros: envintfname %s, envname %s, envdirpath %s, cfg %s"%(envintfname, envname, envdirpath, 0))
-                                        self.mc_gen_env_macros(envintfname, envname, envdirpath, 0) 
+                                        self.mc_gen_env_macros(envintfname, envname, envpath, 0) 
                                         #----------------------------------------------------------------------
                     #----------------------------------------------------------------------
 
@@ -27904,7 +27922,7 @@ class uvm_testbench_gen:
                     if (mc_env_cfg_pool[a][0]):
                         # Opening the Test file and edit
                         mc_tb_top_array = []
-                        mc_tb_top_input_file = open("%s/%s_tb_top.sv"%(envdirpath, envname),"r+")
+                        mc_tb_top_input_file = open("%s/%s_tb_top.sv"%(tbpath, envname),"r+")
 
                         tb_top_stg = '' 
                         tb_top_loc_stg = '' 
@@ -28063,7 +28081,7 @@ class uvm_testbench_gen:
                         # Loading up the Test array content into file 
                         #----------------------------------------------------------------------
                         log.debug("mc_create_phase: Value of tb_top_stg %s"%(tb_top_stg))
-                        mc_tb_top_input_file = open("%s/%s_tb_top.sv"%(envdirpath, envname), "w")
+                        mc_tb_top_input_file = open("%s/%s_tb_top.sv"%(tbpath, envname), "w")
                         mc_tb_top_array = tb_top_stg.split('|')
                         for lines in mc_tb_top_array:
                             mc_tb_top_input_file.write(lines)
@@ -28080,7 +28098,7 @@ class uvm_testbench_gen:
                         # SEQUENCE ITEM PKG
                         #----------------------------------------------------------------------
                         mc_seq_item_array = []
-                        mc_seq_item_input_file = open("%s/%s_seq_item_package.sv"%(envdirpath, envname),"r+")
+                        mc_seq_item_input_file = open("%s/%s_seq_item_package.sv"%(envpath, envname),"r+")
 
                         seq_item_stg = '' 
                         seq_item_loc_stg = '' 
@@ -28240,7 +28258,7 @@ class uvm_testbench_gen:
                         # Loading up the Seq Item Package array content into file 
                         #----------------------------------------------------------------------
                         log.debug("mc_create_phase: Value of seq_item_stg %s"%(seq_item_stg))
-                        mc_seq_item_input_file = open("%s/%s_seq_item_package.sv"%(envdirpath, envname), "w")
+                        mc_seq_item_input_file = open("%s/%s_seq_item_package.sv"%(envpath, envname), "w")
                         mc_seq_item_array = seq_item_stg.split('|')
                         for lines in mc_seq_item_array:
                             mc_seq_item_input_file.write(lines)
@@ -28253,7 +28271,7 @@ class uvm_testbench_gen:
                         # SEQUENCE PKG
                         #----------------------------------------------------------------------
                         mc_seq_array = []
-                        mc_seq_input_file = open("%s/%s_seq_package.sv"%(envdirpath, envname),"r+")
+                        mc_seq_input_file = open("%s/%s_seq_package.sv"%(envpath, envname),"r+")
 
                         seq_stg = '' 
                         seq_loc_stg = '' 
@@ -28375,7 +28393,7 @@ class uvm_testbench_gen:
                         # Loading up the Seq Package array content into file 
                         #----------------------------------------------------------------------
                         log.debug("mc_create_phase: Value of seq_stg %s"%(seq_stg))
-                        mc_seq_input_file = open("%s/%s_seq_package.sv"%(envdirpath, envname), "w")
+                        mc_seq_input_file = open("%s/%s_seq_package.sv"%(envpath, envname), "w")
                         mc_seq_array = seq_stg.split('|')
                         for lines in mc_seq_array:
                             mc_seq_input_file.write(lines)
@@ -28388,7 +28406,7 @@ class uvm_testbench_gen:
                         # ENVIRONMENT PKG
                         #----------------------------------------------------------------------
                         mc_env_pkg_array = []
-                        mc_env_pkg_input_file = open("%s/%s_env_package.sv"%(envdirpath, envname),"r+")
+                        mc_env_pkg_input_file = open("%s/%s_env_package.sv"%(envpath, envname),"r+")
 
                         env_pkg_stg = '' 
                         env_pkg_loc_stg = '' 
@@ -28791,7 +28809,7 @@ class uvm_testbench_gen:
                         # Loading up the Environment Package array content into file 
                         #----------------------------------------------------------------------
                         log.debug("mc_create_phase: Value of env_pkg_stg %s"%(env_pkg_stg))
-                        mc_env_pkg_input_file = open("%s/%s_env_package.sv"%(envdirpath, envname), "w")
+                        mc_env_pkg_input_file = open("%s/%s_env_package.sv"%(envpath, envname), "w")
                         mc_env_pkg_array = env_pkg_stg.split('|')
                         for lines in mc_env_pkg_array:
                             mc_env_pkg_input_file.write(lines)
@@ -28804,7 +28822,7 @@ class uvm_testbench_gen:
                         # TEST PKG
                         #----------------------------------------------------------------------
                         mc_test_pkg_array = []
-                        mc_test_pkg_input_file = open("%s/%s_test_package.sv"%(envdirpath, envname),"r+")
+                        mc_test_pkg_input_file = open("%s/%s_test_package.sv"%(envpath, envname),"r+")
 
                         test_pkg_stg = '' 
                         test_pkg_loc_stg = '' 
@@ -28898,7 +28916,7 @@ class uvm_testbench_gen:
                         # Loading up the Test Package array content into file 
                         #----------------------------------------------------------------------
                         log.debug("mc_create_phase: Value of test_pkg_stg %s"%(test_pkg_stg))
-                        mc_test_pkg_input_file = open("%s/%s_test_package.sv"%(envdirpath, envname), "w")
+                        mc_test_pkg_input_file = open("%s/%s_test_package.sv"%(envpath, envname), "w")
                         mc_test_pkg_array = test_pkg_stg.split('|')
                         for lines in mc_test_pkg_array:
                             mc_test_pkg_input_file.write(lines)
@@ -29782,10 +29800,12 @@ class uvm_testbench_gen:
                     envdirpath = "$%s_TB_DIR"%(envname.upper())
                     
                     log.debug("mc_list_file : envdirpath %s, envdirpath_full %s!\n"%(envdirpath, envdirpath_full))
-                    
+                   
+                    envpath = envdirpath+'/'+'env'
                     envdocspath = envdirpath+'/'+'guidocs'
                     envrunpath = envdirpath_full+'/'+'run'
-                    
+                    tbpath = envdirpath+'/'+'tb'
+
                     log.debug("mc_list_file : envdocspath %s, envrunpath %s!\n"%(envdocspath, envrunpath))
                 
                 
@@ -30115,11 +30135,11 @@ class uvm_testbench_gen:
                 # Include all the necessary package files
                 #------------------------------------------------------------------------------
                 if (mc_env_cfg_pool[a][0]):
-                    
+                    envpath = envdirpath+'/'+'env' 
                     #------------------------------------------------------------------------------
                     # Sequence Item Package
                     #------------------------------------------------------------------------------
-                    fl_loc_stg = fl_loc_stg+("|%s/%s_seq_item_package.sv\n"%(envdirpath, envname))
+                    fl_loc_stg = fl_loc_stg+("|%s/%s_seq_item_package.sv\n"%(envpath, envname))
                     
                     pos = fl_stg.find('# Env Sequence Item Package\n')
                     apos = pos + len('# Env Sequence Item Package\n')
@@ -30132,7 +30152,7 @@ class uvm_testbench_gen:
                     # Sequence Package
                     #------------------------------------------------------------------------------
                     if does_agt_has_seq:
-                        fl_loc_stg = fl_loc_stg+("|%s/%s_seq_package.sv\n"%(envdirpath, envname))
+                        fl_loc_stg = fl_loc_stg+("|%s/%s_seq_package.sv\n"%(envpath, envname))
                         
                         pos = fl_stg.find('# Env Sequence Package\n')
                         apos = pos + len('# Env Sequence Package\n')
@@ -30144,7 +30164,7 @@ class uvm_testbench_gen:
                     #------------------------------------------------------------------------------
                     # Env Package
                     #------------------------------------------------------------------------------
-                    fl_loc_stg = fl_loc_stg+("|%s/%s_env_package.sv\n"%(envdirpath, envname))
+                    fl_loc_stg = fl_loc_stg+("|%s/%s_env_package.sv\n"%(envpath, envname))
                     
                     pos = fl_stg.find('# Env Package\n')
                     apos = pos + len('# Env Package\n')
@@ -30156,7 +30176,7 @@ class uvm_testbench_gen:
                     #------------------------------------------------------------------------------
                     # Env Test Package
                     #------------------------------------------------------------------------------
-                    fl_loc_stg = fl_loc_stg+("|%s/%s_test_package.sv\n"%(envdirpath, envname))
+                    fl_loc_stg = fl_loc_stg+("|%s/%s_test_package.sv\n"%(envpath, envname))
                     
                     pos = fl_stg.find('# Env Test Package\n')
                     apos = pos + len('# Env Test Package\n')
@@ -30183,7 +30203,7 @@ class uvm_testbench_gen:
                 # Adding the tbtop in the respective tbtop.fl 
                 #------------------------------------------------------------------------------
                 if (mc_env_cfg_pool[a][0]):
-                    tbtop_fl_loc_stg = tbtop_fl_loc_stg+("|%s/%s_tb_top.sv\n"%(envdirpath, envname))
+                    tbtop_fl_loc_stg = tbtop_fl_loc_stg+("|%s/%s_tb_top.sv\n"%(tbpath, envname))
                     
                     pos = tbtop_fl_stg.find('# TB Top\n')
                     apos = pos + len('# TB Top\n')
@@ -30280,9 +30300,11 @@ class uvm_testbench_gen:
                 # Directory Path For Misc 
                 #-----------------------------------------------------------------------------------------
                 if (mc_env_cfg_pool[a][0]):
+                    envpath = envdirpath+'/'+'env' 
                     envdocspath = envdirpath+'/'+'guidocs'
                     envrunpath = envdirpath_full+'/'+'run'
                     envscriptspath = envdirpath+'/'+'scripts'
+                    tbpath = envdirpath+'/'+'tb'
 
                 
                 #------------------------------------------------------------------------------
@@ -30696,11 +30718,10 @@ class uvm_testbench_gen:
                 # Include all the necessary package files
                 #------------------------------------------------------------------------------
                 if (mc_env_cfg_pool[a][0]) and mc_curr_env_set_c == 1:
-                    
                     #------------------------------------------------------------------------------
                     # Sequence Item Package
                     #------------------------------------------------------------------------------
-                    fl_loc_stg = fl_loc_stg+("|%s/%s_seq_item_package.sv\n"%(envdirpath, envname))
+                    fl_loc_stg = fl_loc_stg+("|%s/%s_seq_item_package.sv\n"%(envpath, envname))
                     
                     pos = fl_stg.find('# Env Sequence Item Package\n')
                     apos = pos + len('# Env Sequence Item Package\n')
@@ -30713,7 +30734,7 @@ class uvm_testbench_gen:
                     # Sequence Package
                     #------------------------------------------------------------------------------
                     if does_agt_has_seq:
-                        fl_loc_stg = fl_loc_stg+("|%s/%s_seq_package.sv\n"%(envdirpath, envname))
+                        fl_loc_stg = fl_loc_stg+("|%s/%s_seq_package.sv\n"%(envpath, envname))
                         
                         pos = fl_stg.find('# Env Sequence Package\n')
                         apos = pos + len('# Env Sequence Package\n')
@@ -30725,7 +30746,7 @@ class uvm_testbench_gen:
                     #------------------------------------------------------------------------------
                     # Env Package
                     #------------------------------------------------------------------------------
-                    fl_loc_stg = fl_loc_stg+("|%s/%s_env_package.sv\n"%(envdirpath, envname))
+                    fl_loc_stg = fl_loc_stg+("|%s/%s_env_package.sv\n"%(envpath, envname))
                     
                     pos = fl_stg.find('# Env Package\n')
                     apos = pos + len('# Env Package\n')
@@ -30738,7 +30759,7 @@ class uvm_testbench_gen:
                     #------------------------------------------------------------------------------
                     # Env Test Package
                     #------------------------------------------------------------------------------
-                    fl_loc_stg = fl_loc_stg+("|%s/%s_test_package.sv\n"%(envdirpath, envname))
+                    fl_loc_stg = fl_loc_stg+("|%s/%s_test_package.sv\n"%(envpath, envname))
                     
                     pos = fl_stg.find('# Env Test Package\n')
                     apos = pos + len('# Env Test Package\n')
@@ -30766,7 +30787,7 @@ class uvm_testbench_gen:
                 # Adding the tbtop in the respective tbtop.fl 
                 #------------------------------------------------------------------------------
                 if (mc_env_cfg_pool[a][0]) and mc_curr_env_set_c == 1:
-                    tbtop_fl_loc_stg = tbtop_fl_loc_stg+("|%s/%s_tb_top.sv\n"%(envdirpath, envname))
+                    tbtop_fl_loc_stg = tbtop_fl_loc_stg+("|%s/%s_tb_top.sv\n"%(tbpath, envname))
                     
                     pos = tbtop_fl_stg.find('# TB Top\n')
                     apos = pos + len('# TB Top\n')
