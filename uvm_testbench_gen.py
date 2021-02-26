@@ -16349,11 +16349,14 @@ class uvm_testbench_gen:
                         envrunpath = envdirpath+'/'+'run'
                         os.makedirs(envrunpath)
                         
+                        envflpath = envdirpath+'/'+'filelist'
+                        os.makedirs(envflpath)
+                        
                         envscriptspath = envdirpath+'/'+'scripts'
                         os.makedirs(envscriptspath)
                         
                         #log.debug("mc_create_phase : envtrkpath %s, envchkrpath %s, envconfilepath %s!\n"%(envtrkpath, envchkrpath, envconfilepath))
-                        log.debug("mc_create_phase : envchkrpath %s, envdocspath %s, envrunpath %s, envscriptspath %s!\n"%(envchkrpath, envdocspath, envrunpath, envscriptspath))
+                        log.debug("mc_create_phase : envchkrpath %s, envdocspath %s, envrunpath %s, envflpath %s, envscriptspath %s!\n"%(envchkrpath, envdocspath, envrunpath, envflpath, envscriptspath))
 
                 # Calling the env file create API
                 if (mc_env_cfg_pool[a][0]):
@@ -16635,9 +16638,9 @@ class uvm_testbench_gen:
                     log.debug("mc_create_phase : envname %s !\n"%(envname))
                    
                     self.mc_fl_list(envname)
-                    shutil.move('./%s_environment.fl'%(envname), '%s'%(envrunpath))
-                    shutil.move('./%s_tbtop.fl'%(envname), '%s'%(envrunpath))
-                    shutil.move('./%s_common.fl'%(envname), '%s'%(envrunpath))
+                    shutil.move('./%s_environment.f'%(envname), '%s'%(envflpath))
+                    shutil.move('./%s_tbtop.f'%(envname), '%s'%(envflpath))
+                    shutil.move('./%s_common.f'%(envname), '%s'%(envflpath))
 
                 # Calling the API to create env_setup
                 if (mc_env_cfg_pool[a][0]):
@@ -16701,12 +16704,15 @@ class uvm_testbench_gen:
                         
                             envrunpath = envdirpath+'/'+'run'
                             os.makedirs(envrunpath)
+                            
+                            envflpath = envdirpath+'/'+'filelist'
+                            os.makedirs(envflpath)
                         
                             envscriptspath = envdirpath+'/'+'scripts'
                             os.makedirs(envscriptspath)
                             
                             #log.debug("mc_create_phase : envtrkpath %s, envchkrpath %s, envconfilepath %s!\n"%(envtrkpath, envchkrpath, envconfilepath))
-                            log.debug("mc_create_phase : envchkrpath %s, envdocspath %s, envrunpath %s, envscriptspath %s!\n"%(envchkrpath, envdocspath, envrunpath, envscriptspath))
+                            log.debug("mc_create_phase : envchkrpath %s, envdocspath %s, envrunpath %s, envflpath %s, envscriptspath %s!\n"%(envchkrpath, envdocspath, envrunpath, envflpath, envscriptspath))
                         #-----------------------------------------------------------------------------------------
                         
                         # Moving the env specific files
@@ -17093,20 +17099,23 @@ class uvm_testbench_gen:
                     # Calling the env list
                     if (mc_env_cfg_pool[a][0]):
                         #envdocspath = envdirpath+'/'+'guidocs'
-                        envrunpath = envdirpath+'/'+'run'
+                        #envrunpath = envdirpath+'/'+'run'
+                        envflpath = envdirpath+'/'+'filelist'
                        
                         #if os.path.exists(envdocspath):
-                        if os.path.exists(envrunpath):
-                            log.debug("mc_create_phase : Env Run Dir Path %s Already Exists!\n"%(envrunpath))
+                        #if os.path.exists(envrunpath):
+                        if os.path.exists(envflpath):
+                            log.debug("mc_create_phase : Env Run Dir Path %s Already Exists!\n"%(envflpath))
                         else:
-                            log.debug("mc_create_phase : Env Run Dir Path %s Doesn't Exists. Creating a new One!!\n"%(envrunpath))
+                            log.debug("mc_create_phase : Env Run Dir Path %s Doesn't Exists. Creating a new One!!\n"%(envflpath))
                             #os.makedirs(envdocspath)
-                            os.makedirs(envrunpath)
+                            #os.makedirs(envrunpath)
+                            os.makedirs(envflpath)
 
                         self.mc_fl_list(envname)
-                        shutil.move('./%s_environment.fl'%(envname), '%s'%(envrunpath))
-                        shutil.move('./%s_tbtop.fl'%(envname), '%s'%(envrunpath))
-                        shutil.move('./%s_common.fl'%(envname), '%s'%(envrunpath))
+                        shutil.move('./%s_environment.f'%(envname), '%s'%(envflpath))
+                        shutil.move('./%s_tbtop.f'%(envname), '%s'%(envflpath))
+                        shutil.move('./%s_common.f'%(envname), '%s'%(envflpath))
                 
                     # Calling the API to create env_setup
                     if (mc_env_cfg_pool[a][0]):
@@ -17278,6 +17287,7 @@ class uvm_testbench_gen:
                         # envconfilepath = envdirpath+'/'+'conn_file'
                         envdocspath = envdirpath+'/'+'guidocs'
                         envrunpath = envdirpath+'/'+'run'
+                        envflpath = envdirpath+'/'+'filelist'
                         envscriptspath = envdirpath+'/'+'scripts'
                         
                         # Directory Path For Others 
@@ -17292,7 +17302,7 @@ class uvm_testbench_gen:
                         envtestdirpath = envdirpath+'/'+'tests'
 
                         #log.debug("mc_create_phase : envtrkpath %s, envchkrpath %s, envconfilepath %s!\n"%(envtrkpath, envchkrpath, envconfilepath))
-                        log.debug("mc_create_phase : envchkrpath %s, envdocspath %s, envrunpath %s, envscriptspath %s!\n"%(envchkrpath, envdocspath, envrunpath, envscriptspath))
+                        log.debug("mc_create_phase : envchkrpath %s, envdocspath %s, envrunpath %s, envflpath %s, envscriptspath %s!\n"%(envchkrpath, envdocspath, envrunpath, envflpath, envscriptspath))
                
                 #----------------------------------------------------------------------
                 # Edit the Environment Config File  
@@ -22433,6 +22443,7 @@ class uvm_testbench_gen:
                         # envconfilepath = envdirpath+'/'+'conn_file'
                         envdocspath = envdirpath+'/'+'guidocs'
                         envrunpath = envdirpath+'/'+'run'
+                        envflpath = envdirpath+'/'+'filelist'
                         envscriptspath = envdirpath+'/'+'scripts'
                         
                         # Directory Path For Others 
@@ -22445,7 +22456,7 @@ class uvm_testbench_gen:
                         envtestdirpath = envdirpath+'/'+'tests'
                         
                         #log.debug("mc_create_phase : envtrkpath %s, envchkrpath %s, envconfilepath %s!\n"%(envtrkpath, envchkrpath, envconfilepath))
-                        log.debug("mc_create_phase : envchkrpath %s, envdocspath %s, envrunpath %s, envscriptspath %s!\n"%(envchkrpath, envdocspath, envrunpath, envscriptspath))
+                        log.debug("mc_create_phase : envchkrpath %s, envdocspath %s, envrunpath %s, envflpath %s, envscriptspath %s!\n"%(envchkrpath, envdocspath, envrunpath, envflpath, envscriptspath))
                
                 #----------------------------------------------------------------------
                 # Edit the Environment Config File  
@@ -29804,9 +29815,10 @@ class uvm_testbench_gen:
                     envpath = envdirpath+'/'+'env'
                     envdocspath = envdirpath+'/'+'guidocs'
                     envrunpath = envdirpath_full+'/'+'run'
+                    envflpath = envdirpath_full+'/'+'filelist'
                     tbpath = envdirpath+'/'+'tb'
 
-                    log.debug("mc_list_file : envdocspath %s, envrunpath %s!\n"%(envdocspath, envrunpath))
+                    log.debug("mc_list_file : envdocspath %s, envrunpath %s, envflpath %s!\n"%(envdocspath, envrunpath, envflpath))
                 
                 
                 #------------------------------------------------------------------------------
@@ -29814,11 +29826,13 @@ class uvm_testbench_gen:
                 #------------------------------------------------------------------------------
                 if (mc_env_cfg_pool[a][0]):
                     mc_env_fl_arr = []
-                    mc_env_fl_input_file = open("%s/%s_environment.fl"%(envrunpath, envname),"r+")
+                    mc_env_fl_input_file = open("%s/%s_environment.f"%(envflpath, envname),"r+")
+                    #mc_env_fl_input_file = open("%s/%s_environment.fl"%(envrunpath, envname),"r+")
                     #mc_env_fl_input_file = open("%s/%s_environment.fl"%(envdocspath, envname),"r+")
                    
                     mc_tbtop_fl_arr = []
-                    mc_tbtop_fl_input_file = open("%s/%s_tbtop.fl"%(envrunpath, envname),"r+")
+                    mc_tbtop_fl_input_file = open("%s/%s_tbtop.f"%(envflpath, envname),"r+")
+                    #mc_tbtop_fl_input_file = open("%s/%s_tbtop.fl"%(envrunpath, envname),"r+")
                     #mc_tbtop_fl_input_file = open("%s/%s_tbtop.fl"%(envdocspath, envname),"r+")
 
                     fl_stg = ''
@@ -29865,7 +29879,7 @@ class uvm_testbench_gen:
                         # Loading the links to the subenvs
                         #subenvflpath = "-f " + mc_env_cfg_pool[whattosearch_idx[0]][6]+"/"+"%s_env"%(subenv_arr[m+1].split(":")[0])+"/guidocs"+"/%s_environment.fl\n"%(subenv_arr[m+1].split(":")[0])
                         # ORG: subenvflpath = "-f " + mc_env_cfg_pool[whattosearch_idx[0]][6]+"/"+"%s_env"%(subenv_arr[m+1].split(":")[0])+"/run"+"/%s_environment.fl\n"%(subenv_arr[m+1].split(":")[0])
-                        subenvflpath = "-f " + "$%s_TB_DIR"%(subenv_arr[m+1].split(":")[0].upper())+"/run"+"/%s_environment.fl\n"%(subenv_arr[m+1].split(":")[0])
+                        subenvflpath = "-f " + "$%s_TB_DIR"%(subenv_arr[m+1].split(":")[0].upper())+"/run"+"/%s_environment.f\n"%(subenv_arr[m+1].split(":")[0])
                         log.debug("mc_list_file: subenvflpath %s\n"%(subenvflpath))
 
                         pos = fl_stg.find('# Sub-Environment List Files\n')
@@ -30241,14 +30255,16 @@ class uvm_testbench_gen:
                     log.debug("mc_create_phase: Value of fl_stg %s"%(fl_stg))
                     
                     
-                    mc_env_fl_input_file = open("%s/%s_environment.fl"%(envrunpath, envname), "w")
+                    mc_env_fl_input_file = open("%s/%s_environment.f"%(envflpath, envname), "w")
+                    #mc_env_fl_input_file = open("%s/%s_environment.fl"%(envrunpath, envname), "w")
                     #mc_env_fl_input_file = open("%s/%s_environment.fl"%(envdocspath, envname), "w")
                     mc_env_fl_arr = fl_stg.split('|')
                     for lines in mc_env_fl_arr:
                         mc_env_fl_input_file.write(lines)
                     mc_env_fl_input_file.close()
                     
-                    mc_tbtop_fl_input_file = open("%s/%s_tbtop.fl"%(envrunpath, envname), "w")
+                    mc_tbtop_fl_input_file = open("%s/%s_tbtop.f"%(envflpath, envname), "w")
+                    #mc_tbtop_fl_input_file = open("%s/%s_tbtop.fl"%(envrunpath, envname), "w")
                     #mc_tbtop_fl_input_file = open("%s/%s_tbtop.fl"%(envdocspath, envname), "w")
                     mc_tbtop_fl_arr = tbtop_fl_stg.split('|')
                     for lines in mc_tbtop_fl_arr:
@@ -30323,6 +30339,7 @@ class uvm_testbench_gen:
                     envpath = envdirpath+'/'+'env' 
                     envdocspath = envdirpath+'/'+'guidocs'
                     envrunpath = envdirpath_full+'/'+'run'
+                    envflpath = envdirpath_full+'/'+'filelist'
                     envscriptspath = envdirpath+'/'+'scripts'
                     tbpath = envdirpath+'/'+'tb'
 
@@ -30332,11 +30349,13 @@ class uvm_testbench_gen:
                 #------------------------------------------------------------------------------
                 if (mc_env_cfg_pool[a][0]):
                     mc_env_fl_arr = []
-                    mc_env_fl_input_file = open("%s/%s_environment.fl"%(envrunpath, envname),"r+")
+                    mc_env_fl_input_file = open("%s/%s_environment.f"%(envflpath, envname),"r+")
+                    #mc_env_fl_input_file = open("%s/%s_environment.fl"%(envrunpath, envname),"r+")
                     #mc_env_fl_input_file = open("%s/%s_environment.fl"%(envdocspath, envname),"r+")
                    
                     mc_tbtop_fl_arr = []
-                    mc_tbtop_fl_input_file = open("%s/%s_tbtop.fl"%(envrunpath, envname),"r+")
+                    mc_tbtop_fl_input_file = open("%s/%s_tbtop.f"%(envflpath, envname),"r+")
+                    #mc_tbtop_fl_input_file = open("%s/%s_tbtop.fl"%(envrunpath, envname),"r+")
                     #mc_tbtop_fl_input_file = open("%s/%s_tbtop.fl"%(envdocspath, envname),"r+")
 
                     fl_stg = ''
@@ -30403,7 +30422,7 @@ class uvm_testbench_gen:
                             # subenvflpath = "-f " + mc_env_cfg_pool[whattosearch_idx[0]][6]+"/"+"%s_env"%(subenvname_arr[m+1].split(":")[0])+"/guidocs"+"/%s_environment.fl\n"%(subenvname_arr[m+1].split(":")[0])
                             #subenvflpath = "-f " + mc_env_cfg_pool[whattosearch_idx[0]][6]+"/"+"%s_env"%(subenvname)+"/guidocs"+"/%s_environment.fl\n"%(subenvname)
                             #ORG subenvflpath = "-f " + mc_env_cfg_pool[whattosearch_idx[0]][6]+"/"+"%s_env"%(subenvname)+"/run"+"/%s_environment.fl\n"%(subenvname)
-                            subenvflpath = "-f " + "$%s_TB_DIR"%(subenvname.upper())+"/run"+"/%s_environment.fl\n"%(subenvname)
+                            subenvflpath = "-f " + "$%s_TB_DIR"%(subenvname.upper())+"/run"+"/%s_environment.f\n"%(subenvname)
                             log.debug("mc_list_file: subenvflpath %s\n"%(subenvflpath))
 
                             pos = fl_stg.find('# Sub-Environment List Files\n')
@@ -30844,14 +30863,16 @@ class uvm_testbench_gen:
                     log.debug("mc_create_phase: Value of fl_stg %s, tbtop_fl_stg %s"%(fl_stg, tbtop_fl_stg))
                     
                     
-                    mc_env_fl_input_file = open("%s/%s_environment.fl"%(envrunpath, envname), "w")
+                    mc_env_fl_input_file = open("%s/%s_environment.f"%(envflpath, envname), "w")
+                    #mc_env_fl_input_file = open("%s/%s_environment.fl"%(envrunpath, envname), "w")
                     #mc_env_fl_input_file = open("%s/%s_environment.fl"%(envdocspath, envname), "w")
                     mc_env_fl_arr = fl_stg.split('|')
                     for lines in mc_env_fl_arr:
                         mc_env_fl_input_file.write(lines)
                     mc_env_fl_input_file.close()
                    
-                    mc_tbtop_fl_input_file = open("%s/%s_tbtop.fl"%(envrunpath, envname), "w")
+                    mc_tbtop_fl_input_file = open("%s/%s_tbtop.f"%(envflpath, envname), "w")
+                    #mc_tbtop_fl_input_file = open("%s/%s_tbtop.fl"%(envrunpath, envname), "w")
                     #mc_tbtop_fl_input_file = open("%s/%s_tbtop.fl"%(envdocspath, envname), "w")
                     mc_tbtop_fl_arr = tbtop_fl_stg.split('|')
                     for lines in mc_tbtop_fl_arr:
@@ -34020,19 +34041,19 @@ class uvm_testbench_gen:
         fl_name = fl_name + "_common"
         print("INFO: Generating File List %s"%(fl_name))
 
-        if (os.path.isfile('%s.fl'%fl_name)):
-            print("WARNING: %s.fl does exist, backing it up to %s.bak"%(fl_name, fl_name))
+        if (os.path.isfile('%s.f'%fl_name)):
+            print("WARNING: %s.f does exist, backing it up to %s.bak"%(fl_name, fl_name))
             os.rename('%s.sv %s.bak'%(fl_name, fl_name))
 
         com_fl_stg = com_fl_stg\
         +('#===============================================================\n')\
-        +('# File Name        : <COMMON_FILELIST_NAME>.fl\n')\
+        +('# File Name        : <COMMON_FILELIST_NAME>.f\n')\
         +('# Desctiption      :\n')\
         +('# Name             : <CREATE_NAME>\n')\
         +('# File Created     : <CREATE_DATE>\n')\
         +('# Copyright        :\n')\
         +('#===============================================================\n')\
-        +('# NOTE: Please Don\'t Remove Any Comments Given Below\n')\
+        +('# NOTE: Please Dont Remove Any Comments Given Below\n')\
         +('#===============================================================\n')\
         +('\n')\
         +('# UVM Library Directory\n')\
@@ -34047,7 +34068,7 @@ class uvm_testbench_gen:
         com_fl_stg = com_fl_stg.replace("<CREATE_NAME>", self.rtn_usr_name())
         com_fl_stg = com_fl_stg.replace("<CREATE_DATE>", self.rtn_date_time_for_files())
 
-        com_fl_stg_file = open("%s.fl"%(fl_name), "w")
+        com_fl_stg_file = open("%s.f"%(fl_name), "w")
         com_fl_stg_arr = com_fl_stg.split('|')
         for lines in com_fl_stg_arr:
             com_fl_stg_file.write(lines)
@@ -34073,19 +34094,19 @@ class uvm_testbench_gen:
         fl_name = fl_name + "_environment"
         print("INFO: Generating File List %s"%(fl_name))
 
-        if (os.path.isfile('%s.fl'%fl_name)):
-            print("WARNING: %s.fl does exist, backing it up to %s.bak"%(fl_name, fl_name))
+        if (os.path.isfile('%s.f'%fl_name)):
+            print("WARNING: %s.f does exist, backing it up to %s.bak"%(fl_name, fl_name))
             os.rename('%s.sv %s.bak'%(fl_name, fl_name))
 
         env_fl_stg = env_fl_stg\
         +('#===============================================================\n')\
-        +('# File Name        : <ENV_FILELIST_NAME>.fl\n')\
+        +('# File Name        : <ENV_FILELIST_NAME>.f\n')\
         +('# Desctiption      :\n')\
         +('# Name             : <CREATE_NAME>\n')\
         +('# File Created     : <CREATE_DATE>\n')\
         +('# Copyright        :\n')\
         +('#===============================================================\n')\
-        +('# NOTE: Please Don\'t Remove Any Comments Given Below\n')\
+        +('# NOTE: Please Dont Remove Any Comments Given Below\n')\
         +('#===============================================================\n')\
         +('\n')\
         +('# Sub-Environment List Files\n')\
@@ -34124,7 +34145,7 @@ class uvm_testbench_gen:
         env_fl_stg = env_fl_stg.replace("<CREATE_NAME>", self.rtn_usr_name())
         env_fl_stg = env_fl_stg.replace("<CREATE_DATE>", self.rtn_date_time_for_files())
 
-        env_fl_stg_file = open("%s.fl"%(fl_name), "w")
+        env_fl_stg_file = open("%s.f"%(fl_name), "w")
         env_fl_stg_arr = env_fl_stg.split('|')
         for lines in env_fl_stg_arr:
             env_fl_stg_file.write(lines)
@@ -34150,19 +34171,19 @@ class uvm_testbench_gen:
         fl_name = fl_name + "_tbtop"
         print("INFO: Generating File List %s"%(fl_name))
 
-        if (os.path.isfile('%s.fl'%fl_name)):
-            print("WARNING: %s.fl does exist, backing it up to %s.bak"%(fl_name, fl_name))
+        if (os.path.isfile('%s.f'%fl_name)):
+            print("WARNING: %s.f does exist, backing it up to %s.bak"%(fl_name, fl_name))
             os.rename('%s.sv %s.bak'%(fl_name, fl_name))
 
         tbt_fl_stg = tbt_fl_stg\
         +('#===============================================================\n')\
-        +('# File Name        : <TBTOP_FILELIST_NAME>.fl\n')\
+        +('# File Name        : <TBTOP_FILELIST_NAME>.f\n')\
         +('# Desctiption      :\n')\
         +('# Name             : <CREATE_NAME>\n')\
         +('# File Created     : <CREATE_DATE>\n')\
         +('# Copyright        :\n')\
         +('#===============================================================\n')\
-        +('# NOTE: Please Don\'t Remove Any Comments Given Below\n')\
+        +('# NOTE: Please Dont Remove Any Comments Given Below\n')\
         +('#===============================================================\n')\
         +('\n')\
         +('# TB Top Directory\n')\
@@ -34173,7 +34194,7 @@ class uvm_testbench_gen:
         tbt_fl_stg = tbt_fl_stg.replace("<CREATE_NAME>", self.rtn_usr_name())
         tbt_fl_stg = tbt_fl_stg.replace("<CREATE_DATE>", self.rtn_date_time_for_files())
 
-        tbt_fl_stg_file = open("%s.fl"%(fl_name), "w")
+        tbt_fl_stg_file = open("%s.f"%(fl_name), "w")
         tbt_fl_stg_arr = tbt_fl_stg.split('|')
         for lines in tbt_fl_stg_arr:
             tbt_fl_stg_file.write(lines)
