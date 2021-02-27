@@ -16343,7 +16343,7 @@ class uvm_testbench_gen:
                         tbpath = envdirpath+'/'+'tb'
                         os.makedirs(tbpath)
                         
-                        envdocspath = envdirpath+'/'+'guidocs'
+                        envdocspath = envdirpath+'/'+'docs'
                         os.makedirs(envdocspath)
                         
                         envrunpath = envdirpath+'/'+'run'
@@ -16699,7 +16699,7 @@ class uvm_testbench_gen:
                             tbpath = envdirpath+'/'+'tb'
                             os.makedirs(tbpath)
                         
-                            envdocspath = envdirpath+'/'+'guidocs'
+                            envdocspath = envdirpath+'/'+'docs'
                             os.makedirs(envdocspath)
                         
                             envrunpath = envdirpath+'/'+'run'
@@ -17098,7 +17098,7 @@ class uvm_testbench_gen:
                     
                     # Calling the env list
                     if (mc_env_cfg_pool[a][0]):
-                        #envdocspath = envdirpath+'/'+'guidocs'
+                        #envdocspath = envdirpath+'/'+'docs'
                         #envrunpath = envdirpath+'/'+'run'
                         envflpath = envdirpath+'/'+'filelist'
                        
@@ -17285,7 +17285,7 @@ class uvm_testbench_gen:
                         # envtrkpath = envdirpath+'/'+'trackers'
                         envchkrpath = envdirpath+'/'+'checkers'
                         # envconfilepath = envdirpath+'/'+'conn_file'
-                        envdocspath = envdirpath+'/'+'guidocs'
+                        envdocspath = envdirpath+'/'+'docs'
                         envrunpath = envdirpath+'/'+'run'
                         envflpath = envdirpath+'/'+'filelist'
                         envscriptspath = envdirpath+'/'+'scripts'
@@ -22441,7 +22441,7 @@ class uvm_testbench_gen:
                         # envtrkpath = envdirpath+'/'+'trackers'
                         envchkrpath = envdirpath+'/'+'checkers'
                         # envconfilepath = envdirpath+'/'+'conn_file'
-                        envdocspath = envdirpath+'/'+'guidocs'
+                        envdocspath = envdirpath+'/'+'docs'
                         envrunpath = envdirpath+'/'+'run'
                         envflpath = envdirpath+'/'+'filelist'
                         envscriptspath = envdirpath+'/'+'scripts'
@@ -29478,7 +29478,7 @@ class uvm_testbench_gen:
                 
                 # Environment Directory Path 
                 envdirpath = mc_env_cfg_pool_l[a][6]+"/"+"%s_env"%(envname)
-                envdocspath = envdirpath+'/'+'guidocs'
+                envdocspath = envdirpath+'/'+'docs'
                 envcfgfilepath = envdocspath+"/"+'%s_env_cfg_file.xlsx'%(envname)
                 log.debug("mc_script_config_phase : envname %s envdirpath %s envdocspath %s envcfgfilepath %s\n"%(envname, envdirpath, envdocspath, envcfgfilepath))
 
@@ -29746,7 +29746,7 @@ class uvm_testbench_gen:
                             env_sheet.cell(row=env_rno, column=3).value = envname 
 
                         # Loading the links to the subenvs
-                        subenvcfgfilepath = mc_env_cfg_pool_l[whattosearch_idx[0]][6]+"/"+"%s_env"%(subenv_arr[m+1].split(":")[0])+"/guidocs"+"/%s_env_cfg_file.xlsx"%(subenv_arr[m+1].split(":")[0])
+                        subenvcfgfilepath = mc_env_cfg_pool_l[whattosearch_idx[0]][6]+"/"+"%s_env"%(subenv_arr[m+1].split(":")[0])+"/docs"+"/%s_env_cfg_file.xlsx"%(subenv_arr[m+1].split(":")[0])
                         subenvcfgfilepath = subenvcfgfilepath+","+"%s_env_cfg"%(subenv_arr[m+1].split(":")[0])
                         log.debug("mc_script_config_phase: subenvcfgfilepath %s\n"%(subenvcfgfilepath))
                         
@@ -29813,7 +29813,7 @@ class uvm_testbench_gen:
                     log.debug("mc_list_file : envdirpath %s, envdirpath_full %s!\n"%(envdirpath, envdirpath_full))
                    
                     envpath = envdirpath+'/'+'env'
-                    envdocspath = envdirpath+'/'+'guidocs'
+                    envdocspath = envdirpath+'/'+'docs'
                     envrunpath = envdirpath_full+'/'+'run'
                     envflpath = envdirpath_full+'/'+'filelist'
                     tbpath = envdirpath+'/'+'tb'
@@ -29877,9 +29877,10 @@ class uvm_testbench_gen:
                         log.debug("mc_list_file: whattosearch %s, whattosearch_idx %s\n"%(whattosearch, whattosearch_idx))
 
                         # Loading the links to the subenvs
-                        #subenvflpath = "-f " + mc_env_cfg_pool[whattosearch_idx[0]][6]+"/"+"%s_env"%(subenv_arr[m+1].split(":")[0])+"/guidocs"+"/%s_environment.fl\n"%(subenv_arr[m+1].split(":")[0])
+                        #subenvflpath = "-f " + mc_env_cfg_pool[whattosearch_idx[0]][6]+"/"+"%s_env"%(subenv_arr[m+1].split(":")[0])+"/docs"+"/%s_environment.fl\n"%(subenv_arr[m+1].split(":")[0])
                         # ORG: subenvflpath = "-f " + mc_env_cfg_pool[whattosearch_idx[0]][6]+"/"+"%s_env"%(subenv_arr[m+1].split(":")[0])+"/run"+"/%s_environment.fl\n"%(subenv_arr[m+1].split(":")[0])
-                        subenvflpath = "-f " + "$%s_TB_DIR"%(subenv_arr[m+1].split(":")[0].upper())+"/run"+"/%s_environment.f\n"%(subenv_arr[m+1].split(":")[0])
+                        #subenvflpath = "-f " + "$%s_TB_DIR"%(subenv_arr[m+1].split(":")[0].upper())+"/run"+"/%s_environment.f\n"%(subenv_arr[m+1].split(":")[0])
+                        subenvflpath = "-f " + "$%s_TB_DIR"%(subenv_arr[m+1].split(":")[0].upper())+"/filelist"+"/%s_environment.f\n"%(subenv_arr[m+1].split(":")[0])
                         log.debug("mc_list_file: subenvflpath %s\n"%(subenvflpath))
 
                         pos = fl_stg.find('# Sub-Environment List Files\n')
@@ -30337,7 +30338,7 @@ class uvm_testbench_gen:
                 #-----------------------------------------------------------------------------------------
                 if (mc_env_cfg_pool[a][0]):
                     envpath = envdirpath+'/'+'env' 
-                    envdocspath = envdirpath+'/'+'guidocs'
+                    envdocspath = envdirpath+'/'+'docs'
                     envrunpath = envdirpath_full+'/'+'run'
                     envflpath = envdirpath_full+'/'+'filelist'
                     envscriptspath = envdirpath+'/'+'scripts'
@@ -30419,10 +30420,11 @@ class uvm_testbench_gen:
                         log.debug("mc_list_file: whattosearch %s, whattosearch_idx %s\n"%(whattosearch, whattosearch_idx))
 
                         if "__c" in subenvname_arr[m+1] or mc_curr_env_set_c == 1 or ("__s" in subenvname_arr[m+1] and mc_curr_env_set_s == 0):
-                            # subenvflpath = "-f " + mc_env_cfg_pool[whattosearch_idx[0]][6]+"/"+"%s_env"%(subenvname_arr[m+1].split(":")[0])+"/guidocs"+"/%s_environment.fl\n"%(subenvname_arr[m+1].split(":")[0])
-                            #subenvflpath = "-f " + mc_env_cfg_pool[whattosearch_idx[0]][6]+"/"+"%s_env"%(subenvname)+"/guidocs"+"/%s_environment.fl\n"%(subenvname)
+                            # subenvflpath = "-f " + mc_env_cfg_pool[whattosearch_idx[0]][6]+"/"+"%s_env"%(subenvname_arr[m+1].split(":")[0])+"/docs"+"/%s_environment.fl\n"%(subenvname_arr[m+1].split(":")[0])
+                            #subenvflpath = "-f " + mc_env_cfg_pool[whattosearch_idx[0]][6]+"/"+"%s_env"%(subenvname)+"/docs"+"/%s_environment.fl\n"%(subenvname)
                             #ORG subenvflpath = "-f " + mc_env_cfg_pool[whattosearch_idx[0]][6]+"/"+"%s_env"%(subenvname)+"/run"+"/%s_environment.fl\n"%(subenvname)
-                            subenvflpath = "-f " + "$%s_TB_DIR"%(subenvname.upper())+"/run"+"/%s_environment.f\n"%(subenvname)
+                            #subenvflpath = "-f " + "$%s_TB_DIR"%(subenvname.upper())+"/run"+"/%s_environment.f\n"%(subenvname)
+                            subenvflpath = "-f " + "$%s_TB_DIR"%(subenvname.upper())+"/filelist"+"/%s_environment.f\n"%(subenvname)
                             log.debug("mc_list_file: subenvflpath %s\n"%(subenvflpath))
 
                             pos = fl_stg.find('# Sub-Environment List Files\n')
