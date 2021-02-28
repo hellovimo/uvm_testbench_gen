@@ -17531,9 +17531,8 @@ class uvm_testbench_gen:
                                 env_mon_stg = env_mon_stg\
                                 +("| \n")\
                                 +("| //---------------------------------------------------------------\n")\
-                                +("| // Class Name               : %s_environment_config\n"%(envname))\
-                                +("| // Function Name            : configure_%s_mon\n"%envmonname)\
-                                +("| // Function Desctiption     : \n")\
+                                +("| // Function: configure_%s_mon\n"%envmonname)\
+                                +("| // \n")\
                                 +("| //---------------------------------------------------------------\n")\
                                 +("| \n")\
                                 +("| function void %s_environment_config::configure_%s_mon(int unsigned num_mons, uvm_active_passive_enum num_mons_e[]);\n"%(envname, envmonname))\
@@ -17756,9 +17755,8 @@ class uvm_testbench_gen:
                                 env_scb_stg = env_scb_stg\
                                 +("| \n")\
                                 +("| //---------------------------------------------------------------\n")\
-                                +("| // Class Name               : %s_environment_config\n"%(envname))\
-                                +("| // Function Name            : configure_%s_scb\n"%envscbname)\
-                                +("| // Function Desctiption     : \n")\
+                                +("| // Function: configure_%s_scb\n"%envscbname)\
+                                +("| // \n")\
                                 +("| //---------------------------------------------------------------\n")\
                                 +("| \n")\
                                 +("| function void %s_environment_config::configure_%s_scb(int unsigned num_scbs, uvm_active_passive_enum num_scbs_e[]);\n"%(envname, envscbname))\
@@ -17993,9 +17991,8 @@ class uvm_testbench_gen:
                                 env_agt_stg = env_agt_stg\
                                 +("| \n")\
                                 +("| //---------------------------------------------------------------\n")\
-                                +("| // Class Name               : %s_environment_config\n"%(envname))\
-                                +("| // Function Name            : configure_%s_agt\n"%envagtname)\
-                                +("| // Function Desctiption     : \n")\
+                                +("| // Function: configure_%s_agt\n"%envagtname)\
+                                +("| // \n")\
                                 +("| //---------------------------------------------------------------\n")\
                                 +("| \n")\
                                 +("| function void %s_environment_config::configure_%s_agt(int unsigned num_agts);\n"%(envname, envagtname))\
@@ -18140,9 +18137,8 @@ class uvm_testbench_gen:
                                 #----------------------------------------------------------------------
                                 sub_env_stg = sub_env_stg\
                                 +("| //---------------------------------------------------------------\n")\
-                                +("| // Class Name               : %s_environment_config\n"%(envname))\
-                                +("| // Function Name            : construct_%s_env\n"%subenvname)\
-                                +("| // Function Desctiption     : \n")\
+                                +("| // Function: construct_%s_env\n"%subenvname)\
+                                +("| // \n")\
                                 +("| //---------------------------------------------------------------\n")\
                                 +("| \n")\
                                 +("| function void %s_environment_config::construct_%s_env(int unsigned num_envs);\n"%(envname, subenvname))\
@@ -21362,7 +21358,7 @@ class uvm_testbench_gen:
                                 log.debug("mc_edit_phase: scb_pl1_stg %s\n scb_pl2_stg %s\n scb_pl3_stg %s\n scb_pl4_stg %s\n scb_pl5_stg %s\n scb_stg %s\n"%(scb_pl1_stg, scb_pl2_stg, scb_pl3_stg, scb_pl4_stg, scb_pl5_stg, scb_stg))
                             elif ptype == 2:
                                 scb_pl1_stg = scb_pl1_stg\
-                                +('| `uvm_analysis_imp_decl(_%s_%s_scoreboard)\n'%(scbname, pname))
+                                +('|`uvm_analysis_imp_decl(_%s_%s_scoreboard)\n'%(scbname, pname))
                                 
                                 scb_pl2_stg = scb_pl2_stg\
                                 +('| uvm_analysis_imp_%s_%s_scoreboard #(%s_sequence_item_base, %s_scoreboard) %s_%s_analysis_export;\n\n'%(scbname, pname, mname, envscbname, envscbname, pname))
@@ -21375,16 +21371,15 @@ class uvm_testbench_gen:
 
                                 scb_pl5_stg = scb_pl5_stg\
                                 +('| //---------------------------------------------------------------\n')\
-                                +('| // Class Name               : %s_scoreboard\n'%(envscbname))\
-                                +('| // Function Name            : write_%s_%s_scoreboard\n'%(scbname, pname))\
-                                +('| // Function Desctiption     :\n')\
+                                +('| // Function: write_%s_%s_scoreboard\n'%(scbname, pname))\
+                                +('| // \n')\
                                 +('| //---------------------------------------------------------------\n')\
                                 +('| \n')\
                                 +('| function void %s_scoreboard::write_%s_%s_scoreboard(%s_sequence_item_base %s_seq_item_base);\n'%(envscbname, scbname, pname, mname, mname))\
                                 +('| endfunction: write_%s_%s_scoreboard\n'%(scbname, pname))
 
-                                pos = scb_stg.find('// Class Description     :\n')
-                                apos = pos + len('// Class Description     :\n')+len('|//---------------------------------------------------------------\n')+len('|\n')
+                                pos = scb_stg.find('// TLM Analysis Imp Declaration\n')
+                                apos = pos + len('// TLM Analysis Imp Declaration\n')
                                 scb_stg = scb_stg[:apos]+scb_pl1_stg+scb_stg[apos:]
                                 
                                 pos = scb_stg.find(' // Port Declaration\n')
@@ -21555,9 +21550,8 @@ class uvm_testbench_gen:
                         test_loc_stg = test_loc_stg\
                         +("|\n")\
                         +("|//---------------------------------------------------------------\n")\
-                        +("|// Class Name               : %s_test\n"%(envname))\
-                        +("|// Function Name            : construct_%s_env\n"%envname)\
-                        +("|// Function Desctiption     : \n")\
+                        +("|// Function: construct_%s_env\n"%envname)\
+                        +("|// \n")\
                         +("|//---------------------------------------------------------------\n")\
                         +("|\n")\
                         +("|function void %s_test::construct_%s_env(int unsigned num_envs);\n"%(envname, envname))\
@@ -22761,9 +22755,8 @@ class uvm_testbench_gen:
                                     env_mon_stg = env_mon_stg\
                                     +("| \n")\
                                     +("| //---------------------------------------------------------------\n")\
-                                    +("| // Class Name               : %s_environment_config\n"%(envname))\
-                                    +("| // Function Name            : configure_%s_mon\n"%envmonname)\
-                                    +("| // Function Desctiption     : \n")\
+                                    +("| // Function: configure_%s_mon\n"%envmonname)\
+                                    +("| // \n")\
                                     +("| //---------------------------------------------------------------\n")\
                                     +("| \n")\
                                     +("| function void %s_environment_config::configure_%s_mon(int unsigned num_mons, uvm_active_passive_enum num_mons_e[]);\n"%(envname, envmonname))\
@@ -23037,9 +23030,8 @@ class uvm_testbench_gen:
                                     env_scb_stg = env_scb_stg\
                                     +("| \n")\
                                     +("| //---------------------------------------------------------------\n")\
-                                    +("| // Class Name               : %s_environment_config\n"%(envname))\
-                                    +("| // Function Name            : configure_%s_scb\n"%envscbname)\
-                                    +("| // Function Desctiption     : \n")\
+                                    +("| // Function: configure_%s_scb\n"%envscbname)\
+                                    +("| // \n")\
                                     +("| //---------------------------------------------------------------\n")\
                                     +("| \n")\
                                     +("| function void %s_environment_config::configure_%s_scb(int unsigned num_scbs, uvm_active_passive_enum num_scbs_e[]);\n"%(envname, envscbname))\
@@ -23338,9 +23330,8 @@ class uvm_testbench_gen:
                                     env_agt_stg = env_agt_stg\
                                     +("| \n")\
                                     +("| //---------------------------------------------------------------\n")\
-                                    +("| // Class Name               : %s_environment_config\n"%(envname))\
-                                    +("| // Function Name            : configure_%s_agt\n"%envagtname)\
-                                    +("| // Function Desctiption     : \n")\
+                                    +("| // Function: configure_%s_agt\n"%envagtname)\
+                                    +("| // \n")\
                                     +("| //---------------------------------------------------------------\n")\
                                     +("| \n")\
                                     +("| function void %s_environment_config::configure_%s_agt(int unsigned num_agts);\n"%(envname, envagtname))\
@@ -23501,9 +23492,8 @@ class uvm_testbench_gen:
                                     #----------------------------------------------------------------------
                                     sub_env_stg = sub_env_stg\
                                     +("| //---------------------------------------------------------------\n")\
-                                    +("| // Class Name               : %s_environment_config\n"%(envname))\
-                                    +("| // Function Name            : construct_%s_env\n"%subenvname)\
-                                    +("| // Function Desctiption     : \n")\
+                                    +("| // Function: construct_%s_env\n"%subenvname)\
+                                    +("| // \n")\
                                     +("| //---------------------------------------------------------------\n")\
                                     +("| \n")\
                                     +("| function void %s_environment_config::construct_%s_env(int unsigned num_envs);\n"%(envname, subenvname))\
@@ -27480,10 +27470,10 @@ class uvm_testbench_gen:
                                 elif ptype == 2:
                                     if "__c" in pname or mc_curr_env_set_c == 1:
                                         scb_pl1_stg = scb_pl1_stg\
-                                        +('| `uvm_analysis_imp_decl(_%s_%s_scoreboard)\n'%(scbname, pname.replace("__c","")))
+                                        +('|`uvm_analysis_imp_decl(_%s_%s_scoreboard)\n'%(scbname, pname.replace("__c","")))
                                     elif "__s" in pname and mc_curr_env_set_s == 0:
                                         scb_pl1_stg = scb_pl1_stg\
-                                        +('| `uvm_analysis_imp_decl(_%s_%s_scoreboard)\n'%(scbname, pname.replace("__s","")))
+                                        +('|`uvm_analysis_imp_decl(_%s_%s_scoreboard)\n'%(scbname, pname.replace("__s","")))
                                     log.debug("mc_edit_phase: scb_pl1_stg %s\n scb_pl2_stg %s\n scb_pl3_stg %s\n scb_pl4_stg %s\n scb_pl5_stg %s\n scb_stg %s\n"%(scb_pl1_stg, scb_pl2_stg, scb_pl3_stg, scb_pl4_stg, scb_pl5_stg, scb_stg))
                                     
                                     if "__c" in pname or mc_curr_env_set_c == 1:
@@ -27513,9 +27503,8 @@ class uvm_testbench_gen:
                                     if "__c" in pname or mc_curr_env_set_c == 1:
                                         scb_pl5_stg = scb_pl5_stg\
                                         +('| //---------------------------------------------------------------\n')\
-                                        +('| // Class Name               : %s_scoreboard\n'%(envscbname))\
-                                        +('| // Function Name            : write_%s_%s_scoreboard\n'%(scbname, pname.replace("__c","")))\
-                                        +('| // Function Desctiption     :\n')\
+                                        +('| // Function: write_%s_%s_scoreboard\n'%(scbname, pname.replace("__c","")))\
+                                        +('| // \n')\
                                         +('| //---------------------------------------------------------------\n')\
                                         +('| \n')\
                                         +('| function void %s_scoreboard::write_%s_%s_scoreboard(%s_sequence_item_base %s_seq_item_base);\n'%(envscbname, scbname, pname.replace("__c",""), mname, mname))\
@@ -27524,9 +27513,8 @@ class uvm_testbench_gen:
                                     elif "__s" in pname and mc_curr_env_set_s == 0:
                                         scb_pl5_stg = scb_pl5_stg\
                                         +('| //---------------------------------------------------------------\n')\
-                                        +('| // Class Name               : %s_scoreboard\n'%(envscbname))\
-                                        +('| // Function Name            : write_%s_%s_scoreboard\n'%(scbname, pname.replace("__s","")))\
-                                        +('| // Function Desctiption     :\n')\
+                                        +('| // Function: write_%s_%s_scoreboard\n'%(scbname, pname.replace("__s","")))\
+                                        +('| // \n')\
                                         +('| //---------------------------------------------------------------\n')\
                                         +('| \n')\
                                         +('| function void %s_scoreboard::write_%s_%s_scoreboard(%s_sequence_item_base %s_seq_item_base);\n'%(envscbname, scbname, pname.replace("__s",""), mname, mname))\
@@ -27534,8 +27522,8 @@ class uvm_testbench_gen:
                                         +('| \n')
                                     log.debug("mc_edit_phase: scb_pl1_stg %s\n scb_pl2_stg %s\n scb_pl3_stg %s\n scb_pl4_stg %s\n scb_pl5_stg %s\n scb_stg %s\n"%(scb_pl1_stg, scb_pl2_stg, scb_pl3_stg, scb_pl4_stg, scb_pl5_stg, scb_stg))
 
-                                    pos = scb_stg.find('// Class Description     :\n')
-                                    apos = pos + len('// Class Description     :\n')+len('|//---------------------------------------------------------------\n')+len('|\n')
+                                    pos = scb_stg.find('// TLM Analysis Imp Declaration\n')
+                                    apos = pos + len('// TLM Analysis Imp Declaration\n')
                                     scb_stg = scb_stg[:apos]+scb_pl1_stg+scb_stg[apos:]
                                     
                                     pos = scb_stg.find(' // Port Declaration\n')
@@ -27769,9 +27757,8 @@ class uvm_testbench_gen:
                                 test_loc_stg = test_loc_stg\
                                 +("|\n")\
                                 +("|//---------------------------------------------------------------\n")\
-                                +("|// Class Name               : %s_test\n"%(envname))\
-                                +("|// Function Name            : construct_%s_env\n"%envname)\
-                                +("|// Function Desctiption     : \n")\
+                                +("|// Function: construct_%s_env\n"%envname)\
+                                +("|// \n")\
                                 +("|//---------------------------------------------------------------\n")\
                                 +("|\n")\
                                 +("|function void %s_test::construct_%s_env(int unsigned num_envs);\n"%(envname, envname))\
@@ -31591,8 +31578,8 @@ class uvm_testbench_gen:
         +("|`define <INC_GUARD>\n")\
         +("|\n")\
         +("|//---------------------------------------------------------------\n")\
-        +("|// Class Name            : <CLASS_NAME>\n")\
-        +("|// Class Desctiption     :\n")\
+        +("|// Class: <CLASS_NAME>\n")\
+        +("|// \n")\
         +("|//---------------------------------------------------------------\n")\
         +("|\n")\
         +("|class <CLASS_NAME> extends uvm_sequence_item;\n")\
@@ -31633,9 +31620,8 @@ class uvm_testbench_gen:
         +("|\n")\
         +("|\n")\
         +("|//---------------------------------------------------------------\n")\
-        +("|// Class Name               : <CLASS_NAME>\n")\
-        +("|// Function Name            : new\n")\
-        +("|// Function Desctiption     :\n")\
+        +("|// Function: new\n")\
+        +("|// \n")\
         +("|//---------------------------------------------------------------\n")\
         +("|\n")\
         +('|function <CLASS_NAME>::new(string name="<CLASS_NAME>");\n')\
@@ -31700,8 +31686,8 @@ class uvm_testbench_gen:
         +('`define <INC_GUARD>\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name            : <CLASS_NAME>\n')\
-        +('// Class Desctiption     :\n')\
+        +('// Class: <CLASS_NAME>\n')\
+        +('// \n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('class <CLASS_NAME> extends uvm_sequence #(<PREFIX_NAME>_sequence_item_base);\n')\
@@ -31735,9 +31721,8 @@ class uvm_testbench_gen:
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : new\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: new\n')\
+        +('// \n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function <CLASS_NAME>::new(string name="<CLASS_NAME>");\n')\
@@ -31746,9 +31731,8 @@ class uvm_testbench_gen:
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Task  Name               : body\n')\
-        +('// Task Desctiption         :\n')\
+        +('// Task: body\n')\
+        +('// \n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('task <CLASS_NAME>::body();\n')\
@@ -31814,8 +31798,8 @@ class uvm_testbench_gen:
         +('`define <INC_GUARD>\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name            : <CLASS_NAME>\n')\
-        +('// Class Desctiption     :\n')\
+        +('// Class: <CLASS_NAME>\n')\
+        +('// \n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('class <CLASS_NAME> extends uvm_sequencer #(<PREFIX_NAME>_sequence_item_base);\n')\
@@ -31832,9 +31816,8 @@ class uvm_testbench_gen:
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : new\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: new\n')\
+        +('// \n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function <CLASS_NAME>::new(string name = "<CLASS_NAME>", uvm_component parent);\n')\
@@ -31843,14 +31826,14 @@ class uvm_testbench_gen:
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : build_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: build_phase\n')\
+        +('// \n')\
+        +('// Create and configure of testbench structure\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::build_phase(uvm_phase phase);\n')\
         +(' super.build_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In build_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In build_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: build_phase\n')\
         +('\n')\
         +('`endif //<INC_GUARD>\n')
@@ -31912,8 +31895,8 @@ class uvm_testbench_gen:
         +('`define <INC_GUARD>\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name            : <CLASS_NAME>\n')\
-        +('// Class Desctiption     :\n')\
+        +('// Class: <CLASS_NAME>\n')\
+        +('// \n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('class <CLASS_NAME> extends uvm_driver #(<PREFIX_NAME>_sequence_item_base);\n')\
@@ -31968,9 +31951,8 @@ class uvm_testbench_gen:
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : new\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: new\n')\
+        +('// \n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function <CLASS_NAME>::new(string name = "<CLASS_NAME>", uvm_component parent);\n')\
@@ -31979,14 +31961,14 @@ class uvm_testbench_gen:
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : build_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: build_phase\n')\
+        +('// \n')\
+        +('// Create and configure of testbench structure\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::build_phase(uvm_phase phase);\n')\
         +(' super.build_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In build_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In build_phase...!!", UVM_DEBUG);\n')\
         +('\n')\
         +(' // -----------------\n')\
         +(' // Get configuration\n')\
@@ -32005,98 +31987,100 @@ class uvm_testbench_gen:
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : connect_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: connect_phase\n')\
+        +('// \n')\
+        +('// Establish cross-component connections\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::connect_phase(uvm_phase phase);\n')\
         +(' super.connect_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In connect_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In connect_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: connect_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : end_of_elaboration_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: end_of_elaboration_phase\n')\
+        +('// \n')\
+        +('// Fine-tune the testbench\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::end_of_elaboration_phase(uvm_phase phase);\n')\
         +(' super.end_of_elaboration_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In end_of_elaboration_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In end_of_elaboration_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: end_of_elaboration_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : start_of_simulation_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: start_of_simulation_phase\n')\
+        +('// \n')\
+        +('// Get ready for DUT to be simulated\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::start_of_simulation_phase(uvm_phase phase);\n')\
         +(' super.start_of_simulation_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In start_of_simulation_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In start_of_simulation_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: start_of_simulation_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Task Name                : run_phase\n')\
-        +('// Task Desctiption         :\n')\
+        +('// Task: run_phase\n')\
+        +('// \n')\
+        +('// Stimulate the DUT\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('task <CLASS_NAME>::run_phase(uvm_phase phase);\n')\
         +(' super.run_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In run_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In run_phase...!!", UVM_DEBUG);\n')\
         +('endtask: run_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : extract_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: extract_phase\n')\
+        +('// \n')\
+        +('// Extract data from different points of the verification environment\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::extract_phase(uvm_phase phase);\n')\
         +(' super.extract_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In extract_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In extract_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: extract_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : check_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: check_phase\n')\
+        +('// \n')\
+        +('// Check for any unexpected conditions in the verification environment\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::check_phase(uvm_phase phase);\n')\
         +(' super.check_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In check_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In check_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: check_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : report_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: report_phase\n')\
+        +('// \n')\
+        +('// Report results of the test\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::report_phase(uvm_phase phase);\n')\
         +(' super.report_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In report_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In report_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: report_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : final_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: final_phase\n')\
+        +('// \n')\
+        +('// Tie up loose ends. All Simulation activities are done.\n')\
+        +('// \n')\
+        +('// Closing files, Ending co-simulation engines etc.\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::final_phase(uvm_phase phase);\n')\
         +(' super.final_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In final_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In final_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: final_phase\n')\
         +('\n')\
         +('\n')\
@@ -32159,8 +32143,8 @@ class uvm_testbench_gen:
         +('`define <INC_GUARD>\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name            : <CLASS_NAME>\n')\
-        +('// Class Desctiption     :\n')\
+        +('// Class: <CLASS_NAME>\n')\
+        +('// \n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('class <CLASS_NAME> extends uvm_monitor;\n')\
@@ -32219,9 +32203,8 @@ class uvm_testbench_gen:
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : new\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: new\n')\
+        +('// \n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function <CLASS_NAME>::new(string name = "<CLASS_NAME>", uvm_component parent);\n')\
@@ -32230,14 +32213,14 @@ class uvm_testbench_gen:
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : build_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: build_phase\n')\
+        +('// \n')\
+        +('// Create and configure of testbench structure\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::build_phase(uvm_phase phase);\n')\
         +(' super.build_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In build_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In build_phase...!!", UVM_DEBUG);\n')\
         +('\n')\
         +(' // -----------------\n')\
         +(' // Port Construction\n')\
@@ -32260,98 +32243,100 @@ class uvm_testbench_gen:
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : connect_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: connect_phase\n')\
+        +('// \n')\
+        +('// Establish cross-component connections\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::connect_phase(uvm_phase phase);\n')\
         +(' super.connect_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In connect_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In connect_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: connect_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Task Name                : run_phase\n')\
-        +('// Task Desctiption         :\n')\
+        +('// Task: run_phase\n')\
+        +('// \n')\
+        +('// Stimulate the DUT\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('task <CLASS_NAME>::run_phase(uvm_phase phase);\n')\
         +(' super.run_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In run_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In run_phase...!!", UVM_DEBUG);\n')\
         +('endtask: run_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : end_of_elaboration_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: end_of_elaboration_phase\n')\
+        +('// \n')\
+        +('// Fine-tune the testbench\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::end_of_elaboration_phase(uvm_phase phase);\n')\
         +(' super.end_of_elaboration_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In end_of_elaboration_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In end_of_elaboration_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: end_of_elaboration_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : start_of_simulation_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: start_of_simulation_phase\n')\
+        +('// \n')\
+        +('// Get ready for DUT to be simulated\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::start_of_simulation_phase(uvm_phase phase);\n')\
         +(' super.start_of_simulation_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In start_of_simulation_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In start_of_simulation_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: start_of_simulation_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : extract_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: extract_phase\n')\
+        +('// \n')\
+        +('// Extract data from different points of the verification environment\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::extract_phase(uvm_phase phase);\n')\
         +(' super.extract_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In extract_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In extract_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: extract_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : check_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: check_phase\n')\
+        +('// \n')\
+        +('// Check for any unexpected conditions in the verification environment\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::check_phase(uvm_phase phase);\n')\
         +(' super.check_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In check_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In check_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: check_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : report_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: report_phase\n')\
+        +('// \n')\
+        +('// Report results of the test\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::report_phase(uvm_phase phase);\n')\
         +(' super.report_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In report_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In report_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: report_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : final_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: final_phase\n')\
+        +('// \n')\
+        +('// Tie up loose ends. All Simulation activities are done.\n')\
+        +('// \n')\
+        +('// Closing files, Ending co-simulation engines etc.\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::final_phase(uvm_phase phase);\n')\
         +(' super.final_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In final_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In final_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: final_phase\n')\
         +('\n')\
         +('\n')\
@@ -32412,9 +32397,11 @@ class uvm_testbench_gen:
         +('`ifndef <INC_GUARD>\n')\
         +('`define <INC_GUARD>\n')\
         +('\n')\
+        +('// TLM Analysis Imp Declaration\n')\
+        +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name            : <CLASS_NAME>\n')\
-        +('// Class Description     :\n')\
+        +('// Class: <CLASS_NAME>\n')\
+        +('// \n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('class <CLASS_NAME> extends uvm_scoreboard;\n')\
@@ -32472,9 +32459,8 @@ class uvm_testbench_gen:
         +('endclass: <CLASS_NAME>\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : new\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: new\n')\
+        +('// \n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function <CLASS_NAME>::new(string name = "<CLASS_NAME>", uvm_component parent);\n')\
@@ -32483,14 +32469,14 @@ class uvm_testbench_gen:
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : build_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: build_phase\n')\
+        +('// \n')\
+        +('// Create and configure of testbench structure\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::build_phase(uvm_phase phase);\n')\
         +(' super.build_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In build_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In build_phase...!!", UVM_DEBUG);\n')\
         +('\n')\
         +(' // -----------------\n')\
         +(' // Get configuration\n')\
@@ -32502,98 +32488,100 @@ class uvm_testbench_gen:
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : connect_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: connect_phase\n')\
+        +('// \n')\
+        +('// Establish cross-component connections\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::connect_phase(uvm_phase phase);\n')\
         +(' super.connect_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In connect_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In connect_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: connect_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : end_of_elaboration_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: end_of_elaboration_phase\n')\
+        +('// \n')\
+        +('// Fine-tune the testbench\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::end_of_elaboration_phase(uvm_phase phase);\n')\
         +(' super.end_of_elaboration_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In end_of_elaboration_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In end_of_elaboration_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: end_of_elaboration_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : start_of_simulation_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: start_of_simulation_phase\n')\
+        +('// \n')\
+        +('// Get ready for DUT to be simulated\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::start_of_simulation_phase(uvm_phase phase);\n')\
         +(' super.start_of_simulation_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In start_of_simulation_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In start_of_simulation_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: start_of_simulation_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Task Name                : run_phase\n')\
-        +('// Task Desctiption         :\n')\
+        +('// Task: run_phase\n')\
+        +('// \n')\
+        +('// Stimulate the DUT\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('task <CLASS_NAME>::run_phase(uvm_phase phase);\n')\
         +(' super.run_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In run_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In run_phase...!!", UVM_DEBUG);\n')\
         +('endtask: run_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : extract_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: extract_phase\n')\
+        +('// \n')\
+        +('// Extract data from different points of the verification environment\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::extract_phase(uvm_phase phase);\n')\
         +(' super.extract_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In extract_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In extract_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: extract_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : check_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: check_phase\n')\
+        +('// \n')\
+        +('// Check for any unexpected conditions in the verification environment\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::check_phase(uvm_phase phase);\n')\
         +(' super.check_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In check_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In check_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: check_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : report_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: report_phase\n')\
+        +('// \n')\
+        +('// Report results of the test\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::report_phase(uvm_phase phase);\n')\
         +(' super.report_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In report_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In report_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: report_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : final_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: final_phase\n')\
+        +('// \n')\
+        +('// Tie up loose ends. All Simulation activities are done.\n')\
+        +('// \n')\
+        +('// Closing files, Ending co-simulation engines etc.\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::final_phase(uvm_phase phase);\n')\
         +(' super.final_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In final_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In final_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: final_phase\n')\
         +('\n')\
         +('\n')\
@@ -32654,8 +32642,8 @@ class uvm_testbench_gen:
         +('`define <INC_GUARD>\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name            : <CLASS_NAME>\n')\
-        +('// Class Desctiption     :\n')\
+        +('// Class: <CLASS_NAME>\n')\
+        +('// \n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('class <CLASS_NAME> extends uvm_test;\n')\
@@ -32702,7 +32690,18 @@ class uvm_testbench_gen:
         +(' extern virtual function void connect_phase(uvm_phase phase);\n')\
         +(' extern virtual function void end_of_elaboration_phase(uvm_phase phase);\n')\
         +(' extern virtual function void start_of_simulation_phase(uvm_phase phase);\n')\
-        +(' extern virtual task          run_phase(uvm_phase phase);\n')\
+        +(' extern virtual task pre_reset_phase(uvm_phase phase); \n')\
+        +(' extern virtual task reset_phase(uvm_phase phase);\n')\
+        +(' extern virtual task post_reset_phase(uvm_phase phase);\n')\
+        +(' extern virtual task pre_configure_phase(uvm_phase phase);\n')\
+        +(' extern virtual task configure_phase(uvm_phase phase);\n')\
+        +(' extern virtual task post_configure_phase(uvm_phase phase);\n')\
+        +(' extern virtual task pre_main_phase(uvm_phase phase);\n')\
+        +(' extern virtual task main_phase(uvm_phase phase);\n')\
+        +(' extern virtual task post_main_phase(uvm_phase phase);\n')\
+        +(' extern virtual task pre_shutdown_phase(uvm_phase phase);\n')\
+        +(' extern virtual task shutdown_phase(uvm_phase phase);\n')\
+        +(' extern virtual task post_shutdown_phase(uvm_phase phase);\n')\
         +(' extern virtual function void extract_phase(uvm_phase phase);\n')\
         +(' extern virtual function void check_phase(uvm_phase phase);\n')\
         +(' extern virtual function void report_phase(uvm_phase phase);\n')\
@@ -32725,9 +32724,8 @@ class uvm_testbench_gen:
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : new\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: new\n')\
+        +('// \n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function <CLASS_NAME>::new(string name = "<CLASS_NAME>", uvm_component parent);\n')\
@@ -32736,14 +32734,14 @@ class uvm_testbench_gen:
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : build_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: build_phase\n')\
+        +('// \n')\
+        +('// Create and configure of testbench structure\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::build_phase(uvm_phase phase);\n')\
         +(' super.build_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In build_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In build_phase...!!", UVM_DEBUG);\n')\
         +('\n')\
         +(' // -----------------\n')\
         +(' // Get Configuration\n')\
@@ -32775,99 +32773,243 @@ class uvm_testbench_gen:
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : connect_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: connect_phase\n')\
+        +('// \n')\
+        +('// Establish cross-component connections\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::connect_phase(uvm_phase phase);\n')\
         +(' super.connect_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In connect_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In connect_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: connect_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : end_of_elaboration_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: end_of_elaboration_phase\n')\
+        +('// \n')\
+        +('// Fine-tune the testbench\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::end_of_elaboration_phase(uvm_phase phase);\n')\
         +(' super.end_of_elaboration_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In end_of_elaboration_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In end_of_elaboration_phase...!!", UVM_DEBUG);\n')\
         +('`uvm_info(get_type_name(), $sformatf("Printing the Test Topology : %s", this.sprint(printer)), UVM_LOW)\n')\
         +('endfunction: end_of_elaboration_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : start_of_simulation_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: start_of_simulation_phase\n')\
+        +('// \n')\
+        +('// Get ready for DUT to be simulated\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::start_of_simulation_phase(uvm_phase phase);\n')\
         +(' super.start_of_simulation_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In start_of_simulation_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In start_of_simulation_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: start_of_simulation_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Task Name                : run_phase\n')\
-        +('// Task Desctiption         :\n')\
+        +('// Task: pre_reset_phase\n')\
+        +('// \n')\
+        +('// It is used to perform the operations before applying reset to DUT\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
-        +('task <CLASS_NAME>::run_phase(uvm_phase phase);\n')\
-        +(' super.run_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In run_phase...!!", UVM_NONE);\n')\
-        +('endtask: run_phase\n')\
+        +('task <CLASS_NAME>::pre_reset_phase(uvm_phase phase);\n')\
+        +(' super.pre_reset_phase(phase);\n')\
+        +('`uvm_info(get_type_name(), "In pre_reset_phase...!!", UVM_DEBUG);\n')\
+        +('endtask: pre_reset_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : extract_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Task: reset_phase\n')\
+        +('// \n')\
+        +('// It is used to generate the reset and apply to DUT or any interface\n')\
+        +('//---------------------------------------------------------------\n')\
+        +('\n')\
+        +('task <CLASS_NAME>::reset_phase(uvm_phase phase);\n')\
+        +(' super.reset_phase(phase);\n')\
+        +('`uvm_info(get_type_name(), "In reset_phase...!!", UVM_DEBUG);\n')\
+        +('endtask: reset_phase\n')\
+        +('\n')\
+        +('\n')\
+        +('//---------------------------------------------------------------\n')\
+        +('// Task: post_reset_phase\n')\
+        +('// \n')\
+        +('// It is used to generate the reset and apply to DUT or any interface\n')\
+        +('//---------------------------------------------------------------\n')\
+        +('\n')\
+        +('task <CLASS_NAME>::post_reset_phase(uvm_phase phase);\n')\
+        +(' super.post_reset_phase(phase);\n')\
+        +('`uvm_info(get_type_name(), "In post_reset_phase...!!", UVM_DEBUG);\n')\
+        +('endtask: post_reset_phase\n')\
+        +('\n')\
+        +('\n')\
+        +('//---------------------------------------------------------------\n')\
+        +('// Task: pre_configure_phase\n')\
+        +('// \n')\
+        +('// This phase is used to gather the configuration information and\n')\
+        +('// to wait for the components to be ready for the configuration\n')\
+        +('// after rese\n')\
+        +('//---------------------------------------------------------------\n')\
+        +('\n')\
+        +('task <CLASS_NAME>::pre_configure_phase(uvm_phase phase);\n')\
+        +(' super.pre_configure_phase(phase);\n')\
+        +('`uvm_info(get_type_name(), "In pre_configure_phase...!!", UVM_DEBUG);\n')\
+        +('endtask: pre_configure_phase\n')\
+        +('\n')\
+        +('\n')\
+        +('//---------------------------------------------------------------\n')\
+        +('// Task: configure_phase\n')\
+        +('// \n')\
+        +('// This phase is used to configure the DUT and to initialize the\n')\
+        +('// memories in the testbench\n')\
+        +('//---------------------------------------------------------------\n')\
+        +('\n')\
+        +('task <CLASS_NAME>::configure_phase(uvm_phase phase);\n')\
+        +(' super.configure_phase(phase);\n')\
+        +('`uvm_info(get_type_name(), "In configure_phase...!!", UVM_DEBUG);\n')\
+        +('endtask: configure_phase\n')\
+        +('\n')\
+        +('\n')\
+        +('//---------------------------------------------------------------\n')\
+        +('// Task: post_configure_phase\n')\
+        +('// \n')\
+        +('// This phase is used to wait for the configuration information\n')\
+        +('// to progress to the DUT. It is used to ensure that the main\n')\
+        +('// testcase can started for the simulation.\n')\
+        +('//---------------------------------------------------------------\n')\
+        +('\n')\
+        +('task <CLASS_NAME>::post_configure_phase(uvm_phase phase);\n')\
+        +(' super.post_configure_phase(phase);\n')\
+        +('`uvm_info(get_type_name(), "In post_configure_phase...!!", UVM_DEBUG);\n')\
+        +('endtask: post_configure_phase\n')\
+        +('\n')\
+        +('\n')\
+        +('//---------------------------------------------------------------\n')\
+        +('// Task: pre_main_phase\n')\
+        +('// \n')\
+        +('// It is to ensure that all the components are ready to start the\n')\
+        +('// simulation\n')\
+        +('//---------------------------------------------------------------\n')\
+        +('\n')\
+        +('task <CLASS_NAME>::pre_main_phase(uvm_phase phase);\n')\
+        +(' super.pre_main_phase(phase);\n')\
+        +('`uvm_info(get_type_name(), "In pre_main_phase...!!", UVM_DEBUG);\n')\
+        +('endtask: pre_main_phase\n')\
+        +('\n')\
+        +('\n')\
+        +('//---------------------------------------------------------------\n')\
+        +('// Task: main_phase\n')\
+        +('// \n')\
+        +('// It is to ensure that all the components are ready to start the\n')\
+        +('// simulation\n')\
+        +('//---------------------------------------------------------------\n')\
+        +('\n')\
+        +('task <CLASS_NAME>::main_phase(uvm_phase phase);\n')\
+        +(' super.main_phase(phase);\n')\
+        +('`uvm_info(get_type_name(), "In main_phase...!!", UVM_DEBUG);\n')\
+        +('endtask: main_phase\n')\
+        +('\n')\
+        +('\n')\
+        +('//---------------------------------------------------------------\n')\
+        +('// Task: post_main_phase\n')\
+        +('// \n')\
+        +('// This phase is to take care of any finalization of the main_phase\n')\
+        +('//---------------------------------------------------------------\n')\
+        +('\n')\
+        +('task <CLASS_NAME>::post_main_phase(uvm_phase phase);\n')\
+        +(' super.post_main_phase(phase);\n')\
+        +('`uvm_info(get_type_name(), "In post_main_phase...!!", UVM_DEBUG);\n')\
+        +('endtask: post_main_phase\n')\
+        +('\n')\
+        +('\n')\
+        +('//---------------------------------------------------------------\n')\
+        +('// Task: pre_shutdown_phase\n')\
+        +('// \n')\
+        +('// This phase is to wait for the stimulus generation which is still\n')\
+        +('// generated\n')\
+        +('//---------------------------------------------------------------\n')\
+        +('\n')\
+        +('task <CLASS_NAME>::pre_shutdown_phase(uvm_phase phase);\n')\
+        +(' super.pre_shutdown_phase(phase);\n')\
+        +('`uvm_info(get_type_name(), "In pre_shutdown_phase...!!", UVM_DEBUG);\n')\
+        +('endtask: pre_shutdown_phase\n')\
+        +('\n')\
+        +('\n')\
+        +('//---------------------------------------------------------------\n')\
+        +('// Task: shutdown_phase\n')\
+        +('// \n')\
+        +('// This phase is used to ensure that all the stimulus has reached\n')\
+        +('// the DUT and the outputs are taken from the DUT\n')\
+        +('//---------------------------------------------------------------\n')\
+        +('\n')\
+        +('task <CLASS_NAME>::shutdown_phase(uvm_phase phase);\n')\
+        +(' super.shutdown_phase(phase);\n')\
+        +('`uvm_info(get_type_name(), "In shutdown_phase...!!", UVM_DEBUG);\n')\
+        +('endtask: shutdown_phase\n')\
+        +('\n')\
+        +('\n')\
+        +('//---------------------------------------------------------------\n')\
+        +('// Task: post_shutdown_phase\n')\
+        +('// \n')\
+        +('// It is to perform any final activities before exiting from the \n')\
+        +('// actual simulation phases\n')\
+        +('//---------------------------------------------------------------\n')\
+        +('\n')\
+        +('task <CLASS_NAME>::post_shutdown_phase(uvm_phase phase);\n')\
+        +(' super.post_shutdown_phase(phase);\n')\
+        +('`uvm_info(get_type_name(), "In post_shutdown_phase...!!", UVM_DEBUG);\n')\
+        +('endtask: post_shutdown_phase\n')\
+        +('\n')\
+        +('\n')\
+        +('//---------------------------------------------------------------\n')\
+        +('// Function: extract_phase\n')\
+        +('// \n')\
+        +('// Extract data from different points of the verification environment\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::extract_phase(uvm_phase phase);\n')\
         +(' super.extract_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In extract_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In extract_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: extract_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : check_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: check_phase\n')\
+        +('// \n')\
+        +('// Check for any unexpected conditions in the verification environment\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::check_phase(uvm_phase phase);\n')\
         +(' super.check_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In check_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In check_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: check_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : report_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: report_phase\n')\
+        +('// \n')\
+        +('// Report results of the test\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::report_phase(uvm_phase phase);\n')\
         +(' super.report_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In report_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In report_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: report_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : final_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: final_phase\n')\
+        +('// \n')\
+        +('// Tie up loose ends. All Simulation activities are done.\n')\
+        +('// \n')\
+        +('// Closing files, Ending co-simulation engines etc.\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::final_phase(uvm_phase phase);\n')\
         +(' super.final_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In final_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In final_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: final_phase\n')\
         +('\n')\
         +('\n')\
@@ -32920,8 +33062,8 @@ class uvm_testbench_gen:
         +('//===============================================================\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Interface Name            : <INTERFACE_NAME>\n')\
-        +('// Interface Desctiption     :\n')\
+        +('// Interface: <INTERFACE_NAME>\n')\
+        +('// \n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('interface <INTERFACE_NAME> ;\n')\
@@ -32984,8 +33126,8 @@ class uvm_testbench_gen:
         +('`define <INC_GUARD>\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name            : <CLASS_NAME>\n')\
-        +('// Class Desctiption     :\n')\
+        +('// Class: <CLASS_NAME>\n')\
+        +('// \n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('class <CLASS_NAME> extends uvm_env;\n')\
@@ -33049,9 +33191,8 @@ class uvm_testbench_gen:
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : new\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: new\n')\
+        +('// \n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function <CLASS_NAME>::new(string name = "<CLASS_NAME>", uvm_component parent);\n')\
@@ -33060,14 +33201,14 @@ class uvm_testbench_gen:
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : build_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: build_phase\n')\
+        +('// \n')\
+        +('// Create and configure of testbench structure\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::build_phase(uvm_phase phase);\n')\
         +(' super.build_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In build_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In build_phase...!!", UVM_DEBUG);\n')\
         +('\n')\
         +(' // -----------------\n')\
         +(' // Get configuration\n')\
@@ -33112,14 +33253,14 @@ class uvm_testbench_gen:
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : connect_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: connect_phase\n')\
+        +('// \n')\
+        +('// Establish cross-component connections\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::connect_phase(uvm_phase phase);\n')\
         +(' super.connect_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In connect_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In connect_phase...!!", UVM_DEBUG);\n')\
         +('\n')\
         +(' // -------------\n')\
         +(' // Connect Virtual Interface to Monitor\n')\
@@ -33136,74 +33277,76 @@ class uvm_testbench_gen:
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : end_of_elaboration_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: end_of_elaboration_phase\n')\
+        +('// \n')\
+        +('// Fine-tune the testbench\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::end_of_elaboration_phase(uvm_phase phase);\n')\
         +(' super.end_of_elaboration_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In end_of_elaboration_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In end_of_elaboration_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: end_of_elaboration_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : start_of_simulation_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: start_of_simulation_phase\n')\
+        +('// \n')\
+        +('// Get ready for DUT to be simulated\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::start_of_simulation_phase(uvm_phase phase);\n')\
         +(' super.start_of_simulation_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In start_of_simulation_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In start_of_simulation_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: start_of_simulation_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : extract_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: extract_phase\n')\
+        +('// \n')\
+        +('// Extract data from different points of the verification environment\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::extract_phase(uvm_phase phase);\n')\
         +(' super.extract_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In extract_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In extract_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: extract_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : check_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: check_phase\n')\
+        +('// \n')\
+        +('// Check for any unexpected conditions in the verification environment\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::check_phase(uvm_phase phase);\n')\
         +(' super.check_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In check_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In check_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: check_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : report_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: report_phase\n')\
+        +('// \n')\
+        +('// Report results of the test\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::report_phase(uvm_phase phase);\n')\
         +(' super.report_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In report_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In report_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: report_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : final_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: final_phase\n')\
+        +('// \n')\
+        +('// Tie up loose ends. All Simulation activities are done.\n')\
+        +('// \n')\
+        +('// Closing files, Ending co-simulation engines etc.\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::final_phase(uvm_phase phase);\n')\
         +(' super.final_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In final_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In final_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: final_phase\n')\
         +('\n')\
         +('\n')\
@@ -33268,8 +33411,8 @@ class uvm_testbench_gen:
         +('`define <INC_GUARD>\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name            : <CLASS_NAME>\n')\
-        +('// Class Desctiption     :\n')\
+        +('// Class: <CLASS_NAME>\n')\
+        +('// \n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('class <CLASS_NAME> extends uvm_object;\n')\
@@ -33331,9 +33474,8 @@ class uvm_testbench_gen:
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : new\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: new\n')\
+        +('// \n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function <CLASS_NAME>::new(string name="<CLASS_NAME>");\n')\
@@ -33555,8 +33697,8 @@ class uvm_testbench_gen:
         +('`define <INC_GUARD>\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name            : <CLASS_NAME>\n')\
-        +('// Class Desctiption     :\n')\
+        +('// Class: <CLASS_NAME>\n')\
+        +('// \n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('class <CLASS_NAME> extends uvm_monitor;\n')\
@@ -33615,9 +33757,8 @@ class uvm_testbench_gen:
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : new\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: new\n')\
+        +('// \n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function <CLASS_NAME>::new(string name = "<CLASS_NAME>", uvm_component parent);\n')\
@@ -33626,14 +33767,14 @@ class uvm_testbench_gen:
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : build_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: build_phase\n')\
+        +('// \n')\
+        +('// Create and configure of testbench structure\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::build_phase(uvm_phase phase);\n')\
         +(' super.build_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In build_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In build_phase...!!", UVM_DEBUG);\n')\
         +('\n')\
         +(' // -----------------\n')\
         +(' // Port Construction\n')\
@@ -33656,98 +33797,100 @@ class uvm_testbench_gen:
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : connect_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: connect_phase\n')\
+        +('// \n')\
+        +('// Establish cross-component connections\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::connect_phase(uvm_phase phase);\n')\
         +(' super.connect_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In connect_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In connect_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: connect_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Task Name                : run_phase\n')\
-        +('// Task Desctiption         :\n')\
+        +('// Task: run_phase\n')\
+        +('// \n')\
+        +('// Stimulate the DUT\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('task <CLASS_NAME>::run_phase(uvm_phase phase);\n')\
         +(' super.run_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In run_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In run_phase...!!", UVM_DEBUG);\n')\
         +('endtask: run_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : end_of_elaboration_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: end_of_elaboration_phase\n')\
+        +('// \n')\
+        +('// Fine-tune the testbench\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::end_of_elaboration_phase(uvm_phase phase);\n')\
         +(' super.end_of_elaboration_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In end_of_elaboration_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In end_of_elaboration_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: end_of_elaboration_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : start_of_simulation_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: start_of_simulation_phase\n')\
+        +('// \n')\
+        +('// Get ready for DUT to be simulated\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::start_of_simulation_phase(uvm_phase phase);\n')\
         +(' super.start_of_simulation_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In start_of_simulation_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In start_of_simulation_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: start_of_simulation_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : extract_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: extract_phase\n')\
+        +('// \n')\
+        +('// Extract data from different points of the verification environment\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::extract_phase(uvm_phase phase);\n')\
         +(' super.extract_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In extract_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In extract_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: extract_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : check_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: check_phase\n')\
+        +('// \n')\
+        +('// Check for any unexpected conditions in the verification environment\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::check_phase(uvm_phase phase);\n')\
         +(' super.check_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In check_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In check_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: check_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : report_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: report_phase\n')\
+        +('// \n')\
+        +('// Report results of the test\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::report_phase(uvm_phase phase);\n')\
         +(' super.report_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In report_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In report_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: report_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : final_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: final_phase\n')\
+        +('// \n')\
+        +('// Tie up loose ends. All Simulation activities are done.\n')\
+        +('// \n')\
+        +('// Closing files, Ending co-simulation engines etc.\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::final_phase(uvm_phase phase);\n')\
         +(' super.final_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In final_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In final_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: final_phase\n')\
         +('\n')\
         +('\n')\
@@ -34262,8 +34405,8 @@ class uvm_testbench_gen:
         +('`define <INC_GUARD>\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name            : <CLASS_NAME>\n')\
-        +('// Class Desctiption     :\n')\
+        +('// Class: <CLASS_NAME>\n')\
+        +('// \n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('class <CLASS_NAME> extends uvm_agent;\n')\
@@ -34321,9 +34464,8 @@ class uvm_testbench_gen:
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : new\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: new\n')\
+        +('// \n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function <CLASS_NAME>::new(string name = "<CLASS_NAME>", uvm_component parent);\n')\
@@ -34332,14 +34474,14 @@ class uvm_testbench_gen:
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : build_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: build_phase\n')\
+        +('// \n')\
+        +('// Create and configure of testbench structure\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::build_phase(uvm_phase phase);\n')\
         +(' super.build_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In build_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In build_phase...!!", UVM_DEBUG);\n')\
         +('\n')\
         +(' // -----------------\n')\
         +(' // Get configuration\n')\
@@ -34362,14 +34504,14 @@ class uvm_testbench_gen:
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : connect_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: connect_phase\n')\
+        +('// \n')\
+        +('// Establish cross-component connections\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::connect_phase(uvm_phase phase);\n')\
         +(' super.connect_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In connect_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In connect_phase...!!", UVM_DEBUG);\n')\
         +('\n')\
         +(' // -------------\n')\
         +(' // Connect Virtual Interface to Monitor\n')\
@@ -34389,74 +34531,76 @@ class uvm_testbench_gen:
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : end_of_elaboration_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: end_of_elaboration_phase\n')\
+        +('// \n')\
+        +('// Fine-tune the testbench\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::end_of_elaboration_phase(uvm_phase phase);\n')\
         +(' super.end_of_elaboration_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In end_of_elaboration_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In end_of_elaboration_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: end_of_elaboration_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : start_of_simulation_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: start_of_simulation_phase\n')\
+        +('// \n')\
+        +('// Get ready for DUT to be simulated\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::start_of_simulation_phase(uvm_phase phase);\n')\
         +(' super.start_of_simulation_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In start_of_simulation_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In start_of_simulation_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: start_of_simulation_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : extract_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: extract_phase\n')\
+        +('// \n')\
+        +('// Extract data from different points of the verification environment\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::extract_phase(uvm_phase phase);\n')\
         +(' super.extract_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In extract_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In extract_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: extract_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : check_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: check_phase\n')\
+        +('// \n')\
+        +('// Check for any unexpected conditions in the verification environment\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::check_phase(uvm_phase phase);\n')\
         +(' super.check_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In check_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In check_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: check_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : report_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: report_phase\n')\
+        +('// \n')\
+        +('// Report results of the test\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::report_phase(uvm_phase phase);\n')\
         +(' super.report_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In report_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In report_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: report_phase\n')\
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : final_phase\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: final_phase\n')\
+        +('// \n')\
+        +('// Tie up loose ends. All Simulation activities are done.\n')\
+        +('// \n')\
+        +('// Closing files, Ending co-simulation engines etc.\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function void <CLASS_NAME>::final_phase(uvm_phase phase);\n')\
         +(' super.final_phase(phase);\n')\
-        +('`uvm_info(get_type_name(), "In final_phase...!!", UVM_NONE);\n')\
+        +('`uvm_info(get_type_name(), "In final_phase...!!", UVM_DEBUG);\n')\
         +('endfunction: final_phase\n')\
         +('\n')\
         +('\n')\
@@ -34521,8 +34665,8 @@ class uvm_testbench_gen:
         +('`define <INC_GUARD>\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name            : <CLASS_NAME>\n')\
-        +('// Class Desctiption     :\n')\
+        +('// Class: <CLASS_NAME>\n')\
+        +('// \n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('class <CLASS_NAME> extends uvm_object;\n')\
@@ -34573,9 +34717,8 @@ class uvm_testbench_gen:
         +('\n')\
         +('\n')\
         +('//---------------------------------------------------------------\n')\
-        +('// Class Name               : <CLASS_NAME>\n')\
-        +('// Function Name            : new\n')\
-        +('// Function Desctiption     :\n')\
+        +('// Function: new\n')\
+        +('// \n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('function <CLASS_NAME>::new(string name="<CLASS_NAME>");\n')\
