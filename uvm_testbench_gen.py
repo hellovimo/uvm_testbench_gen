@@ -30125,7 +30125,7 @@ class uvm_testbench_gen:
                 # Adding the Macros Related Files 
                 #------------------------------------------------------------------------------
                 if (mc_env_cfg_pool[a][0]):
-                    fl_loc_stg = fl_loc_stg+("|%s/%s_environment_macros.sv\n"%(envdirpath, envname))
+                    fl_loc_stg = fl_loc_stg+("|%s/%s_environment_macros.sv\n"%(envpath, envname))
                     
                     pos = fl_stg.find('# Macros Files\n')
                     apos = pos + len('# Macros Files\n')
@@ -30735,7 +30735,7 @@ class uvm_testbench_gen:
                 # Adding the Macros Related Files 
                 #------------------------------------------------------------------------------
                 if (mc_env_cfg_pool[a][0]) and mc_curr_env_set_c == 1:
-                    fl_loc_stg = fl_loc_stg+("|%s/%s_environment_macros.sv\n"%(envdirpath, envname))
+                    fl_loc_stg = fl_loc_stg+("|%s/%s_environment_macros.sv\n"%(envpath, envname))
                     
                     pos = fl_stg.find('# Macros Files\n')
                     apos = pos + len('# Macros Files\n')
