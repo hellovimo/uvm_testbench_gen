@@ -19,6 +19,7 @@ The current stable version of uvm_testbench_gen requires:
 # Facts 
 1. Tool GUI works well in Linux environment and its been tested in Windows as well.
 2. It doesn't work well in MAC (Catalina OS) since there is some issue with respect to Tkinter libs.
+3. The "comments" format used in the generated codes follows the "Natural Docs" formatting for class, functions, tasks. For further details on the Natural Docs and formatting used in the UVM base libraries please refer the section 5 in Documentation given below.
 
 # Documentation, papers, links and other required details
 
@@ -29,3 +30,5 @@ The current stable version of uvm_testbench_gen requires:
 3. Short video about this tool can be found on the below youtube link<br/>- [UVM Template Generator Tool Demo](https://www.youtube.com/watch?v=DNopc-QDq0o)
 
 4. Poster/Paper submitted for DAC2020 (Design Automation Conference) Conference in the link below.<br/>- [UVM Template Generator Tool DAC2020 Poster/Paper](https://github.com/hellovimo/uvm_testbench_gen/blob/main/Documents/DAC2020_Novel_GUI_Based_UVM_Template_Builder_Vignesh_Manoharan.pdf)
+
+5. For UVM comments formatting, natural docs etc. please refer the links given below.<br/>- [Natural Docs](https://naturaldocs.org/)<br/>- [UVM Natural Docs Formatting Updates](https://sourceforge.net/p/uvm/code/ci/master/tree/)
