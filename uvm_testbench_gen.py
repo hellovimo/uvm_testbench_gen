@@ -16405,7 +16405,17 @@ class uvm_testbench_gen:
                             self.mc_create_intf_wrapper(envintfname, envname_pkg) 
                             shutil.move('./%s_interface.sv'%(envintfname), '%s'%(envintfdirpath))
                             shutil.move('./%s_interface_wrapper.sv'%(envintfname), '%s'%(envintfdirpath))
+                
+                
+                # Calling the env sequences file create API
+                #------------------------------------------------------------------------------
+                # Directory Path For Environment/Test Sequences Files  
+                #------------------------------------------------------------------------------
+                envseqdirpath = envdirpath+'/'+'env_sequences'
+                log.debug("mc_create_phase : envseqdirpath %s!\n"%envseqdirpath)
+                os.makedirs(envseqdirpath)
 
+                
                 # Calling the env monitor file create API
                 #------------------------------------------------------------------------------
                 # Creating directory for environment monitors
@@ -16734,6 +16744,22 @@ class uvm_testbench_gen:
                             # Director Path For Env 
                             envdirpath = envdirpath+'/'+envname+'_env'   
                             log.debug("mc_create_phase : envdirpath %s!\n"%envdirpath)
+                
+                
+                # Calling the env sequences file create API
+                #------------------------------------------------------------------------------
+                # Directory Path For Environment/Test Sequences Files  
+                #------------------------------------------------------------------------------
+                if (mc_env_cfg_pool[a][0]):
+                    if mc_curr_env_set_c == 1:
+                        envseqdirpath = envdirpath+'/'+'env_sequences'
+                        log.debug("mc_create_phase : envseqdirpath %s!\n"%envseqdirpath)
+                        
+                        if os.path.exists(envseqdirpath):
+                            log.debug("mc_create_phase : Environment Sequences Dir Path %s Already Exists!\n"%(envseqdirpath))
+                        else:
+                            log.debug("mc_create_phase : Environment Sequences Dir Path %s Doesn't Exists. Creating a new One!!\n"%(envseqdirpath))
+                            os.makedirs(envseqdirpath)
 
     
                 # Calling the env interface file create API
