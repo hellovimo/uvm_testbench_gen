@@ -1,6 +1,6 @@
 #==================================================================================
 # File Name        : uvm_testbench_gen.py  
-# Desctiption      :
+# Description      :
 # Name             : uvm_testbench_gen 
 # Author           : Vignesh Manoharan
 # Date             : 
@@ -14735,7 +14735,7 @@ class uvm_testbench_gen:
                                         cv_scb_array.append("//---------------------------------------------------------------\n")
                                         cv_scb_array.append("// Class Name               : %s_scoreboard\n"%(str(comp_vip_entry_name_scb),))
                                         cv_scb_array.append("// Function Name            : write_%s_scoreboard\n"%(str(comp_vip_entry_name_agt)))
-                                        cv_scb_array.append("// Function Desctiption     :\n")
+                                        cv_scb_array.append("// Function Description     :\n")
                                         cv_scb_array.append("//---------------------------------------------------------------\n")
                                         cv_scb_array.append("\n")
                                         cv_scb_array.append("function void %s_scoreboard::write_%s_scoreboard(%s_sequence_item_base %s_seq_item_base);\n"%(str(comp_vip_entry_name_scb), str(comp_vip_entry_name_agt), str(comp_vip_entry_name_agt), str(comp_vip_entry_name_agt),))
@@ -14745,7 +14745,7 @@ class uvm_testbench_gen:
                                         cv_scb_array.append("//---------------------------------------------------------------\n")
                                         cv_scb_array.append("// Class Name               : %s_scoreboard\n"%(str(comp_vip_entry_name_scb),))
                                         cv_scb_array.append("// Function Name            : write_%s_%s_scoreboard\n"%(str(comp_vip_entry_name_agt), cv_agent_cfg_array[agt_loop-1][2][scb_loop]))
-                                        cv_scb_array.append("// Function Desctiption     :\n")
+                                        cv_scb_array.append("// Function Description     :\n")
                                         cv_scb_array.append("//---------------------------------------------------------------\n")
                                         cv_scb_array.append("\n")
                                         if int(cv_agent_cfg_array[agt_loop-1][2][0]==1): cv_scb_array.append("function void %s_scoreboard::write_%s_scoreboard(%s_sequence_item_base %s_seq_item_base);\n"%(str(comp_vip_entry_name_scb), str(comp_vip_entry_name_agt), str(comp_vip_entry_name_agt), str(comp_vip_entry_name_agt),))
@@ -14759,7 +14759,7 @@ class uvm_testbench_gen:
                                         cv_scb_array.append("// Class Name               : %s_scoreboard\n"%(str(comp_vip_entry_name_scb),))
                                         if (int(cv_agent_cfg_array[agt_loop-1][2][0])==1): cv_scb_array.append("// Function Name            : write_%s_scoreboard\n"%(cv_agent_cfg_array[agt_loop-1][1][i],))
                                         else: cv_scb_array.append("// Function Name            : write_%s_%s_scoreboard\n"%(cv_agent_cfg_array[agt_loop-1][1][i], cv_agent_cfg_array[agt_loop-1][2][scb_loop]))
-                                        cv_scb_array.append("// Function Desctiption     :\n")
+                                        cv_scb_array.append("// Function Description     :\n")
                                         cv_scb_array.append("//---------------------------------------------------------------\n")
                                         cv_scb_array.append("\n")
                                         if (int(cv_agent_cfg_array[agt_loop-1][2][0])==1): cv_scb_array.append("function void %s_scoreboard::write_%s_scoreboard(%s_%s_sequence_item_base %s_%s_seq_item_base);\n"%(str(comp_vip_entry_name_scb), cv_agent_cfg_array[agt_loop-1][1][i], str(comp_vip_entry_name_agt), cv_agent_cfg_array[agt_loop-1][1][i], str(comp_vip_entry_name_agt), cv_agent_cfg_array[agt_loop-1][1][i],))
@@ -15304,7 +15304,7 @@ class uvm_testbench_gen:
                             cv_env_cfg_array.append("//---------------------------------------------------------------\n")
                             cv_env_cfg_array.append("// Class Name               : %s_environment_config\n"%(str(comp_vip_entry_name))) 
                             cv_env_cfg_array.append("// Function Name            : configure_%s_agt\n"%str(comp_vip_entry_name_agt)) 
-                            cv_env_cfg_array.append("// Function Desctiption     : \n")
+                            cv_env_cfg_array.append("// Function Description     : \n")
                             cv_env_cfg_array.append("//---------------------------------------------------------------\n")
                             cv_env_cfg_array.append("\n")
                             cv_env_cfg_array.append("function void %s_environment_config::configure_%s_agt(int unsigned num_agts);\n"%(str(comp_vip_entry_name), str(comp_vip_entry_name_agt)))
@@ -31591,7 +31591,7 @@ class uvm_testbench_gen:
         seq_itm_stg = seq_itm_stg\
         +("|//===============================================================\n")\
         +("|// File Name        : <CLASS_NAME>\n")\
-        +("|// Desctiption      :\n")\
+        +("|// Description      :\n")\
         +("|// Package Name     : <PACKAGE_NAME>\n")\
         +("|// Name             : <CREATE_NAME>\n")\
         +("|// File Created     : <CREATE_DATE>\n")\
@@ -31699,7 +31699,7 @@ class uvm_testbench_gen:
         seq_stg = seq_stg\
         +('//===============================================================\n')\
         +('// File Name        : <CLASS_NAME>\n')\
-        +('// Desctiption      :\n')\
+        +('// Description      :\n')\
         +('// Package Name     : <PACKAGE_NAME>\n')\
         +('// Name             : <CREATE_NAME>\n')\
         +('// File Created     : <CREATE_DATE>\n')\
@@ -31811,7 +31811,7 @@ class uvm_testbench_gen:
         seqr_stg = seqr_stg\
         +('//===============================================================\n')\
         +('// File Name        : <CLASS_NAME>\n')\
-        +('// Desctiption      :\n')\
+        +('// Description      :\n')\
         +('// Package Name     : <PACKAGE_NAME>\n')\
         +('// Name             : <CREATE_NAME>\n')\
         +('// File Created     : <CREATE_DATE>\n')\
@@ -31908,7 +31908,7 @@ class uvm_testbench_gen:
         drv_stg = drv_stg\
         +('//===============================================================\n')\
         +('// File Name        : <CLASS_NAME>\n')\
-        +('// Desctiption      :\n')\
+        +('// Description      :\n')\
         +('// Package Name     : <PACKAGE_NAME>\n')\
         +('// Name             : <CREATE_NAME>\n')\
         +('// File Created     : <CREATE_DATE>\n')\
@@ -32156,7 +32156,7 @@ class uvm_testbench_gen:
         mon_stg = mon_stg\
         +('//===============================================================\n')\
         +('// File Name        : <CLASS_NAME>\n')\
-        +('// Desctiption      :\n')\
+        +('// Description      :\n')\
         +('// Package Name     : <PACKAGE_NAME>\n')\
         +('// Name             : <CREATE_NAME>\n')\
         +('// File Created     : <CREATE_DATE>\n')\
@@ -32411,7 +32411,7 @@ class uvm_testbench_gen:
         scb_stg = scb_stg\
         +('//===============================================================\n')\
         +('// File Name        : <CLASS_NAME>\n')\
-        +('// Desctiption      :\n')\
+        +('// Description      :\n')\
         +('// Package Name     : <PACKAGE_NAME>\n')\
         +('// Name             : <CREATE_NAME>\n')\
         +('// File Created     : <CREATE_DATE>\n')\
@@ -32655,7 +32655,7 @@ class uvm_testbench_gen:
         test_stg = test_stg\
         +('//===============================================================\n')\
         +('// File Name        : <CLASS_NAME>\n')\
-        +('// Desctiption      :\n')\
+        +('// Description      :\n')\
         +('// Package Name     : <PACKAGE_NAME>\n')\
         +('// Name             : <CREATE_NAME>\n')\
         +('// File Created     : <CREATE_DATE>\n')\
@@ -33079,7 +33079,7 @@ class uvm_testbench_gen:
         intf_stg = intf_stg\
         +('//===============================================================\n')\
         +('// File Name        : <INTERFACE_NAME>\n')\
-        +('// Desctiption      :\n')\
+        +('// Description      :\n')\
         +('// Name             : <CREATE_NAME>\n')\
         +('// File Created     : <CREATE_DATE>\n')\
         +('// Copyright        :\n')\
@@ -33139,7 +33139,7 @@ class uvm_testbench_gen:
         env_stg = env_stg\
         +('//===============================================================\n')\
         +('// File Name        : <CLASS_NAME>\n')\
-        +('// Desctiption      :\n')\
+        +('// Description      :\n')\
         +('// Package Name     : <PACKAGE_NAME>\n')\
         +('// Name             : <CREATE_NAME>\n')\
         +('// File Created     : <CREATE_DATE>\n')\
@@ -33424,7 +33424,7 @@ class uvm_testbench_gen:
         env_cfg_stg = env_cfg_stg\
         +('//===============================================================\n')\
         +('// File Name        : <CLASS_NAME>\n')\
-        +('// Desctiption      :\n')\
+        +('// Description      :\n')\
         +('// Package Name     : <PACKAGE_NAME>\n')\
         +('// Name             : <CREATE_NAME>\n')\
         +('// File Created     : <CREATE_DATE>\n')\
@@ -33585,7 +33585,7 @@ class uvm_testbench_gen:
         env_mac_stg = env_mac_stg\
         +('//===============================================================\n')\
         +('// File Name        : <ENV_MACRO_NAME>\n')\
-        +('// Desctiption      :\n')\
+        +('// Description      :\n')\
         +('// Package Name     :\n')\
         +('// Name             : <CREATE_NAME>\n')\
         +('// File Created     : <CREATE_DATE>\n')\
@@ -33636,7 +33636,7 @@ class uvm_testbench_gen:
         int_wra_stg = int_wra_stg\
         +('//===============================================================\n')\
         +('// File Name        : <INTERFACE_WRAPPER_NAME>\n')\
-        +('// Desctiption      :\n')\
+        +('// Description      :\n')\
         +('// Name             : <CREATE_NAME>\n')\
         +('// File Created     : <CREATE_DATE>\n')\
         +('// Copyright        :\n')\
@@ -33646,7 +33646,7 @@ class uvm_testbench_gen:
         +('\n')\
         +('//---------------------------------------------------------------\n')\
         +('// Interface Wrapper Name           : <INTERFACE_WRAPPER_NAME>\n')\
-        +('// Interface Wrapper Desctiption    :\n')\
+        +('// Interface Wrapper Description    :\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('module <INTERFACE_WRAPPER_NAME> #()();\n')\
@@ -33710,7 +33710,7 @@ class uvm_testbench_gen:
         env_mon_stg = env_mon_stg\
         +('//===============================================================\n')\
         +('// File Name        : <CLASS_NAME>\n')\
-        +('// Desctiption      :\n')\
+        +('// Description      :\n')\
         +('// Package Name     : <PACKAGE_NAME>\n')\
         +('// Name             : <CREATE_NAME>\n')\
         +('// File Created     : <CREATE_DATE>\n')\
@@ -33962,7 +33962,7 @@ class uvm_testbench_gen:
         pkg_stg = pkg_stg\
         +('//===============================================================\n')\
         +('// File Name        : <PACKAGE_NAME>\n')\
-        +('// Desctiption      :\n')\
+        +('// Description      :\n')\
         +('// Name             : <CREATE_NAME>\n')\
         +('// File Created     : <CREATE_DATE>\n')\
         +('// Copyright        :\n')\
@@ -33972,7 +33972,7 @@ class uvm_testbench_gen:
         +('\n')\
         +('//---------------------------------------------------------------\n')\
         +('// Package Name            : <PACKAGE_NAME>\n')\
-        +('// Package Desctiption     :\n')\
+        +('// Package Description     :\n')\
         +('//---------------------------------------------------------------\n')\
         +('\n')\
         +('//------------------------------------------\n')\
@@ -34099,7 +34099,7 @@ class uvm_testbench_gen:
         top_stg = top_stg\
         +('//===============================================================\n')\
         +('// File Name        : <TOP_NAME>\n')\
-        +('// Desctiption      :\n')\
+        +('// Description      :\n')\
         +('// Name             : <CREATE_NAME>\n')\
         +('// File Created     : <CREATE_DATE>\n')\
         +('// Copyright        :\n')\
@@ -34219,7 +34219,7 @@ class uvm_testbench_gen:
         com_fl_stg = com_fl_stg\
         +('#===============================================================\n')\
         +('# File Name        : <COMMON_FILELIST_NAME>.f\n')\
-        +('# Desctiption      :\n')\
+        +('# Description      :\n')\
         +('# Name             : <CREATE_NAME>\n')\
         +('# File Created     : <CREATE_DATE>\n')\
         +('# Copyright        :\n')\
@@ -34272,7 +34272,7 @@ class uvm_testbench_gen:
         env_fl_stg = env_fl_stg\
         +('#===============================================================\n')\
         +('# File Name        : <ENV_FILELIST_NAME>.f\n')\
-        +('# Desctiption      :\n')\
+        +('# Description      :\n')\
         +('# Name             : <CREATE_NAME>\n')\
         +('# File Created     : <CREATE_DATE>\n')\
         +('# Copyright        :\n')\
@@ -34349,7 +34349,7 @@ class uvm_testbench_gen:
         tbt_fl_stg = tbt_fl_stg\
         +('#===============================================================\n')\
         +('# File Name        : <TBTOP_FILELIST_NAME>.f\n')\
-        +('# Desctiption      :\n')\
+        +('# Description      :\n')\
         +('# Name             : <CREATE_NAME>\n')\
         +('# File Created     : <CREATE_DATE>\n')\
         +('# Copyright        :\n')\
@@ -34418,7 +34418,7 @@ class uvm_testbench_gen:
         agt_stg = agt_stg\
         +('//===============================================================\n')\
         +('// File Name        : <CLASS_NAME>\n')\
-        +('// Desctiption      :\n')\
+        +('// Description      :\n')\
         +('// Package Name     : <PACKAGE_NAME>\n')\
         +('// Name             : <CREATE_NAME>\n')\
         +('// File Created     : <CREATE_DATE>\n')\
@@ -34678,7 +34678,7 @@ class uvm_testbench_gen:
         agt_cfg_stg = agt_cfg_stg\
         +('//===============================================================\n')\
         +('// File Name        : <CLASS_NAME>\n')\
-        +('// Desctiption      :\n')\
+        +('// Description      :\n')\
         +('// Package Name     : <PACKAGE_NAME>\n')\
         +('// Name             : <CREATE_NAME>\n')\
         +('// File Created     : <CREATE_DATE>\n')\
@@ -34805,7 +34805,7 @@ class uvm_testbench_gen:
         env_setup_stg = env_setup_stg\
         +('#===============================================================\n')\
         +('# File Name        : <ENV_SETUP_NAME>.sh\n')\
-        +('# Desctiption      :\n')\
+        +('# Description      :\n')\
         +('# Name             : <CREATE_NAME>\n')\
         +('# File Created     : <CREATE_DATE>\n')\
         +('# Copyright        :\n')\
