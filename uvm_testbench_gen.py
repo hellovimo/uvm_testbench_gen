@@ -16372,6 +16372,15 @@ class uvm_testbench_gen:
                     shutil.move('./%s_environment_macros.sv'%(envname), '%s'%(envpath))
 
                 
+                # Calling the env RAL, Memory Models file create API
+                #------------------------------------------------------------------------------
+                # Directory Path For Environment RAL, Memory Models 
+                #------------------------------------------------------------------------------
+                envmdldirpath = envdirpath+'/'+'models'
+                log.debug("mc_create_phase : envmdldirpath %s!\n"%envmdldirpath)
+                os.makedirs(envmdldirpath)
+
+                
                 # Calling the env interface file create API
                 #------------------------------------------------------------------------------
                 # Directory Path For Environment Interface Files  
@@ -16745,6 +16754,21 @@ class uvm_testbench_gen:
                             envdirpath = envdirpath+'/'+envname+'_env'   
                             log.debug("mc_create_phase : envdirpath %s!\n"%envdirpath)
                 
+                
+                #------------------------------------------------------------------------------
+                # Directory Path For Environment RAL, Memory Models
+                #------------------------------------------------------------------------------
+                if (mc_env_cfg_pool[a][0]):
+                    if mc_curr_env_set_c == 1:
+                        envmdldirpath = envdirpath+'/'+'models'
+                        log.debug("mc_create_phase : envmdldirpath %s!\n"%envmdldirpath)
+                        
+                        if os.path.exists(envmdldirpath):
+                            log.debug("mc_create_phase : Environment RAL, Memory Dir Path %s Already Exists!\n"%(envmdldirpath))
+                        else:
+                            log.debug("mc_create_phase : Environment RAL, Memory Dir Path %s Doesn't Exists. Creating a new One!!\n"%(envmdldirpath))
+                            os.makedirs(envmdldirpath)
+
                 
                 # Calling the env sequences file create API
                 #------------------------------------------------------------------------------
@@ -29954,6 +29978,24 @@ class uvm_testbench_gen:
                     fl_loc_stg = '' 
                 #------------------------------------------------------------------------------
 
+                
+                #------------------------------------------------------------------------------
+                # Directory Path For Environment RAL, Memory Models 
+                #------------------------------------------------------------------------------
+                if (mc_env_cfg_pool[a][0]):
+                    envmdldirpath = envdirpath+'/'+'models'
+                    log.debug("mc_list_file : envmdldirpath %s!\n"%envmdldirpath)
+                    
+                    fl_loc_stg = fl_loc_stg+("|+incdir+%s\n"%(envmdldirpath))
+                    
+                    pos = fl_stg.find('# Environment RAL, Memory Models Directory\n')
+                    apos = pos + len('# Environment RAL, Memory Models Directory\n')
+                    fl_stg = fl_stg[:apos]+fl_loc_stg+fl_stg[apos:]
+                    
+                    # Clearning Local Variables
+                    fl_loc_stg = '' 
+                #------------------------------------------------------------------------------
+
 
                 #------------------------------------------------------------------------------
                 # Creating directory for environment monitors
@@ -29966,6 +30008,24 @@ class uvm_testbench_gen:
                     
                     pos = fl_stg.find('# Environment Monitor Files Directory\n')
                     apos = pos + len('# Environment Monitor Files Directory\n')
+                    fl_stg = fl_stg[:apos]+fl_loc_stg+fl_stg[apos:]
+                    
+                    # Clearning Local Variables
+                    fl_loc_stg = '' 
+                #------------------------------------------------------------------------------
+
+
+                #------------------------------------------------------------------------------
+                # Creating directory for environment and test sequences directory 
+                #------------------------------------------------------------------------------
+                if (mc_env_cfg_pool[a][0]):
+                    envseqdirpath = envdirpath+'/'+'env_sequences'
+                    log.debug("mc_list_file : envseqdirpath %s!\n"%envseqdirpath)
+
+                    fl_loc_stg = fl_loc_stg+("|+incdir+%s\n"%(envseqdirpath))
+                    
+                    pos = fl_stg.find('# Environment and Test Sequence Files Directory\n')
+                    apos = pos + len('# Environment and Test Sequence Files Directory\n')
                     fl_stg = fl_stg[:apos]+fl_loc_stg+fl_stg[apos:]
                     
                     # Clearning Local Variables
@@ -30495,7 +30555,27 @@ class uvm_testbench_gen:
                         # Clearning Local Variables
                         fl_loc_stg = '' 
                 #------------------------------------------------------------------------------
+                   
+               
+                #------------------------------------------------------------------------------
+                # Creating directory for environment RAL, Memory Models 
+                #------------------------------------------------------------------------------
+                if (mc_env_cfg_pool[a][0]):
+                    envmdldirpath = envdirpath+'/'+'models'
+                    log.debug("mc_list_file : envmdldirpath %s!\n"%envmdldirpath)
+
+                    fl_loc_stg = fl_loc_stg+("|+incdir+%s\n"%(envmdldirpath))
                     
+                    #if self.substr_str_search('__c', mc_env_cfg_pool[a][3]) or mc_curr_env_set_c == 1:
+                    if mc_curr_env_set_c == 1:
+                        pos = fl_stg.find('# Environment RAL, Memory Models Directory\n')
+                        apos = pos + len('# Environment RAL, Memory Models Directory\n')
+                        fl_stg = fl_stg[:apos]+fl_loc_stg+fl_stg[apos:]
+                        
+                    # Clearning Local Variables
+                    fl_loc_stg = '' 
+                #------------------------------------------------------------------------------
+                
    
                 #------------------------------------------------------------------------------
                 # Creating directory for environment monitors
@@ -30510,6 +30590,26 @@ class uvm_testbench_gen:
                     if mc_curr_env_set_c == 1:
                         pos = fl_stg.find('# Environment Monitor Files Directory\n')
                         apos = pos + len('# Environment Monitor Files Directory\n')
+                        fl_stg = fl_stg[:apos]+fl_loc_stg+fl_stg[apos:]
+                        
+                    # Clearning Local Variables
+                    fl_loc_stg = '' 
+                #------------------------------------------------------------------------------
+
+
+                #------------------------------------------------------------------------------
+                # Creating directory for environment and test sequences directory 
+                #------------------------------------------------------------------------------
+                if (mc_env_cfg_pool[a][0]):
+                    envseqdirpath = envdirpath+'/'+'env_sequences'
+                    log.debug("mc_list_file : envseqdirpath %s!\n"%envseqdirpath)
+
+                    fl_loc_stg = fl_loc_stg+("|+incdir+%s\n"%(envseqdirpath))
+                    
+                    #if self.substr_str_search('__c', mc_env_cfg_pool[a][3]) or mc_curr_env_set_c == 1:
+                    if mc_curr_env_set_c == 1:
+                        pos = fl_stg.find('# Environment and Test Sequence Files Directory\n')
+                        apos = pos + len('# Environment and Test Sequence Files Directory\n')
                         fl_stg = fl_stg[:apos]+fl_loc_stg+fl_stg[apos:]
                         
                     # Clearning Local Variables
@@ -33170,6 +33270,10 @@ class uvm_testbench_gen:
         +(' // Sub-Environments Instantiation\n')\
         +('\n')\
         +(' //--------------------------------------------\n')\
+        +(' // RAL Adapter and Predictor Instantiation\n')\
+        +(' //--------------------------------------------\n')\
+        +('\n')\
+        +(' //--------------------------------------------\n')\
         +(' // Object Instantiation\n')\
         +(' //--------------------------------------------\n')\
         +('\n')\
@@ -33275,6 +33379,10 @@ class uvm_testbench_gen:
         +(' // Configure Environment Agents\n')\
         +('\n')\
         +(' // Configure Sub-Environments\n')\
+        +('\n')\
+        +(' // ------------------\n')\
+        +(' // Configure RAL Models\n')\
+        +(' // ------------------\n')\
         +('endfunction: build_phase\n')\
         +('\n')\
         +('\n')\
@@ -33298,6 +33406,10 @@ class uvm_testbench_gen:
         +('\n')\
         +(' // -------------\n')\
         +(' // Adding Agent Sequencer To The Sequencer Container\n')\
+        +(' // -------------\n')\
+        +('\n')\
+        +(' // -------------\n')\
+        +(' // Setup RAL Models\n')\
         +(' // -------------\n')\
         +('endfunction: connect_phase\n')\
         +('\n')\
@@ -33996,8 +34108,14 @@ class uvm_testbench_gen:
         +(' //------------------------------------------\n')\
         +('\n')\
         +(' //------------------------------------------\n')\
-        +(' // Including Packages\n')\
+        +(' // Importing Packages\n')\
         +(' //------------------------------------------\n')\
+        +('\n')\
+        +(' // 3rd Party VIP Packages\n')\
+        +('\n')\
+        +(' // Other VIP Packages\n')\
+        +('\n')\
+        +(' // RAL Packages\n')\
         +('\n')\
         +(' // Sequence Item Packages\n')\
         +('\n')\
@@ -34285,6 +34403,10 @@ class uvm_testbench_gen:
         +('# Environment Directory\n')\
         +('\n')\
         +('# Environment Interface Files Directory\n')\
+        +('\n')\
+        +('# Environment and Test Sequence Files Directory\n')\
+        +('\n')\
+        +('# Environment RAL, Memory Models Directory\n')\
         +('\n')\
         +('# Environment Monitor Files Directory\n')\
         +('\n')\
